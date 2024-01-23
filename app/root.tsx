@@ -3,6 +3,7 @@ import {
   Links,
   LiveReload,
   Meta,
+  Outlet,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
@@ -180,12 +181,7 @@ export default function App() {
             <Column>
               <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
               <div className='flex flex-row h-full'>
-                <div className='grow card bg-base-100 card-bordered'>
-                  <div className='card-body'>
-                    <h2 className='card-title'>CHS</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                  </div>
-                </div>
+                <Outlet />
                 <div className='grow-0 bg-amber-200 border-l border-amber-500 text-amber-700 h-full'>
                   <ul>
                     <li><ClipboardDocumentListIcon className='text-orange-500 h-6 w-6 inline mx-4 mt-6' /></li>
