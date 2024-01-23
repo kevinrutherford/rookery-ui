@@ -34,8 +34,8 @@ function FeedEventCard(props: FEProps) {
     <div className='bg-white p-4'>
       <div className='flex justify-between mb-4'>
         <div className='flex gap-x-4'>
-          <div className='avatar placeholder'>
-            <div className='bg-neutral text-neutral-content rounded-full w-12'>
+          <div className='flex'>
+            <div className='bg-zinc-800 text-white rounded-full flex items-center justify-center w-12'>
               <span className='text-xl'>{props.initials}</span>
             </div>
           </div>
@@ -147,7 +147,8 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="h-screen bg-zinc-100 text-zinc-600">
+        <div className="min-h-screen h-full flex flex-col">
         <div className='container mx-auto my-12 h-full overflow-hidden'>
           <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
             <Column>
@@ -194,6 +195,7 @@ export default function App() {
               </div>
             </Column>
           </div>
+        </div>
         </div>
         <ScrollRestoration />
         <Scripts />
