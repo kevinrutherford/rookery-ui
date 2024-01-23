@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import stylesheet from "~/tailwind.css";
 import {
   ClipboardDocumentListIcon,
