@@ -1,4 +1,4 @@
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction } from '@remix-run/node';
 import {
   Links,
   LiveReload,
@@ -6,9 +6,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
+} from '@remix-run/react';
 import type { FC, ReactNode } from 'react';
-import stylesheet from "~/tailwind.css";
+import stylesheet from '~/tailwind.css';
 import {
   ClipboardDocumentListIcon,
   Cog8ToothIcon,
@@ -16,7 +16,7 @@ import {
 } from '@heroicons/react/24/solid';
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
+  { rel: 'stylesheet', href: stylesheet },
 ];
 
 type FeedEvent = {
