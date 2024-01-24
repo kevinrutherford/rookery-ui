@@ -2,9 +2,9 @@ import type { MetaFunction } from '@remix-run/node';
 import type { FC, ReactNode } from 'react';
 
 export const meta: MetaFunction = () => [
-    { title: 'Rookery' },
-    { name: 'description', content: 'Rookery' },
-  ];
+  { title: 'Rookery' },
+  { name: 'description', content: 'Rookery' },
+];
 
 type CollectionMetadataProps = {
   children: ReactNode;

@@ -1,6 +1,7 @@
 {
   "plugins": [
     "@typescript-eslint",
+    "@stylistic",
     "react-hooks"
   ],
   "extends": [
@@ -10,13 +11,17 @@
     "plugin:import/typescript",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:@stylistic/disable-legacy"
   ],
   "env": {
     "node": true,
     "es6": true
   },
   "rules": {
+    "@stylistic/comma-dangle": ["error", "always-multiline"],
+    "@stylistic/indent": ["error", 2],
+    "@stylistic/no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
     "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "always"],
     "import/prefer-default-export": "off",

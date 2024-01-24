@@ -150,48 +150,48 @@ export default function App() {
       </head>
       <body className="h-screen bg-zinc-100 text-zinc-600">
         <div className="min-h-screen h-full flex flex-col">
-        <div className='container mx-auto my-12 h-full overflow-hidden'>
-          <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
-            <Column>
-              <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
-              <ul className='overflow-y-auto'>
-                <li className='border-b border-amber-500'>
-                  <FeedEventCard {...event7} />
-                </li>
-                <li className='border-b border-amber-500'>
-                  <FeedEventCard {...event6} />
-                </li>
-                <li className='border-b border-amber-500'>
-                  <FeedEventCard {...event5} />
-                </li>
-                <li className='border-b border-amber-500'>
-                  <FeedEventCard {...event4} />
-                </li>
-                <li className='border-b border-amber-500'>
-                  <FeedEventCard {...event3} />
-                </li>
-                <li className='border-b border-amber-500'>
-                  <FeedEventCard {...event2} />
-                </li>
-                <li className='border-b border-amber-500'>
-                  <FeedEventCard {...event1} />
-                </li>
-              </ul>
-            </Column>
-            <Column>
-              <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
-              <div className='flex flex-row h-full'>
-                <Outlet />
-                <div className='grow-0 bg-amber-200 border-l border-amber-500 text-amber-700 h-full'>
-                  <ul>
-                    <li><ClipboardDocumentListIcon className='text-orange-500 h-6 w-6 inline mx-4 mt-6' /></li>
-                    <li><Cog8ToothIcon className='h-6 w-6 inline mx-4 mt-6' /></li>
-                  </ul>
+          <div className='container mx-auto my-12 h-full overflow-hidden'>
+            <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
+              <Column>
+                <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
+                <ul className='overflow-y-auto'>
+                  <li className='border-b border-amber-500'>
+                    <FeedEventCard {...event7} />
+                  </li>
+                  <li className='border-b border-amber-500'>
+                    <FeedEventCard {...event6} />
+                  </li>
+                  <li className='border-b border-amber-500'>
+                    <FeedEventCard {...event5} />
+                  </li>
+                  <li className='border-b border-amber-500'>
+                    <FeedEventCard {...event4} />
+                  </li>
+                  <li className='border-b border-amber-500'>
+                    <FeedEventCard {...event3} />
+                  </li>
+                  <li className='border-b border-amber-500'>
+                    <FeedEventCard {...event2} />
+                  </li>
+                  <li className='border-b border-amber-500'>
+                    <FeedEventCard {...event1} />
+                  </li>
+                </ul>
+              </Column>
+              <Column>
+                <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
+                <div className='flex flex-row h-full'>
+                  <Outlet />
+                  <div className='grow-0 bg-amber-200 border-l border-amber-500 text-amber-700 h-full'>
+                    <ul>
+                      <li><ClipboardDocumentListIcon className='text-orange-500 h-6 w-6 inline mx-4 mt-6' /></li>
+                      <li><Cog8ToothIcon className='h-6 w-6 inline mx-4 mt-6' /></li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </Column>
+              </Column>
+            </div>
           </div>
-        </div>
         </div>
         <ScrollRestoration />
         <Scripts />
