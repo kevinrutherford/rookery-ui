@@ -3,6 +3,7 @@ import {
   Links,
   LiveReload,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -36,8 +37,8 @@ function FeedEventCard(props: FEProps) {
       <div className='flex justify-between mb-4'>
         <div className='flex gap-x-4'>
           <div className='flex'>
-            <div className='bg-zinc-800 text-white rounded-full flex items-center justify-center w-12'>
-              <span className='text-xl'>{props.initials}</span>
+            <div className='bg-zinc-800 text-white rounded-full flex text-xl items-center justify-center w-12'>
+              {props.initials}
             </div>
           </div>
           <h2>
@@ -183,9 +184,18 @@ export default function App() {
                 <div className='flex flex-row h-full'>
                   <Outlet />
                   <div className='grow-0 bg-amber-200 border-l border-amber-500 text-amber-700 h-full'>
-                    <ul>
-                      <li><ClipboardDocumentListIcon className='text-orange-500 h-6 w-6 inline mx-4 mt-6' /></li>
-                      <li><Cog8ToothIcon className='h-6 w-6 inline mx-4 mt-6' /></li>
+                    <ul className='flex flex-col items-center px-2'>
+                      <li className='flex mt-6'>
+                        <NavLink
+                          className={({ isActive }) => isActive ? 'text-amber-200 shrink rounded-full bg-amber-700 block' : '' }
+                          to={'collections'}
+                        >
+                          <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />
+                        </NavLink>
+                      </li>
+                      <li className='mt-6'>
+                        <Cog8ToothIcon className='h-10 w-10 p-2 inline' />
+                      </li>
                     </ul>
                   </div>
                 </div>
