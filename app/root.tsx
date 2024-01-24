@@ -193,8 +193,13 @@ export default function App() {
                           <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />
                         </NavLink>
                       </li>
-                      <li className='mt-6'>
-                        <Cog8ToothIcon className='h-10 w-10 p-2 inline' />
+                      <li className='flex mt-6'>
+                        <NavLink
+                          className={({ isActive }) => isActive ? 'text-amber-200 shrink rounded-full bg-amber-700 block' : '' }
+                          to={'settings'}
+                        >
+                          <Cog8ToothIcon className='h-10 w-10 p-2 inline' />
+                        </NavLink>
                       </li>
                     </ul>
                   </div>
