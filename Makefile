@@ -36,15 +36,15 @@ ci-test: clean $(MK_COMPILED) $(MK_LINTED)
 # Production build - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 $(MK_IMAGE): $(SOURCES) Dockerfile
-	docker build --tag $(IMAGE):$(IMAGE_VERSION) .
+	docker build --tag $(IMAGE) .
 	@touch $@
 
 preview: $(MK_IMAGE)
-	docker run -p 3000:3000 -it --rm $(IMAGE):$(IMAGE_VERSION)
+	docker run -p 44001:3000 -it --rm $(IMAGE)
 
 release: $(MK_IMAGE)
+	docker tag $(IMAGE):latest $(IMAGE):$(IMAGE_VERSION)
 	docker push $(IMAGE):$(IMAGE_VERSION)
-	docker tag $(IMAGE):$(IMAGE_VERSION) $(IMAGE):latest
 	docker push $(IMAGE):latest
 
 # Artefacts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
