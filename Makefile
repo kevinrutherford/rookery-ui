@@ -1,5 +1,6 @@
 DEV_SERVER_DIR := build
-IMAGE := kevinrutherford/rookery-ui2
+IMAGE := kevinrutherford/rookery-ui
+IMAGE_VERSION := $(shell git describe --tags)
 SRC_DIR := ./app
 
 SOURCES := $(shell find $(SRC_DIR) -type f)
@@ -35,13 +36,16 @@ ci-test: clean $(MK_COMPILED) $(MK_LINTED)
 # Production build - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 $(MK_IMAGE): $(SOURCES) Dockerfile
-	docker build -t $(IMAGE) .
+	docker build --tag $(IMAGE):$(IMAGE_VERSION) .
 	@touch $@
 
-prod: $(MK_IMAGE)
-
 preview: $(MK_IMAGE)
-	docker run -p 3000:3000 -it --rm $(IMAGE)
+	docker run -p 3000:3000 -it --rm $(IMAGE):$(IMAGE_VERSION)
+
+release: $(MK_IMAGE)
+	docker push $(IMAGE):$(IMAGE_VERSION)
+	docker tag $(IMAGE):$(IMAGE_VERSION) $(IMAGE):latest
+	docker push $(IMAGE):latest
 
 # Artefacts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -53,9 +57,9 @@ node_modules: package.json
 
 clean:
 	rm -f .mk-*
-	docker system prune --force --volumes
+	rm -rf ./$(DEV_SERVER_DIR)
 
 clobber: clean
-	rm -rf ./$(DEV_SERVER_DIR)
 	rm -rf node_modules
+	docker system prune --force --volumes
 
