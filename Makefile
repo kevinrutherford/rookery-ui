@@ -42,10 +42,13 @@ $(MK_IMAGE): $(SOURCES) Dockerfile
 preview: $(MK_IMAGE)
 	docker run -p 44001:3000 -it --rm $(IMAGE)
 
-release: $(MK_IMAGE)
+release: $(MK_IMAGE) git-status-clean
 	docker tag $(IMAGE):latest $(IMAGE):$(IMAGE_VERSION)
 	docker push $(IMAGE):$(IMAGE_VERSION)
 	docker push $(IMAGE):latest
+
+git-status-clean:
+	@test -z "$$(git status --porcelain)"
 
 # Artefacts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
