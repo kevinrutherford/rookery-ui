@@ -11,7 +11,7 @@ type CollectionMetadataProps = {
 };
 
 const CollectionMetadata: FC<CollectionMetadataProps> = (props: CollectionMetadataProps) => (
-  <div className='text-sm text-amber-800'>
+  <div className='text-sm text-teal-700'>
     {props.children}
   </div>
 );
@@ -20,9 +20,9 @@ export default function Collections() {
   return (
     <div className='grow'>
       <ul className='overflow-y-auto'>
-        <li className='border-b border-amber-500'>
+        <li className='border-b border-teal-500'>
           <div className='bg-white p-4'>
-            <h2 className='font-semibold text-amber-800 mb-4'>CHS</h2>
+            <h2 className='font-semibold text-teal-700 mb-4'>CHS</h2>
             <p className='mb-4'>Papers under review by the CHS project.</p>
             <ul className='flex justify-between'>
               <li><CollectionMetadata>12 papers</CollectionMetadata></li>
@@ -32,9 +32,9 @@ export default function Collections() {
             </ul>
           </div>
         </li>
-        <li className='border-b border-amber-500'>
+        <li className='border-b border-teal-500'>
           <div className='bg-white p-4'>
-            <h2 className='font-semibold text-amber-800 mb-4'>PRU3</h2>
+            <h2 className='font-semibold text-teal-700 mb-4'>PRU3</h2>
             <p className='mb-4'>Papers to be referenced by the PRU3 project.</p>
             <ul className='flex justify-between'>
               <li><CollectionMetadata>134 papers</CollectionMetadata></li>

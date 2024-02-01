@@ -123,7 +123,7 @@ type ColumnProps = {
 };
 
 const Column: FC<ColumnProps> = (props: ColumnProps) => (
-  <div className='flex flex-col border-solid border border-amber-500 rounded-xl overflow-hidden'>{props.children}</div>
+  <div className='flex flex-col border-solid border border-teal-500 rounded-xl overflow-hidden'>{props.children}</div>
 );
 
 type ColumnTitleProps = {
@@ -134,7 +134,7 @@ type ColumnTitleProps = {
 };
 
 const ColumnTitle: FC<ColumnTitleProps> = (props: ColumnTitleProps) => (
-  <div className='shrink-0 border-b border-amber-500 text-amber-700 p-3 font-semibold bg-amber-200'>
+  <div className='shrink-0 border-b border-teal-500 text-teal-700 p-3 font-semibold bg-teal-200'>
     <props.icon className='h-6 w-6 inline mr-3' />
     {props.title}
   </div>
@@ -156,25 +156,25 @@ export default function App() {
               <Column>
                 <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
                 <ul className='overflow-y-auto'>
-                  <li className='border-b border-amber-500'>
+                  <li className='border-b border-teal-500'>
                     <FeedEventCard {...event7} />
                   </li>
-                  <li className='border-b border-amber-500'>
+                  <li className='border-b border-teal-500'>
                     <FeedEventCard {...event6} />
                   </li>
-                  <li className='border-b border-amber-500'>
+                  <li className='border-b border-teal-500'>
                     <FeedEventCard {...event5} />
                   </li>
-                  <li className='border-b border-amber-500'>
+                  <li className='border-b border-teal-500'>
                     <FeedEventCard {...event4} />
                   </li>
-                  <li className='border-b border-amber-500'>
+                  <li className='border-b border-teal-500'>
                     <FeedEventCard {...event3} />
                   </li>
-                  <li className='border-b border-amber-500'>
+                  <li className='border-b border-teal-500'>
                     <FeedEventCard {...event2} />
                   </li>
-                  <li className='border-b border-amber-500'>
+                  <li className='border-b border-teal-500'>
                     <FeedEventCard {...event1} />
                   </li>
                 </ul>
@@ -183,11 +183,11 @@ export default function App() {
                 <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
                 <div className='flex flex-row h-full'>
                   <Outlet />
-                  <div className='grow-0 bg-amber-200 border-l border-amber-500 text-amber-700 h-full'>
+                  <div className='grow-0 bg-teal-200 border-l border-teal-500 text-teal-700 h-full'>
                     <ul className='flex flex-col items-center px-2'>
                       <li className='flex mt-6'>
                         <NavLink
-                          className={({ isActive }) => isActive ? 'text-amber-200 shrink rounded-full bg-amber-700 block' : '' }
+                          className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
                           to={'collections'}
                         >
                           <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />
@@ -195,7 +195,7 @@ export default function App() {
                       </li>
                       <li className='flex mt-6'>
                         <NavLink
-                          className={({ isActive }) => isActive ? 'text-amber-200 shrink rounded-full bg-amber-700 block' : '' }
+                          className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
                           to={'settings'}
                         >
                           <Cog8ToothIcon className='h-10 w-10 p-2 inline' />
