@@ -1,37 +1,11 @@
 import type { MetaFunction } from '@remix-run/node';
-import { FC } from 'react';
-import { Metadatum } from './metadatum';
+import { Collection } from './collection';
+import { CollectionCard } from './collection-card';
 
 export const meta: MetaFunction = () => [
   { title: 'Rookery' },
   { name: 'description', content: 'Rookery' },
 ];
-
-type Collection = {
-  name: string,
-  description: string,
-  papersCount: number,
-  commentsCount: number,
-  followersCount: number,
-  lastActivityAt: string,
-};
-
-type CollectionCardProps = {
-  collection: Collection,
-};
-
-const CollectionCard: FC<CollectionCardProps> = (props: CollectionCardProps) => (
-  <div className='bg-white p-4'>
-    <h2 className='font-semibold text-teal-700 mb-4'>{props.collection.name}</h2>
-    <p className='mb-4'>{props.collection.description}</p>
-    <ul className='flex justify-between'>
-      <li><Metadatum>{props.collection.papersCount} papers</Metadatum></li>
-      <li><Metadatum>{props.collection.commentsCount} comments</Metadatum></li>
-      <li><Metadatum>{props.collection.followersCount} followers</Metadatum></li>
-      <li><Metadatum>{props.collection.lastActivityAt}</Metadatum></li>
-    </ul>
-  </div>
-);
 
 export default function Collections() {
   const colls: ReadonlyArray<Collection> = [
