@@ -28,17 +28,17 @@ export const loader = async () => json([
 ]);
 
 export default function Collections() {
-  const colls = useLoaderData<typeof loader>();
+  const collections = useLoaderData<typeof loader>();
 
   return (
     <div className='grow'>
       <ul className='overflow-y-auto'>
-        <li className='border-b border-teal-500'>
-          <CollectionCard collection={colls[0]} />
-        </li>
-        <li className='border-b border-teal-500'>
-          <CollectionCard collection={colls[1]} />
-        </li>
+        { collections.map((collection) => (
+          <li key={collection.name} className='border-b border-teal-500'>
+            <CollectionCard collection={collection} />
+          </li>
+        ))
+        }
       </ul>
     </div>
   );
