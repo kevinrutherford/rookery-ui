@@ -1,31 +1,53 @@
 import type { MetaFunction } from '@remix-run/node';
 import { CollectionCard } from './collection-card';
 import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import {
+  isRouteErrorResponse,
+  useLoaderData,
+  useRouteError,
+} from '@remix-run/react';
+import { Collection } from './collection';
 
 export const meta: MetaFunction = () => [
   { title: 'Rookery' },
   { name: 'description', content: 'Rookery' },
 ];
 
-export const loader = async () => json([
-  {
-    name: 'CHS',
-    description: 'Papers under review by the CHS project',
-    papersCount: 12,
-    commentsCount: 23,
-    followersCount: 4,
-    lastActivityAt: '4 hours ago',
-  },
-  {
-    name: 'PRU3',
-    description: 'Papers to be referenced by the PRU3 project',
-    papersCount: 134,
-    commentsCount: 258,
-    followersCount: 11,
-    lastActivityAt: '3 days ago',
-  },
-]);
+type CollectionsResponse = {
+  type: 'Collections',
+  data: ReadonlyArray<Collection>,
+};
+
+export const loader = async () => {
+  const response = await fetch('http://localhost:44002/collections');
+  const value: CollectionsResponse = await response.json();
+  return json(value.data);
+};
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  if (isRouteErrorResponse(error)) {
+    return (
+      <div>
+        <h1>
+          {error.status} {error.statusText}
+        </h1>
+        <p>{error.data}</p>
+      </div>
+    );
+  } else if (error instanceof Error) {
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    );
+  } else {
+    return <h1>Unknown Error</h1>;
+  }
+}
 
 export default function Collections() {
   const collections = useLoaderData<typeof loader>();
