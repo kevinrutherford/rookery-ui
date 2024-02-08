@@ -19,7 +19,7 @@ type CollectionsResponse = {
 };
 
 export const loader = async () => {
-  const response = await fetch('http://localhost:44002/collections');
+  const response = await fetch('http://backend:44002/collections');
   const value: CollectionsResponse = await response.json();
   return json(value.data);
 };

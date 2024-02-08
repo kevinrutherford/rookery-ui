@@ -1,0 +1,20 @@
+FROM node:20.2.0-alpine3.18 as base
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+FROM base as deps
+WORKDIR /app
+COPY package.json package-lock.json \
+  public/ remix.config.js remix.env.d.ts tailwind.config.ts \
+  tsconfig.json \
+  ./
+
+RUN npm install
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+FROM deps as runner
+
+WORKDIR /app
+
+EXPOSE 3000
+ENTRYPOINT [ "node", "node_modules/.bin/remix", "dev"]
+
