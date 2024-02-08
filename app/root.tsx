@@ -54,69 +54,65 @@ function FeedEventCard(props: FEProps) {
   );
 }
 
-const event7: FeedEvent = {
-  initials: 'MG',
-  userName: 'Mhorag Goff',
-  userHandle: 'mgoff',
-  timestamp: '1h',
-  action: 'Commented on a paper in collection CHS:',
-  content: 'Totally',
-};
-
-const event6: FeedEvent = {
-  initials: 'KC',
-  userName: 'Kath Checkland',
-  userHandle: 'khcheck',
-  timestamp: '1h',
-  action: 'Commented on a paper in collection CHS:',
-  content: 'This is just awesome, dude!',
-};
-
-const event5: FeedEvent = {
-  initials: 'DB',
-  userName: 'Donna Bramwell',
-  userHandle: 'DonnaB',
-  timestamp: '3h',
-  action: 'Added a paper to collection CHS:',
-  content:
+const feedData: ReadonlyArray<FeedEvent> = [
+  {
+    initials: 'MG',
+    userName: 'Mhorag Goff',
+    userHandle: 'mgoff',
+    timestamp: '1h',
+    action: 'Commented on a paper in collection CHS:',
+    content: 'Totally',
+  },
+  {
+    initials: 'KC',
+    userName: 'Kath Checkland',
+    userHandle: 'khcheck',
+    timestamp: '1h',
+    action: 'Commented on a paper in collection CHS:',
+    content: 'This is just awesome, dude!',
+  },
+  {
+    initials: 'DB',
+    userName: 'Donna Bramwell',
+    userHandle: 'DonnaB',
+    timestamp: '3h',
+    action: 'Added a paper to collection CHS:',
+    content:
     'INTERROGATING INSTITUTIONAL CHANGE: ACTORS\' ATTITUDES TO COMPETITION AND COOPERATION IN COMMISSIONING HEALTH SERVICES IN ENGLAND',
-};
-
-const event4: FeedEvent = {
-  initials: 'DB',
-  userName: 'Donna Bramwell',
-  userHandle: 'DonnaB',
-  timestamp: '3h',
-  action: 'Added a paper to collection CHS:',
-  content: 'A General Framework for Analyzing Sustainability of Social-Ecological Systems',
-};
-
-const event3: FeedEvent = {
-  initials: 'KC',
-  userName: 'Kath Checkland',
-  userHandle: 'khcheck',
-  timestamp: '4h',
-  action: 'Added a paper to collection CHS:',
-  content: 'Implementing the Additional Roles Reimbursement Scheme in 7 English PCNs: a qualitative study',
-};
-
-const event2: FeedEvent = {
-  initials: 'MG',
-  userName: 'Mhorag Goff',
-  userHandle: 'mgoff',
-  timestamp: '1d',
-  action: 'Created collection PRU3:',
-  content: 'Project PRU3 review inputs.',
-};
-
-const event1: FeedEvent = {
-  initials: 'DB',
-  userName: 'Donna Bramwell',
-  userHandle: 'DonnaB',
-  timestamp: '2d',
-  action: 'Created collection CHS:',
-  content: 'Papers being considered for the bibliography of project CHS.',
-};
+  },
+  {
+    initials: 'DB',
+    userName: 'Donna Bramwell',
+    userHandle: 'DonnaB',
+    timestamp: '3h',
+    action: 'Added a paper to collection CHS:',
+    content: 'A General Framework for Analyzing Sustainability of Social-Ecological Systems',
+  },
+  {
+    initials: 'KC',
+    userName: 'Kath Checkland',
+    userHandle: 'khcheck',
+    timestamp: '4h',
+    action: 'Added a paper to collection CHS:',
+    content: 'Implementing the Additional Roles Reimbursement Scheme in 7 English PCNs: a qualitative study',
+  },
+  {
+    initials: 'MG',
+    userName: 'Mhorag Goff',
+    userHandle: 'mgoff',
+    timestamp: '1d',
+    action: 'Created collection PRU3:',
+    content: 'Project PRU3 review inputs.',
+  },
+  {
+    initials: 'DB',
+    userName: 'Donna Bramwell',
+    userHandle: 'DonnaB',
+    timestamp: '2d',
+    action: 'Created collection CHS:',
+    content: 'Papers being considered for the bibliography of project CHS.',
+  },
+];
 
 type ColumnProps = {
   children: ReactNode;
@@ -156,27 +152,11 @@ export default function App() {
               <Column>
                 <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
                 <ul className='overflow-y-auto'>
-                  <li className='border-b border-teal-500'>
-                    <FeedEventCard {...event7} />
-                  </li>
-                  <li className='border-b border-teal-500'>
-                    <FeedEventCard {...event6} />
-                  </li>
-                  <li className='border-b border-teal-500'>
-                    <FeedEventCard {...event5} />
-                  </li>
-                  <li className='border-b border-teal-500'>
-                    <FeedEventCard {...event4} />
-                  </li>
-                  <li className='border-b border-teal-500'>
-                    <FeedEventCard {...event3} />
-                  </li>
-                  <li className='border-b border-teal-500'>
-                    <FeedEventCard {...event2} />
-                  </li>
-                  <li className='border-b border-teal-500'>
-                    <FeedEventCard {...event1} />
-                  </li>
+                  { feedData.map((event, ix) => (
+                    <li key={ix} className='border-b border-teal-500'>
+                      <FeedEventCard {...event} />
+                    </li>
+                  ))}
                 </ul>
               </Column>
               <Column>
