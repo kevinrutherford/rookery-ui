@@ -66,7 +66,8 @@ export default function Collections() {
           ))
           }
         </ul>
-      </div></>
+      </div>
+    </>
   );
 }
 

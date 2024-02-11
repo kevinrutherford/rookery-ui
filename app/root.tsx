@@ -12,9 +12,9 @@ import type { FC, ReactNode } from 'react';
 import stylesheet from '~/tailwind.css';
 import {
   ClipboardDocumentListIcon,
-  InformationCircleIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/solid';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { ColumnTitle } from './components/column-title';
 
 export const links: LinksFunction = () => [

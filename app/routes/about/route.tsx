@@ -1,4 +1,4 @@
-import { InformationCircleIcon } from '@heroicons/react/24/solid';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import type { MetaFunction } from '@remix-run/node';
 import { ColumnTitle } from '~/components/column-title';
 
@@ -13,7 +13,8 @@ export default function About() {
       <ColumnTitle title='About' icon={InformationCircleIcon} />
       <div className='grow bg-white p-4'>
         <p>About...</p>
-      </div></>
+      </div>
+    </>
   );
 }
 
