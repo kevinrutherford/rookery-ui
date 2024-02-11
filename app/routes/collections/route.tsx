@@ -7,6 +7,8 @@ import {
   useRouteError,
 } from '@remix-run/react';
 import { Collection } from './collection';
+import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid';
+import { ColumnTitle } from '~/components/column-title';
 
 export const meta: MetaFunction = () => [
   { title: 'Rookery' },
@@ -53,16 +55,18 @@ export default function Collections() {
   const collections = useLoaderData<typeof loader>();
 
   return (
-    <div className='grow'>
-      <ul className='overflow-y-auto'>
-        { collections.map((collection) => (
-          <li key={collection.name} className='border-b border-teal-500'>
-            <CollectionCard collection={collection} />
-          </li>
-        ))
-        }
-      </ul>
-    </div>
+    <>
+      <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
+      <div className='grow'>
+        <ul className='overflow-y-auto'>
+          { collections.map((collection) => (
+            <li key={collection.name} className='border-b border-teal-500'>
+              <CollectionCard collection={collection} />
+            </li>
+          ))
+          }
+        </ul>
+      </div></>
   );
 }
 

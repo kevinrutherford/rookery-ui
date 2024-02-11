@@ -15,6 +15,7 @@ import {
   InformationCircleIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/solid';
+import { ColumnTitle } from './components/column-title';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
@@ -122,20 +123,6 @@ const Column: FC<ColumnProps> = (props: ColumnProps) => (
   <div className='flex flex-column border-solid border border-teal-500 rounded-xl overflow-hidden'>{props.children}</div>
 );
 
-type ColumnTitleProps = {
-  title: string;
-  icon: React.ComponentType<{
-    className?: string;
-  }>;
-};
-
-const ColumnTitle: FC<ColumnTitleProps> = (props: ColumnTitleProps) => (
-  <div className='shrink-0 border-b border-teal-500 text-teal-700 p-3 font-semibold bg-teal-200'>
-    <props.icon className='h-6 w-6 inline mr-3' />
-    {props.title}
-  </div>
-);
-
 export default function App() {
   return (
     <html lang="en">
@@ -163,7 +150,6 @@ export default function App() {
               </Column>
               <Column>
                 <div className='flex flex-col grow h-full'>
-                  <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
                   <Outlet />
                 </div>
                 <div className='grow-0 bg-teal-200 border-l border-teal-500 text-teal-700 h-full'>
