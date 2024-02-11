@@ -12,7 +12,7 @@ import type { FC, ReactNode } from 'react';
 import stylesheet from '~/tailwind.css';
 import {
   ClipboardDocumentListIcon,
-  Cog8ToothIcon,
+  InformationCircleIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/solid';
 
@@ -179,9 +179,9 @@ export default function App() {
                     <li className='flex mt-6'>
                       <NavLink
                         className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                        to={'settings'}
+                        to={'about'}
                       >
-                        <Cog8ToothIcon className='h-10 w-10 p-2 inline' />
+                        <InformationCircleIcon className='h-10 w-10 p-2 inline' />
                       </NavLink>
                     </li>
                   </ul>

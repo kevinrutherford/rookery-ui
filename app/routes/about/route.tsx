@@ -5,10 +5,10 @@ export const meta: MetaFunction = () => [
   { name: 'description', content: 'Rookery' },
 ];
 
-export default function Settings() {
+export default function About() {
   return (
     <div className='grow bg-white p-4'>
-      <p>Settings...</p>
+      <p>About...</p>
     </div>
   );
 }
