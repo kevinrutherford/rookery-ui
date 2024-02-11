@@ -16,5 +16,6 @@ FROM deps as runner
 WORKDIR /app
 
 EXPOSE 3000
+EXPOSE 3001
 ENTRYPOINT [ "node", "node_modules/.bin/remix", "dev"]
 
