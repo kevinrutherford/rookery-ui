@@ -119,7 +119,7 @@ type ColumnProps = {
 };
 
 const Column: FC<ColumnProps> = (props: ColumnProps) => (
-  <div className='flex flex-col border-solid border border-teal-500 rounded-xl overflow-hidden'>{props.children}</div>
+  <div className='flex flex-column border-solid border border-teal-500 rounded-xl overflow-hidden'>{props.children}</div>
 );
 
 type ColumnTitleProps = {
@@ -150,39 +150,41 @@ export default function App() {
           <div className='container mx-auto my-12 h-full overflow-hidden'>
             <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
               <Column>
-                <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
-                <ul className='overflow-y-auto'>
-                  { feedData.map((event, ix) => (
-                    <li key={ix} className='border-b border-teal-500'>
-                      <FeedEventCard {...event} />
-                    </li>
-                  ))}
-                </ul>
+                <div className='flex flex-col grow h-full'>
+                  <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
+                  <ul className='overflow-y-auto'>
+                    { feedData.map((event, ix) => (
+                      <li key={ix} className='border-b border-teal-500'>
+                        <FeedEventCard {...event} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </Column>
               <Column>
-                <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
-                <div className='flex flex-row h-full'>
+                <div className='flex flex-col grow h-full'>
+                  <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
                   <Outlet />
-                  <div className='grow-0 bg-teal-200 border-l border-teal-500 text-teal-700 h-full'>
-                    <ul className='flex flex-col items-center px-2'>
-                      <li className='flex mt-6'>
-                        <NavLink
-                          className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                          to={'collections'}
-                        >
-                          <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />
-                        </NavLink>
-                      </li>
-                      <li className='flex mt-6'>
-                        <NavLink
-                          className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                          to={'settings'}
-                        >
-                          <Cog8ToothIcon className='h-10 w-10 p-2 inline' />
-                        </NavLink>
-                      </li>
-                    </ul>
-                  </div>
+                </div>
+                <div className='grow-0 bg-teal-200 border-l border-teal-500 text-teal-700 h-full'>
+                  <ul className='flex flex-col items-center px-2'>
+                    <li className='flex mt-6'>
+                      <NavLink
+                        className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
+                        to={'collections'}
+                      >
+                        <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />
+                      </NavLink>
+                    </li>
+                    <li className='flex mt-6'>
+                      <NavLink
+                        className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
+                        to={'settings'}
+                      >
+                        <Cog8ToothIcon className='h-10 w-10 p-2 inline' />
+                      </NavLink>
+                    </li>
+                  </ul>
                 </div>
               </Column>
             </div>
