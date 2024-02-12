@@ -123,6 +123,25 @@ const Column: FC<ColumnProps> = (props: ColumnProps) => (
   <div className='flex flex-column border-solid border border-teal-500 rounded-xl overflow-hidden'>{props.children}</div>
 );
 
+type NavItem = {
+  title: string,
+  icon: ReactNode,
+  route: string,
+};
+
+const contentNavItems: ReadonlyArray<NavItem> = [
+  {
+    title: 'Local collections',
+    icon: <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />,
+    route: 'collections',
+  },
+  {
+    title: 'About',
+    icon: <InformationCircleIcon className='h-10 w-10 p-2 inline' />,
+    route: 'about',
+  },
+];
+
 export default function App() {
   return (
     <html lang="en">
@@ -154,22 +173,16 @@ export default function App() {
                 </div>
                 <div className='grow-0 bg-teal-200 border-l border-teal-500 text-teal-700 h-full'>
                   <ul className='flex flex-col items-center px-2'>
-                    <li className='flex mt-6'>
-                      <NavLink
-                        className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                        to={'collections'}
-                      >
-                        <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />
-                      </NavLink>
-                    </li>
-                    <li className='flex mt-6'>
-                      <NavLink
-                        className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                        to={'about'}
-                      >
-                        <InformationCircleIcon className='h-10 w-10 p-2 inline' />
-                      </NavLink>
-                    </li>
+                    {contentNavItems.map((item) => (
+                      <li key={item.route} className='flex mt-6'>
+                        <NavLink
+                          className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
+                          to={item.route}
+                        >
+                          {item.icon}
+                        </NavLink>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </Column>
