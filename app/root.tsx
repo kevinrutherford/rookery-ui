@@ -123,6 +123,7 @@ const Column: FC<ColumnProps> = (props: ColumnProps) => (
 
 export default function App() {
   const location = useLocation();
+  const feed = location.search.length === 0 ? '?feed=local' : location.search;
   return (
     <html lang="en">
       <head>
@@ -177,7 +178,7 @@ export default function App() {
                       <li key={item.route} className='flex mt-6'>
                         <NavLink
                           className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                          to={`${item.route}${location.search}`}
+                          to={`${item.route}${feed}`}
                         >
                           {item.icon}
                         </NavLink>
