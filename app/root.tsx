@@ -10,7 +10,7 @@ import {
 } from '@remix-run/react';
 import type { FC, ReactNode } from 'react';
 import stylesheet from '~/tailwind.css';
-import { UserGroupIcon } from '@heroicons/react/24/solid';
+import { NewspaperIcon, UserGroupIcon } from '@heroicons/react/24/solid';
 import { ColumnTitle } from './components/column-title';
 import { contentNavItems } from './components/content-nav-items';
 
@@ -134,6 +134,26 @@ export default function App() {
           <div className='container mx-auto my-12 h-full overflow-hidden'>
             <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
               <Column>
+                <div className='grow-0 bg-teal-200 border-r border-teal-500 text-teal-700 h-full'>
+                  <ul className='flex flex-col items-center px-2'>
+                    <li className='flex mt-6'>
+                      <NavLink
+                        className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
+                        to='collections?feed=local'
+                      >
+                        <UserGroupIcon className='h-10 w-10 p-2 inline' />
+                      </NavLink>
+                    </li>
+                    <li className='flex mt-6'>
+                      <NavLink
+                        className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
+                        to='collections?feed=feed'
+                      >
+                        <NewspaperIcon className='h-10 w-10 p-2 inline' />
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
                 <div className='flex flex-col grow h-full'>
                   <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
                   <ul className='overflow-y-auto'>
