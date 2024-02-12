@@ -9,6 +9,7 @@ import {
 import { Collection } from './collection';
 import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid';
 import { ColumnTitle } from '~/components/column-title';
+import { contentNavItems } from '~/components/content-nav-items';
 
 export const meta: MetaFunction = () => [
   { title: 'Rookery' },
@@ -53,10 +54,11 @@ export function ErrorBoundary() {
 
 export default function Collections() {
   const collections = useLoaderData<typeof loader>();
+  const navItem = contentNavItems.collections;
 
   return (
     <>
-      <ColumnTitle title='Local collections' icon={ClipboardDocumentListIcon} />
+      <ColumnTitle title={navItem.title} icon={ClipboardDocumentListIcon} />
       <div className='grow'>
         <ul className='overflow-y-auto'>
           { collections.map((collection) => (
