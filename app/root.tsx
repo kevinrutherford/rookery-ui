@@ -123,7 +123,7 @@ const Column: FC<ColumnProps> = (props: ColumnProps) => (
 
 export default function App() {
   const location = useLocation();
-  const feed = location.search.length === 0 ? '?feed=local' : location.search;
+  const feed = location.search.length === 0 ? '?timeline=local' : location.search;
   return (
     <html lang="en">
       <head>
@@ -142,7 +142,7 @@ export default function App() {
                     <li className='flex mt-6'>
                       <NavLink
                         className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                        to={`${location.pathname}?feed=local`}
+                        to={`${location.pathname}?timeline=local`}
                       >
                         <UserGroupIcon className='h-10 w-10 p-2 inline' />
                       </NavLink>
@@ -150,7 +150,7 @@ export default function App() {
                     <li className='flex mt-6'>
                       <NavLink
                         className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                        to={`${location.pathname}?feed=feed`}
+                        to={`${location.pathname}?timeline=home`}
                       >
                         <NewspaperIcon className='h-10 w-10 p-2 inline' />
                       </NavLink>
