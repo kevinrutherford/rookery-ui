@@ -8,16 +8,16 @@ type NavItem = {
   route: string,
 };
 
-export const contentNavItems: ReadonlyArray<NavItem> = [
-  {
+export const contentNavItems: Record<string, NavItem> = {
+  collections: {
     title: 'Local collections',
     icon: <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />,
     route: 'collections',
   },
-  {
+  about: {
     title: 'About',
     icon: <InformationCircleIcon className='h-10 w-10 p-2 inline' />,
     route: 'about',
   },
-];
+};
 

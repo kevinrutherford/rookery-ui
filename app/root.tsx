@@ -151,7 +151,7 @@ export default function App() {
                 </div>
                 <div className='grow-0 bg-teal-200 border-l border-teal-500 text-teal-700 h-full'>
                   <ul className='flex flex-col items-center px-2'>
-                    {contentNavItems.map((item) => (
+                    {Object.values(contentNavItems).map((item) => (
                       <li key={item.route} className='flex mt-6'>
                         <NavLink
                           className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
