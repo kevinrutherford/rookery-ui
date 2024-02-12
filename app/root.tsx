@@ -7,6 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from '@remix-run/react';
 import type { FC, ReactNode } from 'react';
 import stylesheet from '~/tailwind.css';
@@ -121,6 +122,7 @@ const Column: FC<ColumnProps> = (props: ColumnProps) => (
 );
 
 export default function App() {
+  const location = useLocation();
   return (
     <html lang="en">
       <head>
@@ -139,7 +141,7 @@ export default function App() {
                     <li className='flex mt-6'>
                       <NavLink
                         className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                        to='collections?feed=local'
+                        to={`${location.pathname}?feed=local`}
                       >
                         <UserGroupIcon className='h-10 w-10 p-2 inline' />
                       </NavLink>
@@ -147,7 +149,7 @@ export default function App() {
                     <li className='flex mt-6'>
                       <NavLink
                         className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                        to='collections?feed=feed'
+                        to={`${location.pathname}?feed=feed`}
                       >
                         <NewspaperIcon className='h-10 w-10 p-2 inline' />
                       </NavLink>
@@ -175,7 +177,7 @@ export default function App() {
                       <li key={item.route} className='flex mt-6'>
                         <NavLink
                           className={({ isActive }) => isActive ? 'text-teal-200 shrink rounded-full bg-teal-700 block' : '' }
-                          to={item.route}
+                          to={`${item.route}${location.search}`}
                         >
                           {item.icon}
                         </NavLink>
