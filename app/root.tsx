@@ -10,12 +10,9 @@ import {
 } from '@remix-run/react';
 import type { FC, ReactNode } from 'react';
 import stylesheet from '~/tailwind.css';
-import {
-  ClipboardDocumentListIcon,
-  UserGroupIcon,
-} from '@heroicons/react/24/solid';
-import { InformationCircleIcon } from '@heroicons/react/24/outline';
+import { UserGroupIcon } from '@heroicons/react/24/solid';
 import { ColumnTitle } from './components/column-title';
+import { contentNavItems } from './components/content-nav-items';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
@@ -122,25 +119,6 @@ type ColumnProps = {
 const Column: FC<ColumnProps> = (props: ColumnProps) => (
   <div className='flex flex-column border-solid border border-teal-500 rounded-xl overflow-hidden'>{props.children}</div>
 );
-
-type NavItem = {
-  title: string,
-  icon: ReactNode,
-  route: string,
-};
-
-const contentNavItems: ReadonlyArray<NavItem> = [
-  {
-    title: 'Local collections',
-    icon: <ClipboardDocumentListIcon className='h-10 w-10 p-2 inline' />,
-    route: 'collections',
-  },
-  {
-    title: 'About',
-    icon: <InformationCircleIcon className='h-10 w-10 p-2 inline' />,
-    route: 'about',
-  },
-];
 
 export default function App() {
   return (
