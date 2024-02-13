@@ -14,9 +14,9 @@ import {
 import stylesheet from '~/tailwind.css';
 import { NewspaperIcon, UserGroupIcon } from '@heroicons/react/24/solid';
 import { contentNavItems } from './components/content-nav-items';
-import { FeedEvent } from './components/feed-event';
 import { Column } from './components/column';
 import { renderFeed } from './components/render-feed';
+import { fakeFeedData } from './components/fake-feed-data';
 
 export const meta: MetaFunction = () => [
   { title: 'Rookery' },
@@ -25,66 +25,6 @@ export const meta: MetaFunction = () => [
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
-];
-
-const feedData: ReadonlyArray<FeedEvent> = [
-  {
-    initials: 'MG',
-    userName: 'Mhorag Goff',
-    userHandle: 'mgoff',
-    timestamp: '1h',
-    action: 'Commented on a paper in collection CHS:',
-    content: 'Totally',
-  },
-  {
-    initials: 'KC',
-    userName: 'Kath Checkland',
-    userHandle: 'khcheck',
-    timestamp: '1h',
-    action: 'Commented on a paper in collection CHS:',
-    content: 'This is just awesome, dude!',
-  },
-  {
-    initials: 'DB',
-    userName: 'Donna Bramwell',
-    userHandle: 'DonnaB',
-    timestamp: '3h',
-    action: 'Added a paper to collection CHS:',
-    content:
-    'INTERROGATING INSTITUTIONAL CHANGE: ACTORS\' ATTITUDES TO COMPETITION AND COOPERATION IN COMMISSIONING HEALTH SERVICES IN ENGLAND',
-  },
-  {
-    initials: 'DB',
-    userName: 'Donna Bramwell',
-    userHandle: 'DonnaB',
-    timestamp: '3h',
-    action: 'Added a paper to collection CHS:',
-    content: 'A General Framework for Analyzing Sustainability of Social-Ecological Systems',
-  },
-  {
-    initials: 'KC',
-    userName: 'Kath Checkland',
-    userHandle: 'khcheck',
-    timestamp: '4h',
-    action: 'Added a paper to collection CHS:',
-    content: 'Implementing the Additional Roles Reimbursement Scheme in 7 English PCNs: a qualitative study',
-  },
-  {
-    initials: 'MG',
-    userName: 'Mhorag Goff',
-    userHandle: 'mgoff',
-    timestamp: '1d',
-    action: 'Created collection PRU3:',
-    content: 'Project PRU3 review inputs.',
-  },
-  {
-    initials: 'DB',
-    userName: 'Donna Bramwell',
-    userHandle: 'DonnaB',
-    timestamp: '2d',
-    action: 'Created collection CHS:',
-    content: 'Papers being considered for the bibliography of project CHS.',
-  },
 ];
 
 export function ErrorBoundary() {
@@ -149,7 +89,7 @@ export default function App() {
                   </ul>
                 </div>
                 <div className='flex flex-col grow h-full'>
-                  {renderFeed(feedData)}
+                  {renderFeed(fakeFeedData())}
                 </div>
               </Column>
               <Column>
