@@ -1,4 +1,3 @@
-import type { MetaFunction } from '@remix-run/node';
 import { CollectionCard } from './collection-card';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
@@ -6,11 +5,6 @@ import { Collection } from './collection';
 import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid';
 import { ColumnTitle } from '~/components/column-title';
 import { contentNavItems } from '~/components/content-nav-items';
-
-export const meta: MetaFunction = () => [
-  { title: 'Rookery' },
-  { name: 'description', content: 'Rookery' },
-];
 
 type CollectionsResponse = {
   type: 'Collections',

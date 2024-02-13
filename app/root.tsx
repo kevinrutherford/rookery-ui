@@ -1,4 +1,4 @@
-import type { LinksFunction } from '@remix-run/node';
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import {
   isRouteErrorResponse,
   Links,
@@ -17,6 +17,11 @@ import { contentNavItems } from './components/content-nav-items';
 import { FeedEvent } from './components/feed-event';
 import { Column } from './components/column';
 import { renderFeed } from './components/render-feed';
+
+export const meta: MetaFunction = () => [
+  { title: 'Rookery' },
+  { name: 'description', content: 'Rookery' },
+];
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
