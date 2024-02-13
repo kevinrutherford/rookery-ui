@@ -1,10 +1,8 @@
-import { CollectionCard } from './collection-card';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { Collection } from './collection';
-import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid';
-import { ColumnTitle } from '~/components/column-title';
-import { contentNavItems } from '~/components/content-nav-items';
+import { WithFeedLayout } from '~/components/with-feed-layout';
+import { renderPageContent } from './render-page-content';
 
 type CollectionsResponse = {
   type: 'Collections',
@@ -19,22 +17,8 @@ export const loader = async () => {
 
 export default function Collections() {
   const collections = useLoaderData<typeof loader>();
-  const navItem = contentNavItems.collections;
-
   return (
-    <>
-      <ColumnTitle title={navItem.title} icon={ClipboardDocumentListIcon} />
-      <div className='grow'>
-        <ul className='overflow-y-auto'>
-          { collections.map((collection) => (
-            <li key={collection.name} className='border-b border-teal-500'>
-              <CollectionCard collection={collection} />
-            </li>
-          ))
-          }
-        </ul>
-      </div>
-    </>
+    <WithFeedLayout pageContent={renderPageContent(collections)} />
   );
 }
 
