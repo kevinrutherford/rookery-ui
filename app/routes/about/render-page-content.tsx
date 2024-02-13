@@ -2,9 +2,9 @@ import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { ColumnTitle } from '~/components/column-title';
 import { contentNavItems } from '~/components/content-nav-items';
 import { ReactNode } from 'react';
-import { About } from './about';
+import { Info } from './info';
 
-export const renderPageContent = (about: About): ReactNode => {
+export const renderPageContent = (about: Info): ReactNode => {
   const navItem = contentNavItems.about;
   return (
     <>

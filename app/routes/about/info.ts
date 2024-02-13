@@ -1,4 +1,4 @@
-export type About = {
+export type Info = {
   community: {
     name: string,
     affiliation: string,

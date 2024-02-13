@@ -1,11 +1,11 @@
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { About } from './about';
+import { Info } from './info';
 import { renderPageContent } from './render-page-content';
 
 type AboutResponse = {
   type: 'About',
-  data: About,
+  data: Info,
 };
 
 export const loader = async () => {
