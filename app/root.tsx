@@ -9,13 +9,12 @@ import {
   ScrollRestoration,
   useLocation,
 } from '@remix-run/react';
-import type { FC, ReactNode } from 'react';
 import stylesheet from '~/tailwind.css';
 import { NewspaperIcon, UserGroupIcon } from '@heroicons/react/24/solid';
-import { ColumnTitle } from './components/column-title';
 import { contentNavItems } from './components/content-nav-items';
 import { FeedEvent } from './components/feed-event';
-import FeedEventCard from './components/feed-event-card';
+import { Column } from './components/column';
+import { renderFeed } from './components/render-feed';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
@@ -80,27 +79,6 @@ const feedData: ReadonlyArray<FeedEvent> = [
     content: 'Papers being considered for the bibliography of project CHS.',
   },
 ];
-
-type ColumnProps = {
-  children: ReactNode;
-};
-
-const Column: FC<ColumnProps> = (props: ColumnProps) => (
-  <div className='flex flex-column border-solid border border-teal-500 rounded-xl overflow-hidden'>{props.children}</div>
-);
-
-const renderFeed = (data: ReadonlyArray<FeedEvent>): ReactNode => (
-  <>
-    <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
-    <ul className='overflow-y-auto'>
-      { data.map((event, ix) => (
-        <li key={ix} className='border-b border-teal-500'>
-          <FeedEventCard {...event} />
-        </li>
-      ))}
-    </ul>
-  </>
-);
 
 export default function App() {
   const location = useLocation();
