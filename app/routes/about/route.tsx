@@ -3,6 +3,7 @@ import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { ColumnTitle } from '~/components/column-title';
 import { contentNavItems } from '~/components/content-nav-items';
 import { useLoaderData } from '@remix-run/react';
+import { ReactNode } from 'react';
 
 type AboutResponse = {
   type: 'About',
@@ -40,8 +41,7 @@ Our expertise encompasses rigorous econometric analysis and a wide range of qual
   return json(value.data);
 };
 
-export default function About() {
-  const about = useLoaderData<typeof loader>();
+const renderPageContent = (about: AboutResponse['data']): ReactNode => {
   const navItem = contentNavItems.about;
   return (
     <>
@@ -58,5 +58,10 @@ export default function About() {
       </div>
     </>
   );
+}
+
+export default function About() {
+  const about = useLoaderData<typeof loader>();
+  return renderPageContent(about);
 }
 
