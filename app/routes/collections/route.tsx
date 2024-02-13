@@ -1,11 +1,7 @@
 import type { MetaFunction } from '@remix-run/node';
 import { CollectionCard } from './collection-card';
 import { json } from '@remix-run/node';
-import {
-  isRouteErrorResponse,
-  useLoaderData,
-  useRouteError,
-} from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import { Collection } from './collection';
 import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid';
 import { ColumnTitle } from '~/components/column-title';
@@ -26,31 +22,6 @@ export const loader = async () => {
   const value: CollectionsResponse = await response.json();
   return json(value.data);
 };
-
-export function ErrorBoundary() {
-  const error = useRouteError();
-  if (isRouteErrorResponse(error)) {
-    return (
-      <div>
-        <h1>
-          {error.status} {error.statusText}
-        </h1>
-        <p>{error.data}</p>
-      </div>
-    );
-  } else if (error instanceof Error) {
-    return (
-      <div>
-        <h1>Error</h1>
-        <p>{error.message}</p>
-        <p>The stack trace is:</p>
-        <pre>{error.stack}</pre>
-      </div>
-    );
-  } else {
-    return <h1>Unknown Error</h1>;
-  }
-}
 
 export default function Collections() {
   const collections = useLoaderData<typeof loader>();
