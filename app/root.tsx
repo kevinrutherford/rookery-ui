@@ -14,44 +14,12 @@ import stylesheet from '~/tailwind.css';
 import { NewspaperIcon, UserGroupIcon } from '@heroicons/react/24/solid';
 import { ColumnTitle } from './components/column-title';
 import { contentNavItems } from './components/content-nav-items';
+import { FeedEvent } from './components/feed-event';
+import FeedEventCard from './components/feed-event-card';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
 ];
-
-type FeedEvent = {
-  initials: string;
-  userName: string;
-  userHandle: string;
-  timestamp: string;
-  action: string;
-  content: string;
-};
-
-type FEProps = FeedEvent;
-
-function FeedEventCard(props: FEProps) {
-  return (
-    <div className='bg-white p-4'>
-      <div className='flex justify-between mb-4'>
-        <div className='flex gap-x-4'>
-          <div className='flex'>
-            <div className='bg-zinc-800 text-white rounded-full flex text-xl items-center justify-center w-12'>
-              {props.initials}
-            </div>
-          </div>
-          <h2>
-            <div className='font-semibold'>{props.userName}</div>@{props.userHandle}
-          </h2>
-        </div>
-        {props.timestamp}
-      </div>
-      <p>
-        <span className='font-semibold mb-4 inline'>{props.action}</span> {props.content}
-      </p>
-    </div>
-  );
-}
 
 const feedData: ReadonlyArray<FeedEvent> = [
   {
