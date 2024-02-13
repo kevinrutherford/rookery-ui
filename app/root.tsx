@@ -121,6 +121,19 @@ const Column: FC<ColumnProps> = (props: ColumnProps) => (
   <div className='flex flex-column border-solid border border-teal-500 rounded-xl overflow-hidden'>{props.children}</div>
 );
 
+const renderFeed = (data: ReadonlyArray<FeedEvent>): ReactNode => (
+  <>
+    <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
+    <ul className='overflow-y-auto'>
+      { data.map((event, ix) => (
+        <li key={ix} className='border-b border-teal-500'>
+          <FeedEventCard {...event} />
+        </li>
+      ))}
+    </ul>
+  </>
+);
+
 export default function App() {
   const location = useLocation();
   const feed = location.search.length === 0 ? '?timeline=local' : location.search;
@@ -158,14 +171,7 @@ export default function App() {
                   </ul>
                 </div>
                 <div className='flex flex-col grow h-full'>
-                  <ColumnTitle title='Local timeline' icon={UserGroupIcon} />
-                  <ul className='overflow-y-auto'>
-                    { feedData.map((event, ix) => (
-                      <li key={ix} className='border-b border-teal-500'>
-                        <FeedEventCard {...event} />
-                      </li>
-                    ))}
-                  </ul>
+                  {renderFeed(feedData)}
                 </div>
               </Column>
               <Column>
