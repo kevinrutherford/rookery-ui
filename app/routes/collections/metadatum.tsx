@@ -5,7 +5,7 @@ type CollectionMetadataProps = {
 };
 
 export const Metadatum: FC<CollectionMetadataProps> = (props: CollectionMetadataProps) => (
-  <div className='text-sm text-teal-700'>
+  <div className='text-sm'>
     {props.children}
   </div>
 );

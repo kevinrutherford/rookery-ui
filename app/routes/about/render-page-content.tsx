@@ -10,15 +10,15 @@ export const renderPageContent = (about: Info): ReactNode => {
     <>
       <ColumnTitle title={navItem.title} icon={InformationCircleIcon} />
       <div className='grow bg-white p-4'>
-        <h1 className='text-teal-700 font-semibold text-xl mb-4'>{about.community.name}</h1>
-        <h2 className='text-teal-700 italic mb-4'>{about.community.affiliation}</h2>
+        <h1 className='font-semibold text-xl mb-4'>{about.community.name}</h1>
+        <h2 className='italic mb-4'>{about.community.affiliation}</h2>
         <div className='mb-4'>{about.community.overview}</div>
-        <h3 className='text-teal-700 font-semibold text-lg mb-4'>Admins:</h3>
+        <h3 className='font-semibold text-lg mb-4'>Admins:</h3>
         <ul className='mb-4'>{about.community.admins.map((admin) => (
           <li key={admin}>{admin}</li>
         ))}</ul>
         <p>
-          <span className='text-teal-700 font-semibold mb-4'>Backend version:</span> {about.backend.version}
+          <span className='font-semibold mb-4'>Backend version:</span> {about.backend.version}
         </p>
       </div>
     </>

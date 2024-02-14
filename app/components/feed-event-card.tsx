@@ -8,7 +8,7 @@ export default function FeedEventCard(props: FEProps) {
       <div className='flex justify-between mb-4'>
         <div className='flex gap-x-4'>
           <div className='flex'>
-            <div className='bg-zinc-800 text-white rounded-full flex text-xl items-center justify-center w-12'>
+            <div className='bg-slate-800 text-white rounded-full flex text-xl items-center justify-center w-12'>
               {props.initials}
             </div>
           </div>

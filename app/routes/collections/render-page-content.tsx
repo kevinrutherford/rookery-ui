@@ -13,7 +13,7 @@ export const renderPageContent = (data: ReadonlyArray<Collection>): ReactNode =>
       <div className='grow'>
         <ul className='overflow-y-auto'>
           { data.map((collection) => (
-            <li key={collection.name} className='border-b border-teal-500'>
+            <li key={collection.name} className='border-b border-slate-500'>
               <CollectionCard collection={collection} />
             </li>
           ))

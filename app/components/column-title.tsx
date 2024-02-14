@@ -8,7 +8,7 @@ type ColumnTitleProps = {
 };
 
 export const ColumnTitle: FC<ColumnTitleProps> = (props: ColumnTitleProps) => (
-  <div className='shrink-0 border-b border-teal-500 text-teal-700 p-3 font-semibold bg-teal-200'>
+  <div className='shrink-0 border-b border-slate-500 p-3 font-semibold bg-slate-200'>
     <props.icon className='h-6 w-6 inline mr-3' />
     {props.title}
   </div>
