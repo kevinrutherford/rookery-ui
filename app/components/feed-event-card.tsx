@@ -4,7 +4,7 @@ type FEProps = FeedEvent;
 
 export default function FeedEventCard(props: FEProps) {
   return (
-    <div className='bg-white p-4'>
+    <div className='bg-white p-4 rounded-md'>
       <div className='flex justify-between mb-4'>
         <div className='flex gap-x-4'>
           <div className='flex'>

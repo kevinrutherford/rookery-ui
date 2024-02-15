@@ -7,7 +7,7 @@ type CollectionCardProps = {
 };
 
 export const CollectionCard: FC<CollectionCardProps> = (props: CollectionCardProps) => (
-  <div className='bg-white p-4'>
+  <div className='bg-white p-4 rounded-md'>
     <h2 className='font-semibold mb-4'>{props.collection.name}</h2>
     <p className='mb-4'>{props.collection.description}</p>
     <ul className='flex justify-between'>
