@@ -12,7 +12,6 @@ import {
   useRouteError,
 } from '@remix-run/react';
 import stylesheet from '~/tailwind.css';
-import { NewspaperIcon, UserGroupIcon } from '@heroicons/react/24/solid';
 import { contentNavItems } from './components/content-nav-items';
 import { Column } from './components/column';
 import { renderFeed } from './components/render-feed';
@@ -68,47 +67,47 @@ export default function App() {
           <div className='container mx-auto my-12 h-full overflow-hidden'>
             <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
               <Column>
-                <div className='grow-0 bg-slate-200 border-r border-slate-500 h-full'>
-                  <ul className='flex flex-col items-center px-2'>
-                    <li className='flex mt-6'>
-                      <NavLink
-                        className={({ isActive }) => isActive ? 'shrink rounded-full bg-slate-700 block' : '' }
-                        to={`${location.pathname}?timeline=local`}
-                      >
-                        <UserGroupIcon className='h-10 w-10 p-2 inline' />
-                      </NavLink>
-                    </li>
-                    <li className='flex mt-6'>
-                      <NavLink
-                        className={({ isActive }) => isActive ? 'shrink rounded-full bg-slate-700 block' : '' }
-                        to={`${location.pathname}?timeline=home`}
-                      >
-                        <NewspaperIcon className='h-10 w-10 p-2 inline' />
-                      </NavLink>
-                    </li>
-                  </ul>
-                </div>
-                <div className='flex flex-col grow h-full'>
-                  {renderFeed(fakeFeedData())}
-                </div>
+                <ul className='pb-4'>
+                  <li className='inline mr-6 mt-6 mb-6'>
+                    <NavLink
+                      className={({ isActive }) => isActive
+                        ? 'border-b-4 border-slate-400'
+                        : '' }
+                      to={`${location.pathname}?timeline=local`}
+                    >
+                      Local timeline
+                    </NavLink>
+                  </li>
+                  <li className='inline mr-6 mt-6 mb-6'>
+                    <NavLink
+                      className={({ isActive }) => isActive
+                        ? 'border-b-4 border-slate-400'
+                        : '' }
+                      to={`${location.pathname}?timeline=home`}
+                    >
+                      Home
+                    </NavLink>
+                  </li>
+                </ul>
+                {renderFeed(fakeFeedData())}
               </Column>
               <Column>
+                <ul className='pb-4'>
+                  {Object.values(contentNavItems).map((item) => (
+                    <li key={item.route} className='inline mr-6 mt-6 mb-6'>
+                      <NavLink
+                        className={({ isActive }) => isActive
+                          ? 'border-b-4 border-slate-400'
+                          : '' }
+                        to={`${item.route}${feed}`}
+                      >
+                        {item.title}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
                 <div className='flex flex-col grow h-full'>
                   <Outlet />
-                </div>
-                <div className='grow-0 bg-slate-200 border-l border-slate-500 h-full'>
-                  <ul className='flex flex-col items-center px-2'>
-                    {Object.values(contentNavItems).map((item) => (
-                      <li key={item.route} className='flex mt-6'>
-                        <NavLink
-                          className={({ isActive }) => isActive ? 'shrink rounded-full bg-slate-700 block' : '' }
-                          to={`${item.route}${feed}`}
-                        >
-                          {item.icon}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </Column>
             </div>
