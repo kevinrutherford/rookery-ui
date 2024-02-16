@@ -5,6 +5,6 @@ type ColumnProps = {
 };
 
 export const Column: FC<ColumnProps> = (props: ColumnProps) => (
-  <div className='overflow-hidden'>{props.children}</div>
+  <div className='flex flex-col overflow-hidden'>{props.children}</div>
 );
 
