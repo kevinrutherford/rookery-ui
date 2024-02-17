@@ -1,8 +1,8 @@
 import { CollectionCard } from './collection-card';
-import { Collection } from './collection';
+import { CollectionSummary } from './collection-summary';
 import { ReactNode } from 'react';
 
-export const renderPageContent = (data: ReadonlyArray<Collection>): ReactNode => (
+export const renderPageContent = (data: ReadonlyArray<CollectionSummary>): ReactNode => (
   <div className='grow'>
     <ul className='overflow-y-auto'>
       { data.map((collection) => (

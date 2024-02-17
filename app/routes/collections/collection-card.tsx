@@ -1,10 +1,10 @@
 import { Link } from '@remix-run/react';
 import { FC } from 'react';
-import { Collection } from './collection';
+import { CollectionSummary } from './collection-summary';
 import { Metadatum } from './metadatum';
 
 type CollectionCardProps = {
-  collection: Collection,
+  collection: CollectionSummary,
 };
 
 export const CollectionCard: FC<CollectionCardProps> = (props: CollectionCardProps) => (

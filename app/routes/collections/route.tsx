@@ -1,12 +1,12 @@
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { Collection } from './collection';
+import { CollectionSummary } from './collection-summary';
 import { WithFeedLayout } from '~/components/with-feed-layout';
 import { renderPageContent } from './render-page-content';
 
 type CollectionsResponse = {
   type: 'Collections',
-  data: ReadonlyArray<Collection>,
+  data: ReadonlyArray<CollectionSummary>,
 };
 
 export const loader = async () => {
