@@ -8,7 +8,7 @@ type CollectionCardProps = {
 };
 
 export const CollectionCard: FC<CollectionCardProps> = (props: CollectionCardProps) => (
-  <Link to={`/collections/${props.collection.id}`} className='block hover:underline bg-white p-4 rounded-md'>
+  <Link to={props.collection.id} className='block hover:underline bg-white p-4 rounded-md'>
     <h2 className='font-semibold mb-4'>{props.collection.name}</h2>
     <p className='mb-4'>{props.collection.description}</p>
     <ul className='flex justify-between'>
