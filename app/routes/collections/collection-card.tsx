@@ -1,7 +1,7 @@
 import { Link } from '@remix-run/react';
 import { FC } from 'react';
+import { Metadatum } from '~/components/metadatum';
 import { CollectionSummary } from './collection-summary';
-import { Metadatum } from './metadatum';
 
 type CollectionCardProps = {
   collection: CollectionSummary,

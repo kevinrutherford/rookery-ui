@@ -1,7 +1,7 @@
 import { Link } from '@remix-run/react';
 import { FC } from 'react';
+import { Metadatum } from '~/components/metadatum';
 import { MemberSummary } from './collection';
-import { Metadatum } from './metadatum';
 
 type MemberCardProps = {
   member: MemberSummary,
