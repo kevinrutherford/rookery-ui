@@ -9,7 +9,7 @@ export const renderPageContent = (collection: Collection): ReactNode => (
     <ul className='overflow-y-auto'>
       { collection.members.map((member) => (
         <li key={member.id} className='mb-4'>
-          <MemberCard collectionid={collection.id} member={member} />
+          <MemberCard member={member} />
         </li>
       ))
       }

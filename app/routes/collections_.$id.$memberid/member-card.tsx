@@ -4,12 +4,11 @@ import { Metadatum } from '~/components/metadatum';
 import { MemberSummary } from './collection';
 
 type MemberCardProps = {
-  collectionid: string,
   member: MemberSummary,
 };
 
 export const MemberCard: FC<MemberCardProps> = (props: MemberCardProps) => (
-  <Link to={`/collections/${props.collectionid}/${props.member.id}`} className='block hover:underline bg-white p-4 rounded-md'>
+  <Link to={`/collections/${props.member.id}`} className='block hover:underline bg-white p-4 rounded-md'>
     <h2 className='mb-4'>{props.member.title}</h2>
     <ul className='flex justify-between'>
       <li><Metadatum>{props.member.commentsCount} comments</Metadatum></li>
