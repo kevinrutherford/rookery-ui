@@ -17,7 +17,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
 export default function CollectionDetails() {
   const collection = useLoaderData<typeof loader>();
-  console.log('>>>>>>', collection);
   return (
     <WithFeedLayout pageContent={renderPageContent(collection)} />
   );
