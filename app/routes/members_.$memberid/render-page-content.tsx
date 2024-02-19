@@ -1,5 +1,6 @@
 import { CollectionMember, Reply } from './collection-member';
 import { FC, ReactNode } from 'react';
+import { Card } from '~/components/card';
 
 type RepliesProps = {
   comments: ReadonlyArray<Reply>,
@@ -9,9 +10,9 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
   <ul className='ml-8'>
     { props.comments.map((comment) => (
       <li key={comment.id} className='mb-4'>
-        <div className='bg-white mb-4 p-4'>
+        <Card>
           {comment.content}
-        </div>
+        </Card>
         {comment.replies.length > 0 && <Replies comments={comment.replies} />}
       </li>
     ))
@@ -21,7 +22,9 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
 
 export const renderPageContent = (member: CollectionMember): ReactNode => (
   <div className='grow'>
-    <p className='font-semibold mb-8'>{member.title}</p>
+    <Card>
+      <p className='font-semibold mb-8'>{member.title}</p>
+    </Card>
     <div className='overflow-y-auto'>
       <Replies comments={member.comments} />
     </div>
