@@ -1,7 +1,7 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { WithFeedLayout } from '~/components/with-feed-layout';
-import { CollectionMember } from './collection';
+import { CollectionMember } from './collection-member';
 import { renderPageContent } from './render-page-content';
 
 type CollectionMemberResponse = {
