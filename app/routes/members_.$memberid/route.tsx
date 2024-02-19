@@ -10,7 +10,7 @@ type CollectionMemberResponse = {
 };
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await fetch(`http://backend:44002/collections/${params.id}/66666666666666666`);
+  const response = await fetch(`http://backend:44002/members/${params.memberid}`);
   const value: CollectionMemberResponse = await response.json();
   return json(value.data);
 };
