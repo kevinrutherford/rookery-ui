@@ -67,7 +67,7 @@ export default function App() {
           <div className='container mx-auto my-12 h-full overflow-hidden'>
             <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
               <Column>
-                <ul className='pb-4'>
+                <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
                   <li className='inline mr-6 mt-6 mb-6'>
                     <NavLink
                       className={({ isActive }) => isActive
@@ -92,7 +92,7 @@ export default function App() {
                 {renderFeed(fakeFeedData())}
               </Column>
               <Column>
-                <ul className='pb-4'>
+                <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
                   {Object.values(contentNavItems).map((item) => (
                     <li key={item.route} className='inline mr-6 mt-6 mb-6'>
                       <NavLink
