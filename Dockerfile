@@ -10,7 +10,6 @@ RUN npm install
 FROM deps AS builder
 WORKDIR /app
 COPY . .
-ENV NODE_ENV=production
 RUN node node_modules/.bin/remix build
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
