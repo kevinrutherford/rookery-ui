@@ -10,7 +10,7 @@ type CollectionResponse = {
 };
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await fetch(`http://backend:44002/collections/${params.id}`);
+  const response = await fetch(`http://views:44002/collections/${params.id}`);
   const value: CollectionResponse = await response.json();
   return json(value.data);
 };

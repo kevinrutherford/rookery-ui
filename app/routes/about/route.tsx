@@ -9,7 +9,7 @@ type AboutResponse = {
 };
 
 export const loader = async () => {
-  const response = await fetch('http://backend:44002/about');
+  const response = await fetch('http://views:44002/about');
   const value: AboutResponse = await response.json();
   return json(value.data);
 };
