@@ -1,4 +1,4 @@
-export type MemberSummary = {
+export type EntrySummary = {
   id: string,
   title: string,
   doi: string,
@@ -12,6 +12,6 @@ export type Collection = {
   description: string,
   commentsCount: number,
   followersCount: number,
-  members: ReadonlyArray<MemberSummary>,
+  entries: ReadonlyArray<EntrySummary>,
 };
 

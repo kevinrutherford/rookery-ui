@@ -1,4 +1,4 @@
-import { CollectionMember, Reply } from './collection-member';
+import { Entry, Reply } from './entry';
 import { FC, ReactNode } from 'react';
 import { Card } from '~/components/card';
 
@@ -20,13 +20,13 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
   </ul>
 );
 
-export const renderPageContent = (member: CollectionMember): ReactNode => (
+export const renderPageContent = (entry: Entry): ReactNode => (
   <div className='grow'>
     <Card>
-      <p className='font-semibold mb-8'>{member.title}</p>
+      <p className='font-semibold mb-8'>{entry.title}</p>
     </Card>
     <div className='overflow-y-auto'>
-      <Replies comments={member.comments} />
+      <Replies comments={entry.comments} />
     </div>
   </div>
 )

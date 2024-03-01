@@ -6,7 +6,7 @@ export type Reply = {
   replies: ReadonlyArray<Reply>,
 };
 
-export type CollectionMember = {
+export type Entry = {
   id: string,
   doi: string,
   title: string,
