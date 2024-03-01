@@ -1,7 +1,9 @@
 export type EntrySummary = {
   id: string,
-  title: string,
   doi: string,
+  frontMatter?: {
+    title: string,
+  },
   commentsCount: number,
   latestActivityAt: string,
 };

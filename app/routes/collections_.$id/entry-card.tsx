@@ -12,7 +12,8 @@ type EntryCardProps = {
 export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
   <Card>
     <Link to={`/entries/${props.entry.id}`} className='block hover:underline'>
-      <h2 className='mb-4'>{props.entry.title}</h2>
+      <h2 className='font-semibold mb-4'>{props.entry.frontMatter ? props.entry.frontMatter.title : 'Title: Unknown at present'}</h2>
+      <p className='mb-4'>doi: {props.entry.doi}</p>
       <ul className='flex justify-between'>
         <li><Metadatum>{props.entry.commentsCount} comments</Metadatum></li>
         <li><Metadatum>{props.entry.latestActivityAt}</Metadatum></li>
