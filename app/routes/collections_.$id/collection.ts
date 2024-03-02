@@ -4,16 +4,12 @@ export type EntrySummary = {
   frontMatter?: {
     title: string,
   },
-  commentsCount: number,
-  latestActivityAt: string,
 };
 
 export type Collection = {
   id: string,
   name: string,
   description: string,
-  commentsCount: number,
-  followersCount: number,
   entries: ReadonlyArray<EntrySummary>,
 };
 
