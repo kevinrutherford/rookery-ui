@@ -1,7 +1,6 @@
 import { Link } from '@remix-run/react';
 import { FC } from 'react';
 import { Card } from '~/components/card';
-import { Metadatum } from '~/components/metadatum';
 import { CollectionSummary } from './collection-summary';
 
 type CollectionCardProps = {
@@ -13,12 +12,6 @@ export const CollectionCard: FC<CollectionCardProps> = (props: CollectionCardPro
     <Link to={`/collections/${props.collection.id}`} className='block hover:underline'>
       <h2 className='font-semibold mb-4'>{props.collection.name}</h2>
       <p className='mb-4'>{props.collection.description}</p>
-      <ul className='flex justify-between'>
-        <li><Metadatum>{props.collection.papersCount} papers</Metadatum></li>
-        <li><Metadatum>{props.collection.commentsCount} comments</Metadatum></li>
-        <li><Metadatum>{props.collection.followersCount} followers</Metadatum></li>
-        <li><Metadatum>{props.collection.lastActivityAt}</Metadatum></li>
-      </ul>
     </Link>
   </Card>
 );
