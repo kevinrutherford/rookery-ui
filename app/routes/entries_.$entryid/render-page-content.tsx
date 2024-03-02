@@ -23,7 +23,8 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
 export const renderPageContent = (entry: Entry): ReactNode => (
   <div className='grow'>
     <Card>
-      <p className='font-semibold mb-8'>{entry.title}</p>
+      <h2 className='font-semibold mb-4'>{entry.title}</h2>
+      <p className='mb-4'>doi: {entry.doi}</p>
     </Card>
     <div className='overflow-y-auto'>
       <Replies comments={entry.comments} />
