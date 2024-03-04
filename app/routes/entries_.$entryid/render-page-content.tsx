@@ -13,7 +13,6 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
         <Card>
           {comment.content}
         </Card>
-        {comment.replies.length > 0 && <Replies comments={comment.replies} />}
       </li>
     ))
     }
