@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ActionFunctionArgs, json, redirect } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { CollectionSummary } from './collection-summary';
@@ -15,10 +16,7 @@ export const loader = async () => {
   return json(value.data);
 };
 
-export const action = async ({
-  params,
-  request,
-}: ActionFunctionArgs) => {
+export const action = async ({ params, request }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
   const response = await fetch('http://commands:44001/collections', {
