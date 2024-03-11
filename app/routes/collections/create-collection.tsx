@@ -15,7 +15,12 @@ export const CreateCollection: FC = () => {
             </label>
           </div>
           <div className="md:w-2/3">
-            <input className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="name" type="text" />
+            <input
+              id="name"
+              name="name"
+              type="text"
+              className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            />
           </div>
         </div>
         <div className="md:flex md:items-center mb-2">
@@ -25,7 +30,11 @@ export const CreateCollection: FC = () => {
             </label>
           </div>
           <div className="md:w-2/3">
-            <textarea className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="description" />
+            <textarea
+              id="description"
+              name="description"
+              className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            />
           </div>
         </div>
         <div className="md:flex md:items-center mb-4">
@@ -35,7 +44,12 @@ export const CreateCollection: FC = () => {
             </label>
           </div>
           <div className="md:w-2/3">
-            <input className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="handle" type="text" />
+            <input
+              id="handle"
+              name="handle"
+              type="text"
+              className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            />
           </div>
         </div>
         <div className="md:flex md:items-center">
