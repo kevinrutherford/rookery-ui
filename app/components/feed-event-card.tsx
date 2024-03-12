@@ -8,19 +8,14 @@ export default function FeedEventCard(props: FEProps) {
     <Card>
       <div className='flex justify-between mb-4'>
         <div className='flex gap-x-4'>
-          <div className='flex'>
-            <div className='bg-slate-800 text-white rounded-full flex text-xl items-center justify-center w-12'>
-              {props.initials}
-            </div>
-          </div>
           <h2>
-            <div className='font-semibold'>{props.userName}</div>@{props.userHandle}
+            <span className='font-semibold'>@{props.userHandle}</span> {props.action}
           </h2>
         </div>
         {props.timestamp}
       </div>
       <p>
-        <span className='font-semibold mb-4 inline'>{props.action}</span> {props.content}
+        {props.content}
       </p>
     </Card>
   );
