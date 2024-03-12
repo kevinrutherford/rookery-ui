@@ -1,6 +1,7 @@
 import { Collection } from './collection';
 import { ReactNode } from 'react';
 import { EntryCard } from './entry-card';
+import { AddEntry } from './add-entry';
 
 export const renderPageContent = (collection: Collection): ReactNode => (
   <div className='grow'>
@@ -14,6 +15,7 @@ export const renderPageContent = (collection: Collection): ReactNode => (
       ))
       }
     </ul>
+    <AddEntry collectionId={collection.id} />
   </div>
 )
 
