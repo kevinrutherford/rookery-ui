@@ -4,6 +4,7 @@ import { useLoaderData } from '@remix-run/react';
 import { CollectionSummary } from './collection-summary';
 import { WithFeedLayout } from '~/components/with-feed-layout';
 import { renderPageContent } from './render-page-content';
+import { v4 } from 'uuid';
 
 type CollectionsResponse = {
   type: 'Collections',
@@ -24,7 +25,7 @@ export const action = async ({ params, request }: ActionFunctionArgs) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       ...updates,
-      id: '3456',
+      id: v4(),
     }),
   });
   return redirect('/collections');
