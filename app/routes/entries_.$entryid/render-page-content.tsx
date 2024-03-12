@@ -1,6 +1,7 @@
 import { Entry, Reply } from './entry';
 import { FC, ReactNode } from 'react';
 import { Card } from '~/components/card';
+import { AddComment } from './add-comment';
 
 type RepliesProps = {
   comments: ReadonlyArray<Reply>,
@@ -28,6 +29,7 @@ export const renderPageContent = (entry: Entry): ReactNode => (
     <div className='overflow-y-auto'>
       <Replies comments={entry.comments} />
     </div>
+    <AddComment entryId={entry.id} />
   </div>
 )
 
