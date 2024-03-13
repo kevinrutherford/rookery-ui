@@ -14,8 +14,7 @@ import {
 import stylesheet from '~/tailwind.css';
 import { contentNavItems } from './components/content-nav-items';
 import { Column } from './components/column';
-import { renderFeed } from './components/render-feed';
-import { fakeFeedData } from './components/fake-feed-data';
+import { LocalTimeline } from './routes/localtimeline/route';
 
 export const meta: MetaFunction = () => [
   { title: 'Rookery' },
@@ -79,7 +78,7 @@ export default function App() {
                     </NavLink>
                   </li>
                 </ul>
-                {renderFeed(fakeFeedData())}
+                <LocalTimeline />
               </Column>
               <Column>
                 <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
