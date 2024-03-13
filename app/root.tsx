@@ -78,16 +78,6 @@ export default function App() {
                       Local timeline
                     </NavLink>
                   </li>
-                  <li className='inline mr-6 mt-6 mb-6'>
-                    <NavLink
-                      className={({ isActive }) => isActive
-                        ? 'border-b-4 border-slate-400'
-                        : '' }
-                      to={`${location.pathname}?timeline=home`}
-                    >
-                      Home
-                    </NavLink>
-                  </li>
                 </ul>
                 {renderFeed(fakeFeedData())}
               </Column>
