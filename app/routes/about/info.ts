@@ -8,5 +8,5 @@ export type Info = {
   backend: {
     version: string,
   },
-};
+}
 

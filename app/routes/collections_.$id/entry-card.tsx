@@ -1,12 +1,12 @@
-import { Link } from '@remix-run/react';
-import { FC } from 'react';
-import { Card } from '~/components/card';
-import { EntrySummary } from './collection';
+import { Link } from '@remix-run/react'
+import { FC } from 'react'
+import { Card } from '~/components/card'
+import { EntrySummary } from './collection'
 
 type EntryCardProps = {
   collectionid: string,
   entry: EntrySummary,
-};
+}
 
 export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
   <Card>
@@ -17,5 +17,5 @@ export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
       <p className='mb-4'>doi: {props.entry.doi}</p>
     </Link>
   </Card>
-);
+)
 

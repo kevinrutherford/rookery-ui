@@ -1,7 +1,7 @@
-import { Card } from './card';
-import { FeedEvent } from './feed-event';
+import { Card } from './card'
+import { FeedEvent } from './feed-event'
 
-type FEProps = FeedEvent;
+type FEProps = FeedEvent
 
 export default function FeedEventCard(props: FEProps) {
   return (
@@ -18,6 +18,6 @@ export default function FeedEventCard(props: FEProps) {
         {props.content}
       </p>
     </Card>
-  );
+  )
 }
 

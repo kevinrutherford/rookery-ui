@@ -1,11 +1,11 @@
-import { Entry, Reply } from './entry';
-import { FC, ReactNode } from 'react';
-import { Card } from '~/components/card';
-import { AddComment } from './add-comment';
+import { Entry, Reply } from './entry'
+import { FC, ReactNode } from 'react'
+import { Card } from '~/components/card'
+import { AddComment } from './add-comment'
 
 type RepliesProps = {
   comments: ReadonlyArray<Reply>,
-};
+}
 
 const Replies: FC<RepliesProps> = (props: RepliesProps) => (
   <ul className='ml-8'>
@@ -18,7 +18,7 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
     ))
     }
   </ul>
-);
+)
 
 export const renderPageContent = (entry: Entry): ReactNode => (
   <div className='grow'>

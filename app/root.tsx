@@ -1,4 +1,4 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import {
   isRouteErrorResponse,
   Links,
@@ -10,23 +10,23 @@ import {
   ScrollRestoration,
   useLocation,
   useRouteError,
-} from '@remix-run/react';
-import stylesheet from '~/tailwind.css';
-import { contentNavItems } from './components/content-nav-items';
-import { Column } from './components/column';
-import { LocalTimeline } from './routes/localtimeline/route';
+} from '@remix-run/react'
+import stylesheet from '~/tailwind.css'
+import { contentNavItems } from './components/content-nav-items'
+import { Column } from './components/column'
+import { LocalTimeline } from './routes/localtimeline/route'
 
 export const meta: MetaFunction = () => [
   { title: 'Rookery' },
   { name: 'description', content: 'Rookery' },
-];
+]
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
-];
+]
 
 export function ErrorBoundary() {
-  const error = useRouteError();
+  const error = useRouteError()
   if (isRouteErrorResponse(error)) {
     return (
       <div>
@@ -35,7 +35,7 @@ export function ErrorBoundary() {
         </h1>
         <p>{error.data}</p>
       </div>
-    );
+    )
   } else if (error instanceof Error) {
     return (
       <div>
@@ -44,15 +44,15 @@ export function ErrorBoundary() {
         <p>The stack trace is:</p>
         <pre>{error.stack}</pre>
       </div>
-    );
+    )
   } else {
-    return <h1>Unknown Error</h1>;
+    return <h1>Unknown Error</h1>
   }
 }
 
 export default function App() {
-  const location = useLocation();
-  const feed = location.search.length === 0 ? '?timeline=local' : location.search;
+  const location = useLocation()
+  const feed = location.search.length === 0 ? '?timeline=local' : location.search
   return (
     <html lang="en">
       <head>
@@ -107,6 +107,6 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
-  );
+  )
 }
 

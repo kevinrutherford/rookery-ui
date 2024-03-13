@@ -1,13 +1,13 @@
-import { useFetcher } from '@remix-run/react';
-import { FC } from 'react';
-import { Card } from '~/components/card';
+import { useFetcher } from '@remix-run/react'
+import { FC } from 'react'
+import { Card } from '~/components/card'
 
 type Props = {
   entryId: string,
 }
 
 export const AddComment: FC<Props> = (props: Props) => {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher()
   return (
     <Card>
       <fetcher.Form method="post" className="w-full">
@@ -33,6 +33,6 @@ export const AddComment: FC<Props> = (props: Props) => {
         </div>
       </fetcher.Form>
     </Card>
-  );
-};
+  )
+}
 

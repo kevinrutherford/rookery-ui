@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import { Card } from '~/components/card';
-import { Info } from './info';
+import { ReactNode } from 'react'
+import { Card } from '~/components/card'
+import { Info } from './info'
 
 export const renderPageContent = (about: Info): ReactNode => (
   <div className='grow'>

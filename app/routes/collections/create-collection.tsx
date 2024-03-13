@@ -1,9 +1,9 @@
-import { useFetcher } from '@remix-run/react';
-import { FC } from 'react';
-import { Card } from '~/components/card';
+import { useFetcher } from '@remix-run/react'
+import { FC } from 'react'
+import { Card } from '~/components/card'
 
 export const CreateCollection: FC = () => {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher()
   return (
     <Card>
       <h3 className='font-semibold mb-6'>Create a new collection:</h3>
@@ -62,6 +62,6 @@ export const CreateCollection: FC = () => {
         </div>
       </fetcher.Form>
     </Card>
-  );
-};
+  )
+}
 

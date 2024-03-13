@@ -1,12 +1,12 @@
-import type { ReactNode } from 'react';
-import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid';
-import { InformationCircleIcon } from '@heroicons/react/24/outline';
+import type { ReactNode } from 'react'
+import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
+import { InformationCircleIcon } from '@heroicons/react/24/outline'
 
 type NavItem = {
   title: string,
   icon: ReactNode,
   route: string,
-};
+}
 
 export const contentNavItems: Record<string, NavItem> = {
   collections: {
@@ -19,5 +19,5 @@ export const contentNavItems: Record<string, NavItem> = {
     icon: <InformationCircleIcon className='h-10 w-10 p-2 inline' />,
     route: 'about',
   },
-};
+}
 

@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
-import { FeedEvent } from './feed-event';
-import FeedEventCard from './feed-event-card';
+import type { ReactNode } from 'react'
+import { FeedEvent } from './feed-event'
+import FeedEventCard from './feed-event-card'
 
 export const renderFeed = (data: ReadonlyArray<FeedEvent>): ReactNode => (
   <ul className='overflow-y-auto'>
@@ -10,5 +10,5 @@ export const renderFeed = (data: ReadonlyArray<FeedEvent>): ReactNode => (
       </li>
     ))}
   </ul>
-);
+)
 

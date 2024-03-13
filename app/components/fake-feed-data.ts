@@ -1,4 +1,4 @@
-import { FeedEvent } from './feed-event';
+import { FeedEvent } from './feed-event'
 
 export const fakeFeedData = (): ReadonlyArray<FeedEvent> => [
   {
@@ -44,5 +44,5 @@ export const fakeFeedData = (): ReadonlyArray<FeedEvent> => [
     action: 'created collection CHS',
     content: 'Papers being considered for the bibliography of project CHS.',
   },
-];
+]
 

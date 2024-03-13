@@ -2,6 +2,7 @@
   "plugins": [
     "@typescript-eslint",
     "@stylistic",
+    "@stylistic/ts",
     "react-hooks"
   ],
   "extends": [
@@ -22,6 +23,18 @@
     "@stylistic/comma-dangle": ["error", "always-multiline"],
     "@stylistic/indent": ["error", 2],
     "@stylistic/no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
+    "@stylistic/ts/member-delimiter-style": ["error", {
+      "multiline": {
+        "delimiter": "comma",
+        "requireLast": true
+      },
+      "singleline": {
+        "delimiter": "comma",
+        "requireLast": false
+      },
+      "multilineDetection": "brackets"
+    }],
+    "@stylistic/ts/semi": ["error", "never"],
     "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "always"],
     "import/prefer-default-export": "off",

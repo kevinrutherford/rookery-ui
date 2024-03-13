@@ -4,12 +4,12 @@ export type EntrySummary = {
   frontMatter?: {
     title: string,
   },
-};
+}
 
 export type Collection = {
   id: string,
   name: string,
   description: string,
   entries: ReadonlyArray<EntrySummary>,
-};
+}
 

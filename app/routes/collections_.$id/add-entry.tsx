@@ -1,13 +1,13 @@
-import { useFetcher } from '@remix-run/react';
-import { FC } from 'react';
-import { Card } from '~/components/card';
+import { useFetcher } from '@remix-run/react'
+import { FC } from 'react'
+import { Card } from '~/components/card'
 
 type Props = {
   collectionId: string,
 }
 
 export const AddEntry: FC<Props> = (props: Props) => {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher()
   return (
     <Card>
       <h3 className='font-semibold mb-6'>Add a paper:</h3>
@@ -34,6 +34,6 @@ export const AddEntry: FC<Props> = (props: Props) => {
         </div>
       </fetcher.Form>
     </Card>
-  );
-};
+  )
+}
 
