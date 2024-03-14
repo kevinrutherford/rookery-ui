@@ -12,8 +12,8 @@ import {
   useRouteError,
 } from '@remix-run/react'
 import stylesheet from '~/tailwind.css'
-import { contentNavItems } from './components/content-nav-items'
 import { Column } from './components/column'
+import { contentNavItems } from './components/content-nav-items'
 import { LocalTimeline } from './routes/localtimeline/route'
 
 export const meta: MetaFunction = () => [

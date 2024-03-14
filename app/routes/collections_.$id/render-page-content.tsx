@@ -1,7 +1,7 @@
-import { Collection } from './collection'
 import { ReactNode } from 'react'
-import { EntryCard } from './entry-card'
 import { AddEntry } from './add-entry'
+import { Collection } from './collection'
+import { EntryCard } from './entry-card'
 
 export const renderPageContent = (collection: Collection): ReactNode => (
   <div className='grow'>

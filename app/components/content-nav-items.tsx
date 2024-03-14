@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react'
-import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
 import { InformationCircleIcon } from '@heroicons/react/24/outline'
+import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid'
+import type { ReactNode } from 'react'
 
 type NavItem = {
   title: string,

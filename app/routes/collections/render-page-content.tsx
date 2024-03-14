@@ -1,6 +1,6 @@
+import { ReactNode } from 'react'
 import { CollectionCard } from './collection-card'
 import { CollectionSummary } from './collection-summary'
-import { ReactNode } from 'react'
 import { CreateCollection } from './create-collection'
 
 export const renderPageContent = (data: ReadonlyArray<CollectionSummary>): ReactNode => (

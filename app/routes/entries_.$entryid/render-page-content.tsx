@@ -1,7 +1,7 @@
-import { Entry, Reply } from './entry'
 import { FC, ReactNode } from 'react'
 import { Card } from '~/components/card'
 import { AddComment } from './add-comment'
+import { Entry, Reply } from './entry'
 
 type RepliesProps = {
   comments: ReadonlyArray<Reply>,

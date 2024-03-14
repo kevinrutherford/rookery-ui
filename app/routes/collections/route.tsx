@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ActionFunctionArgs, json, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { CollectionSummary } from './collection-summary'
-import { WithFeedLayout } from '~/components/with-feed-layout'
-import { renderPageContent } from './render-page-content'
 import { v4 } from 'uuid'
+import { WithFeedLayout } from '~/components/with-feed-layout'
+import { CollectionSummary } from './collection-summary'
+import { renderPageContent } from './render-page-content'
 
 type CollectionsResponse = {
   type: 'Collections',

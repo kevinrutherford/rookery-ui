@@ -3,7 +3,8 @@
     "@typescript-eslint",
     "@stylistic",
     "@stylistic/ts",
-    "react-hooks"
+    "react-hooks",
+    "simple-import-sort"
   ],
   "extends": [
     "eslint:recommended",
@@ -38,8 +39,15 @@
     "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "always"],
     "import/prefer-default-export": "off",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "object-curly-spacing": ["error", "always"],
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "simple-import-sort/imports": ["error", {
+      "groups": [["^\\u0000", "^node:", "^@?\\w", "^", "^\\."]]
+    }],
+    "simple-import-sort/exports": "error"
   },
   "settings": {
     "import/resolver": {
