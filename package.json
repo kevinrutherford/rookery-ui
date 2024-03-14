@@ -27,7 +27,7 @@
     "@remix-run/dev": "2.8.1",
     "@remix-run/eslint-config": "2.8.1",
     "@stylistic/eslint-plugin": "1.7.0",
-    "@stylistic/eslint-plugin-ts": "1.6.3",
+    "@stylistic/eslint-plugin-ts": "1.7.0",
     "@types/react": "18.2.65",
     "@types/react-dom": "18.2.22",
     "@types/uuid": "9.0.8",
