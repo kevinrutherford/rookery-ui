@@ -25,7 +25,7 @@ $(MK_COMPILED): $(SOURCES) node_modules tsconfig.json
 	npx tsc --noEmit
 	touch $@
 
-$(MK_LINTED): $(SOURCES) node_modules .eslintrc.json
+$(MK_LINTED): $(SOURCES) node_modules .eslintrc.cjs
 	npx eslint --ext .js,.ts,.tsx $(SRC_DIR)
 	@touch $@
 
