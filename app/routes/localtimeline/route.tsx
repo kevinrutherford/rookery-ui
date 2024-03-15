@@ -14,7 +14,7 @@ export const LocalTimeline = () => {
       if (fetcher.state === 'idle') {
         fetcher.load('/localtimeline')
       }
-    }, 3000)
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [fetcher])
