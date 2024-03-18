@@ -95,9 +95,7 @@ export default function App() {
                     </li>
                   ))}
                 </ul>
-                <div className='flex flex-col grow h-full'>
-                  <Outlet />
-                </div>
+                <Outlet />
               </Column>
             </div>
           </div>
