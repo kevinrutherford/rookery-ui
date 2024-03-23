@@ -24,7 +24,11 @@ export const renderPageContent = (entry: Entry): ReactNode => (
   <div className='flex flex-col overflow-hidden'>
     <Card>
       {entry.frontMatter && (
-        <h2 className='font-semibold mb-4'>{entry.frontMatter.title}</h2>
+        <>
+          <h2 className='font-semibold mb-4'>{entry.frontMatter.title}</h2>
+          <div className='mb-4'>{entry.frontMatter.abstract}</div>
+          <div className='mb-4'>{entry.frontMatter.authors.join(', ')}</div>
+        </>
       )}
       <p className='mb-4'>doi: {entry.doi}</p>
     </Card>
