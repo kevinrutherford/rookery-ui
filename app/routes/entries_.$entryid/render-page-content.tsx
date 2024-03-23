@@ -23,7 +23,9 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
 export const renderPageContent = (entry: Entry): ReactNode => (
   <div className='flex flex-col overflow-hidden'>
     <Card>
-      <h2 className='font-semibold mb-4'>{entry.title}</h2>
+      {entry.frontMatter && (
+        <h2 className='font-semibold mb-4'>{entry.frontMatter.title}</h2>
+      )}
       <p className='mb-4'>doi: {entry.doi}</p>
     </Card>
     <div className='overflow-y-auto mb-4'>

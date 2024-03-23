@@ -6,7 +6,11 @@ export type Reply = {
 export type Entry = {
   id: string,
   doi: string,
-  title?: string,
+  frontMatter?: {
+    title: string,
+    abstract: string,
+    authors: ReadonlyArray<string>,
+  },
   comments: ReadonlyArray<Reply>,
 }
 
