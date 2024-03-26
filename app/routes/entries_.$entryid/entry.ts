@@ -4,6 +4,7 @@ export type Reply = {
 }
 
 export type Entry = {
+  type: 'entry',
   id: string,
   doi: string,
   frontMatter?: {
@@ -12,5 +13,11 @@ export type Entry = {
     authors: ReadonlyArray<string>,
   },
   comments: ReadonlyArray<Reply>,
+  relationships: {
+    work: {
+      type: 'work',
+      id: string,
+    },
+  },
 }
 

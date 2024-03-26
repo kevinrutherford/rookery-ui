@@ -7,7 +7,6 @@ import { Entry } from './entry'
 import { renderPageContent } from './render-page-content'
 
 type EntryResponse = {
-  type: 'Entry',
   data: Entry,
 }
 

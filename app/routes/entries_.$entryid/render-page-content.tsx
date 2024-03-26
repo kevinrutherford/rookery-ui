@@ -30,7 +30,7 @@ export const renderPageContent = (entry: Entry): ReactNode => (
           <div className='mb-4'>{entry.frontMatter.authors.join(', ')}</div>
         </>
       )}
-      <p className='mb-4'>doi: {entry.doi}</p>
+      <p className='mb-4'>doi: {entry.relationships.work.id}</p>
     </Card>
     <div className='overflow-y-auto mb-4'>
       <Replies comments={entry.comments} />
