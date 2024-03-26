@@ -7,6 +7,9 @@ export type Entry = {
   type: 'entry',
   id: string,
   doi: string,
+  attributes: {
+    addedAt: string,
+  },
   frontMatter?: {
     title: string,
     abstract: string,
