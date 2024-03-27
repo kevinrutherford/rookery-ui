@@ -1,11 +1,11 @@
 import { Link } from '@remix-run/react'
 import { FC } from 'react'
 import { Card } from '~/components/card'
-import { EntrySummary } from './collection'
+import { EntryResource } from './collection'
 
 type EntryCardProps = {
   collectionid: string,
-  entry: EntrySummary,
+  entry: EntryResource,
 }
 
 export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
@@ -14,7 +14,7 @@ export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
       {(props.entry.frontMatter) && (
         <h2 className={'font-semibold mb-4'}>{props.entry.frontMatter.title}</h2>
       )}
-      <p className='mb-4'>doi: {props.entry.doi}</p>
+      <p className='mb-4'>doi: {props.entry.relationships.work.id}</p>
     </Link>
   </Card>
 )
