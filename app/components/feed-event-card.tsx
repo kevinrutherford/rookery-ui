@@ -13,7 +13,7 @@ export default function FeedEventCard(props: FEProps) {
             <span className='font-semibold'>@{props.userHandle}</span> {props.action}
           </h2>
         </div>
-        <ReactTimeAgo date={new Date(props.timestamp)} />
+        <ReactTimeAgo date={new Date(props.timestamp)} timeStyle='twitter' />
       </div>
       <p>
         {props.content}

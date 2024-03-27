@@ -1,5 +1,6 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { FC, ReactNode } from 'react'
+import ReactTimeAgo from 'react-time-ago'
 import { Card } from '~/components/card'
 import { AddComment } from './add-comment'
 import { Entry, Reply } from './entry'
@@ -43,7 +44,9 @@ export const renderPageContent = (entry: Entry): ReactNode => (
             <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
           </a>
         </div>
-        <div>Added at {entry.attributes.addedAt}</div>
+        <div>
+          Added <ReactTimeAgo date={new Date(entry.attributes.addedAt)} />
+        </div>
       </div>
     </Card>
     <div className='overflow-y-auto mb-4'>
