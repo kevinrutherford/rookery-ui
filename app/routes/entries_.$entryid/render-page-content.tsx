@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { Card } from '~/components/card'
 import { AddComment } from './add-comment'
-import { Entry, Reply } from './entry'
+import { EntryPageData, Reply } from './entry'
 
 type RepliesProps = {
   comments: ReadonlyArray<Reply>,
@@ -22,7 +22,7 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
   </ul>
 )
 
-export const renderPageContent = (entry: Entry): ReactNode => (
+export const renderPageContent = (entry: EntryPageData): ReactNode => (
   <div className='flex flex-col overflow-hidden'>
     <Card>
       {entry.frontMatter ? (

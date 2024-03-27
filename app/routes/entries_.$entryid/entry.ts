@@ -3,7 +3,7 @@ export type Reply = {
   content: string,
 }
 
-export type Entry = {
+export type EntryPageData = {
   type: 'entry',
   id: string,
   attributes: {
@@ -14,6 +14,7 @@ export type Entry = {
     abstract: string,
     authors: ReadonlyArray<string>,
   },
+  collectionName: string,
   comments: ReadonlyArray<Reply>,
   relationships: {
     work: {

@@ -3,17 +3,40 @@ import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-r
 import { useLoaderData } from '@remix-run/react'
 import { v4 } from 'uuid'
 import { WithFeedLayout } from '~/components/with-feed-layout'
-import { Entry } from './entry'
+import { EntryPageData, Reply } from './entry'
 import { renderPageContent } from './render-page-content'
 
-type EntryResponse = {
-  data: Entry,
+export type EntryResource = {
+  type: 'entry',
+  id: string,
+  attributes: {
+    addedAt: string,
+  },
+  frontMatter?: {
+    title: string,
+    abstract: string,
+    authors: ReadonlyArray<string>,
+  },
+  collectionName: string,
+  comments: ReadonlyArray<Reply>,
+  relationships: {
+    work: {
+      type: 'work',
+      id: string,
+    },
+  },
 }
+
+type EntryResponse = {
+  data: EntryResource,
+}
+
+const toEntryPageData = (doc: EntryResponse): EntryPageData => doc.data
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const response = await fetch(`http://views:44002/entries/${params.entryid}`)
   const value: EntryResponse = await response.json()
-  return json(value.data)
+  return json(toEntryPageData(value))
 }
 
 export const action = async ({ params, request }: ActionFunctionArgs) => {
