@@ -6,6 +6,16 @@ import { WithFeedLayout } from '~/components/with-feed-layout'
 import { EntryPageData, Reply } from './entry'
 import { renderPageContent } from './render-page-content'
 
+type CollectionResource = {
+  type: 'collection',
+  id: string,
+  attributes: {
+    description: string,
+    handle: string,
+    name: string,
+  },
+}
+
 export type EntryResource = {
   type: 'entry',
   id: string,
@@ -29,9 +39,13 @@ export type EntryResource = {
 
 type EntryResponse = {
   data: EntryResource,
+  included: ReadonlyArray<CollectionResource>,
 }
 
-const toEntryPageData = (doc: EntryResponse): EntryPageData => doc.data
+const toEntryPageData = (doc: EntryResponse): EntryPageData => ({
+  ...doc.data,
+  collectionName: doc.included[0].attributes.name,
+})
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const response = await fetch(`http://views:44002/entries/${params.entryid}`)

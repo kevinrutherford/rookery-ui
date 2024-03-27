@@ -45,7 +45,7 @@ export const renderPageContent = (entry: EntryPageData): ReactNode => (
           </a>
         </div>
         <div>
-          Added <ReactTimeAgo date={new Date(entry.attributes.addedAt)} />
+          Added to {entry.collectionName} <ReactTimeAgo date={new Date(entry.attributes.addedAt)} />
         </div>
       </div>
     </Card>
