@@ -6,7 +6,6 @@ export type Reply = {
 export type Entry = {
   type: 'entry',
   id: string,
-  doi: string,
   attributes: {
     addedAt: string,
   },
