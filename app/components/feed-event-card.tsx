@@ -1,3 +1,4 @@
+import ReactTimeAgo from 'react-time-ago'
 import { Card } from './card'
 import { FeedEvent } from './feed-event'
 
@@ -12,7 +13,7 @@ export default function FeedEventCard(props: FEProps) {
             <span className='font-semibold'>@{props.userHandle}</span> {props.action}
           </h2>
         </div>
-        {props.timestamp}
+        <ReactTimeAgo date={new Date(props.timestamp)} />
       </div>
       <p>
         {props.content}

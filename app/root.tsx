@@ -11,10 +11,14 @@ import {
   useLocation,
   useRouteError,
 } from '@remix-run/react'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 import stylesheet from '~/tailwind.css'
 import { Column } from './components/column'
 import { contentNavItems } from './components/content-nav-items'
 import { LocalTimeline } from './routes/localtimeline/route'
+
+TimeAgo.addDefaultLocale(en)
 
 export const meta: MetaFunction = () => [
   { title: 'Rookery' },
