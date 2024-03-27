@@ -44,7 +44,10 @@ type EntryResponse = {
 
 const toEntryPageData = (doc: EntryResponse): EntryPageData => ({
   ...doc.data,
-  collectionName: doc.included[0].attributes.name,
+  collection: {
+    id: doc.included[0].id,
+    name: doc.included[0].attributes.name,
+  },
 })
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {

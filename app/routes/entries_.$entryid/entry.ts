@@ -14,7 +14,10 @@ export type EntryPageData = {
     abstract: string,
     authors: ReadonlyArray<string>,
   },
-  collectionName: string,
+  collection: {
+    id: string,
+    name: string,
+  },
   comments: ReadonlyArray<Reply>,
   relationships: {
     work: {

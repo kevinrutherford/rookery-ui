@@ -1,4 +1,5 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import { Link } from '@remix-run/react'
 import { FC, ReactNode } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { Card } from '~/components/card'
@@ -45,7 +46,9 @@ export const renderPageContent = (entry: EntryPageData): ReactNode => (
           </a>
         </div>
         <div>
-          Added to {entry.collectionName} <ReactTimeAgo date={new Date(entry.attributes.addedAt)} />
+          Added to <Link to={`/collections/${entry.collection.id}`} className='inline hover:underline'>
+            {entry.collection.name}
+          </Link> <ReactTimeAgo date={new Date(entry.attributes.addedAt)} />
         </div>
       </div>
     </Card>
