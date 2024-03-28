@@ -2,40 +2,11 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { v4 } from 'uuid'
+import { CollectionResource } from '~/api-resources/collection'
+import { EntryResource } from '~/api-resources/entry'
 import { WithFeedLayout } from '~/components/with-feed-layout'
-import { EntryPageData, Reply } from './entry'
+import { EntryPageData } from './entry'
 import { renderPageContent } from './render-page-content'
-
-type CollectionResource = {
-  type: 'collection',
-  id: string,
-  attributes: {
-    description: string,
-    handle: string,
-    name: string,
-  },
-}
-
-export type EntryResource = {
-  type: 'entry',
-  id: string,
-  attributes: {
-    addedAt: string,
-  },
-  frontMatter?: {
-    title: string,
-    abstract: string,
-    authors: ReadonlyArray<string>,
-  },
-  collectionName: string,
-  comments: ReadonlyArray<Reply>,
-  relationships: {
-    work: {
-      type: 'work',
-      id: string,
-    },
-  },
-}
 
 type EntryResponse = {
   data: EntryResource,

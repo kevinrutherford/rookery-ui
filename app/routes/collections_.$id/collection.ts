@@ -1,6 +1,5 @@
 export type EntryResource = {
   id: string,
-  doi: string,
   frontMatter?: {
     title: string,
   },
