@@ -20,9 +20,8 @@ type CollectionWithEntries = {
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await fetch(`http://views:44002/collections/${params.id}`)
+  const response = await fetch(`http://views:44002/collections/${params.id}?include=entries,entries.work`)
   const value: CollectionWithEntries = await response.json()
-  console.log('>>>>>', value)
   return pipe(
     value,
     collectionResponse.decode,
