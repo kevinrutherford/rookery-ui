@@ -21,10 +21,14 @@ const entryResource = t.type({
 const collectionResource = t.type({
   type: t.literal('collection'),
   id: t.string,
-  name: t.string,
-  description: t.string,
+  attributes: t.type({
+    name: t.string,
+    description: t.string,
+  }),
   entries: t.array(entryResource),
 })
+
+export type CollectionResource = t.TypeOf<typeof collectionResource>
 
 const collectionResponse = t.type({
   data: collectionResource,
