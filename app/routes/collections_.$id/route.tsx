@@ -5,30 +5,10 @@ import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import { formatValidationErrors } from 'io-ts-reporters'
 import { v4 } from 'uuid'
+import { collectionResource } from '~/api-resources/collection'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { Collection } from './collection'
 import { renderPageContent } from './render-page-content'
-
-const entryResource = t.type({
-  id: t.string,
-  relationships: t.type({
-    work: t.type({
-      id: t.string,
-    }),
-  }),
-})
-
-const collectionResource = t.type({
-  type: t.literal('collection'),
-  id: t.string,
-  attributes: t.type({
-    name: t.string,
-    description: t.string,
-  }),
-  entries: t.array(entryResource),
-})
-
-export type CollectionResource = t.TypeOf<typeof collectionResource>
 
 const collectionResponse = t.type({
   data: collectionResource,

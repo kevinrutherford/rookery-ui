@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
+import { CollectionResource } from '~/api-resources/collection'
 import { AddEntry } from './add-entry'
 import { EntryCard } from './entry-card'
-import { CollectionResource } from './route'
 
 export const renderPageContent = (collection: CollectionResource): ReactNode => (
   <div className='flex flex-col overflow-hidden'>
