@@ -1,26 +1,59 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
+import * as E from 'fp-ts/lib/Either.js'
+import { pipe } from 'fp-ts/lib/function.js'
+import * as t from 'io-ts'
+import { formatValidationErrors } from 'io-ts-reporters'
 import { v4 } from 'uuid'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { Collection } from './collection'
 import { renderPageContent } from './render-page-content'
 
-type CollectionResponse = {
+const entryResource = t.type({
+  id: t.string,
+  relationships: t.type({
+    work: t.type({
+      id: t.string,
+    }),
+  }),
+})
+
+const collectionResource = t.type({
+  type: t.literal('collection'),
+  id: t.string,
+  name: t.string,
+  description: t.string,
+  entries: t.array(entryResource),
+})
+
+const collectionResponse = t.type({
+  data: collectionResource,
+})
+
+type CollectionWithEntries = {
   type: 'Collection',
   data: Collection,
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const response = await fetch(`http://views:44002/collections/${params.id}`)
-  const value: CollectionResponse = await response.json()
-  return json(value.data)
+  const value: CollectionWithEntries = await response.json()
+  console.log('>>>>>', value)
+  return pipe(
+    value,
+    collectionResponse.decode,
+    E.getOrElseW((errors) => {
+      throw new Error(formatValidationErrors(errors).join('\n'))
+    }),
+    (res) => res.data,
+    json,
+  )
 }
 
-export const action = async ({ params, request }: ActionFunctionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
   const updates = Object.fromEntries(formData)
-  const response = await fetch('http://commands:44001/entries', {
+  await fetch('http://commands:44001/entries', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
