@@ -1,6 +1,5 @@
 import { Link } from '@remix-run/react'
 import { FC } from 'react'
-import { Card } from '~/components/card'
 import { EntryResource } from './collection'
 
 type EntryCardProps = {
@@ -9,13 +8,13 @@ type EntryCardProps = {
 }
 
 export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
-  <Card>
+  <div className='bg-slate-100 mb-4 p-4 rounded-md'>
     <Link to={`/entries/${props.entry.id}`} className='block hover:underline'>
       {(props.entry.frontMatter) && (
         <h2 className={'font-semibold mb-4'}>{props.entry.frontMatter.title}</h2>
       )}
       <p className='mb-4'>doi: {props.entry.relationships.work.id}</p>
     </Link>
-  </Card>
+  </div>
 )
 
