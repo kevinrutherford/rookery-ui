@@ -1,22 +1,12 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import * as t from 'io-ts'
 import { v4 } from 'uuid'
 import { CollectionResource } from '~/api-resources/collection'
+import { CommentResource } from '~/api-resources/comment'
 import { EntryResource } from '~/api-resources/entry'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { EntryPage } from './entry-page'
 import { renderPageContent } from './render-page-content'
-
-const commentResource = t.type({
-  type: t.literal('comment'),
-  id: t.string,
-  attributes: t.type({
-    content: t.string,
-  }),
-})
-
-export type CommentResource = t.TypeOf<typeof commentResource>
 
 export type EntryResponse = {
   data: EntryResource,

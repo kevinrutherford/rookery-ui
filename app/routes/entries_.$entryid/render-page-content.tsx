@@ -1,28 +1,11 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { Link } from '@remix-run/react'
-import { FC, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { Card } from '~/components/card'
 import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
-import { CommentResource } from './route'
-
-type RepliesProps = {
-  comments: ReadonlyArray<CommentResource>,
-}
-
-const Replies: FC<RepliesProps> = (props: RepliesProps) => (
-  <ul className='ml-8'>
-    { props.comments.map((comment) => (
-      <li key={comment.id} className='mb-4'>
-        <Card>
-          {comment.attributes.content}
-        </Card>
-      </li>
-    ))
-    }
-  </ul>
-)
+import { Replies } from './replies'
 
 export const renderPageContent = (entry: EntryPage): ReactNode => (
   <div className='flex flex-col overflow-hidden'>

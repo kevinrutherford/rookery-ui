@@ -2,8 +2,9 @@ import { pipe } from 'fp-ts/lib/function.js'
 import * as O from 'fp-ts/lib/Option.js'
 import * as RA from 'fp-ts/lib/ReadonlyArray.js'
 import { CollectionResource } from '~/api-resources/collection'
+import { CommentResource } from '~/api-resources/comment'
 import { EntryResource } from '~/api-resources/entry'
-import { CommentResource, EntryResponse } from './route'
+import { EntryResponse } from './route'
 
 export class EntryPage {
   readonly entry: EntryResource
