@@ -6,6 +6,7 @@ import { CollectionResource } from '~/api-resources/collection'
 import { EntryResource } from '~/api-resources/entry'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { EntryPageData } from './entry'
+import { EntryPage } from './entry-page'
 import { renderPageContent } from './render-page-content'
 
 const commentResource = t.type({
@@ -55,7 +56,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 export default function CollectionDetails() {
   const entry = useLoaderData<typeof loader>()
   return (
-    <WithFeedLayout pageContent={renderPageContent(entry)} />
+    <WithFeedLayout pageContent={renderPageContent(new EntryPage(entry))} />
   )
 }
 
