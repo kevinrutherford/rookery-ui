@@ -16,12 +16,11 @@ const commentResource = t.type({
   }),
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-type CommentResource = t.TypeOf<typeof commentResource>
+export type CommentResource = t.TypeOf<typeof commentResource>
 
 export type EntryResponse = {
   data: EntryResource,
-  included: ReadonlyArray<CollectionResource>,
+  included: ReadonlyArray<CollectionResource | CommentResource>,
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {

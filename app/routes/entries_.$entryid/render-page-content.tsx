@@ -4,10 +4,11 @@ import { FC, ReactNode } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { Card } from '~/components/card'
 import { AddComment } from './add-comment'
-import { EntryPage, Reply } from './entry-page'
+import { EntryPage } from './entry-page'
+import { CommentResource } from './route'
 
 type RepliesProps = {
-  comments: ReadonlyArray<Reply>,
+  comments: ReadonlyArray<CommentResource>,
 }
 
 const Replies: FC<RepliesProps> = (props: RepliesProps) => (
@@ -15,7 +16,7 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
     { props.comments.map((comment) => (
       <li key={comment.id} className='mb-4'>
         <Card>
-          {comment.content}
+          {comment.attributes.content}
         </Card>
       </li>
     ))
