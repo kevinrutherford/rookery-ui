@@ -23,8 +23,28 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
   </ul>
 )
 
+class EntryPage {
+  readonly entry: EntryPageData
+
+  constructor(entry: EntryPageData) {
+    this.entry = entry
+  }
+
+  addedAt() {
+    return new Date(this.entry.attributes.addedAt)
+  }
+
+  collectionId() {
+    return this.entry.collection.id
+  }
+
+  collectionName() {
+    return this.entry.collection.name
+  }
+}
+
 export const renderPageContent = (entry: EntryPageData): ReactNode => {
-  const collection = entry.collection
+  const page = new EntryPage(entry)
 
   return (
     <div className='flex flex-col overflow-hidden'>
@@ -48,9 +68,9 @@ export const renderPageContent = (entry: EntryPageData): ReactNode => {
             </a>
           </div>
           <div>
-            Added to <Link to={`/collections/${collection.id}`} className='inline hover:underline'>
-              {collection.name}
-            </Link> <ReactTimeAgo date={new Date(entry.attributes.addedAt)} />
+            Added to <Link to={`/collections/${page.collectionId()}`} className='inline hover:underline'>
+              {page.collectionName()}
+            </Link> <ReactTimeAgo date={page.addedAt()} />
           </div>
         </div>
       </Card>
