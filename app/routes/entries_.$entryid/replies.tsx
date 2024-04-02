@@ -12,9 +12,11 @@ export const Replies: FC<RepliesProps> = (props: RepliesProps) => (
     { props.comments.map((comment) => (
       <li key={comment.id} className='mb-4'>
         <Card>
-          <div className='flex justify-between'>
+          <div className='flex justify-between gap-8'>
             {comment.attributes.content}
-            <span className='text-slate-500 text-sm'><ReactTimeAgo date={new Date(comment.attributes.createdAt)} /></span>
+            <span className='text-slate-500 text-sm'>
+              <ReactTimeAgo date={new Date(comment.attributes.createdAt)} timeStyle='twitter' />
+            </span>
           </div>
         </Card>
       </li>
