@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import ReactTimeAgo from 'react-time-ago'
 import { CommentResource } from '~/api-resources/comment'
 import { Card } from '~/components/card'
 
@@ -13,7 +14,7 @@ export const Replies: FC<RepliesProps> = (props: RepliesProps) => (
         <Card>
           <div className='flex justify-between'>
             {comment.attributes.content}
-            <span className='text-slate-500 text-sm'>4h</span>
+            <span className='text-slate-500 text-sm'><ReactTimeAgo date={new Date(comment.attributes.createdAt)} /></span>
           </div>
         </Card>
       </li>

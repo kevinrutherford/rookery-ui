@@ -5,6 +5,7 @@ const commentResource = t.type({
   id: t.string,
   attributes: t.type({
     content: t.string,
+    createdAt: t.string,
   }),
 })
 
