@@ -11,7 +11,10 @@ export const Replies: FC<RepliesProps> = (props: RepliesProps) => (
     { props.comments.map((comment) => (
       <li key={comment.id} className='mb-4'>
         <Card>
-          {comment.attributes.content}
+          <div className='flex justify-between'>
+            {comment.attributes.content}
+            <span className='text-slate-500 text-sm'>4h</span>
+          </div>
         </Card>
       </li>
     ))
