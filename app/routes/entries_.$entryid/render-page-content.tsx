@@ -23,39 +23,42 @@ const Replies: FC<RepliesProps> = (props: RepliesProps) => (
   </ul>
 )
 
-export const renderPageContent = (entry: EntryPageData): ReactNode => (
-  <div className='flex flex-col overflow-hidden'>
-    <Card>
-      {entry.frontMatter ? (
-        <>
-          <h2 className='font-semibold mb-4'>{entry.frontMatter.title}</h2>
-          <div className='mb-4'>{entry.frontMatter.abstract}</div>
-          <div className='mb-4'>{entry.frontMatter.authors.join(', ')}</div>
-        </>
-      ) : (
-        <p className='mb-4'>doi: {entry.relationships.work.id}</p>
-      )}
-      <div className='text-sm text-slate-500 flex justify-between'>
-        <div>
-          <a className='block hover:underline'
-            href={`https://doi.org/${entry.relationships.work.id}`}
-            target='_blank' rel="noreferrer"
-          >
-            Original document
-            <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
-          </a>
+export const renderPageContent = (entry: EntryPageData): ReactNode => {
+  const collection = entry.collection
+
+  return (
+    <div className='flex flex-col overflow-hidden'>
+      <Card>
+        {entry.frontMatter ? (
+          <>
+            <h2 className='font-semibold mb-4'>{entry.frontMatter.title}</h2>
+            <div className='mb-4'>{entry.frontMatter.abstract}</div>
+            <div className='mb-4'>{entry.frontMatter.authors.join(', ')}</div>
+          </>
+        ) : (
+          <p className='mb-4'>doi: {entry.relationships.work.id}</p>
+        )}
+        <div className='text-sm text-slate-500 flex justify-between'>
+          <div>
+            <a className='block hover:underline'
+              href={`https://doi.org/${entry.relationships.work.id}`}
+              target='_blank' rel="noreferrer"
+            >
+            Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
+            </a>
+          </div>
+          <div>
+            Added to <Link to={`/collections/${collection.id}`} className='inline hover:underline'>
+              {collection.name}
+            </Link> <ReactTimeAgo date={new Date(entry.attributes.addedAt)} />
+          </div>
         </div>
-        <div>
-          Added to <Link to={`/collections/${entry.collection.id}`} className='inline hover:underline'>
-            {entry.collection.name}
-          </Link> <ReactTimeAgo date={new Date(entry.attributes.addedAt)} />
-        </div>
+      </Card>
+      <div className='overflow-y-auto mb-4'>
+        <Replies comments={entry.comments} />
       </div>
-    </Card>
-    <div className='overflow-y-auto mb-4'>
-      <Replies comments={entry.comments} />
+      <AddComment entryId={entry.id} />
     </div>
-    <AddComment entryId={entry.id} />
-  </div>
-)
+  )
+}
 
