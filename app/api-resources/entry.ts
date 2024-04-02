@@ -1,10 +1,14 @@
 import * as t from 'io-ts'
-import { Reply } from '~/routes/entries_.$entryid/entry-page'
 
 export const entryResource = t.type({
+  type: t.literal('entry'),
   id: t.string,
+  attributes: t.type({
+    addedAt: t.string,
+  }),
   relationships: t.type({
     work: t.type({
+      type: t.literal('work'),
       id: t.string,
     }),
   }),
@@ -21,8 +25,6 @@ export type EntryResource = {
     abstract: string,
     authors: ReadonlyArray<string>,
   },
-  collectionName: string,
-  comments: ReadonlyArray<Reply>,
   relationships: {
     work: {
       type: 'work',

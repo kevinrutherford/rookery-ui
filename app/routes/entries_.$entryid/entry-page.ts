@@ -5,11 +5,6 @@ import { CollectionResource } from '~/api-resources/collection'
 import { EntryResource } from '~/api-resources/entry'
 import { CommentResource, EntryResponse } from './route'
 
-export type Reply = {
-  id: string,
-  content: string,
-}
-
 export class EntryPage {
   readonly entry: EntryResource
   readonly collection: CollectionResource
