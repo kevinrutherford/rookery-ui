@@ -1,3 +1,7 @@
+import { pipe } from 'fp-ts/lib/function.js'
+import * as O from 'fp-ts/lib/Option.js'
+import * as RA from 'fp-ts/lib/ReadonlyArray.js'
+import { CollectionResource } from '~/api-resources/collection'
 import { EntryResponse } from './route'
 
 export type Reply = {
@@ -31,6 +35,7 @@ type EntryPageData = {
 
 export class EntryPage {
   readonly entry: EntryPageData
+  readonly collection: CollectionResource
 
   constructor(response: EntryResponse) {
     this.entry = {
@@ -40,6 +45,12 @@ export class EntryPage {
         name: response.included[0].attributes.name,
       },
     }
+    this.collection = pipe(
+      response.included,
+      RA.filter((inc) => inc.type === 'collection'),
+      RA.head,
+      O.getOrElseW(() => { throw new Error('No collection included with Entry') }),
+    )
   }
 
   addedAt() {
@@ -47,11 +58,11 @@ export class EntryPage {
   }
 
   collectionId() {
-    return this.entry.collection.id
+    return this.collection.id
   }
 
   collectionName() {
-    return this.entry.collection.name
+    return this.collection.attributes.name
   }
 
   comments() {
