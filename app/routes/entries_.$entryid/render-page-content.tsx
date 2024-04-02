@@ -4,8 +4,7 @@ import { FC, ReactNode } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { Card } from '~/components/card'
 import { AddComment } from './add-comment'
-import { Reply } from './entry'
-import { EntryPage } from './entry-page'
+import { EntryPage, Reply } from './entry-page'
 
 type RepliesProps = {
   comments: ReadonlyArray<Reply>,

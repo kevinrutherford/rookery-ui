@@ -1,5 +1,5 @@
 import * as t from 'io-ts'
-import { Reply } from '../routes/entries_.$entryid/entry'
+import { Reply } from '~/routes/entries_.$entryid/entry-page'
 
 export const entryResource = t.type({
   id: t.string,

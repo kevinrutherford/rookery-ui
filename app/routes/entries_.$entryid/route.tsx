@@ -5,7 +5,6 @@ import { v4 } from 'uuid'
 import { CollectionResource } from '~/api-resources/collection'
 import { EntryResource } from '~/api-resources/entry'
 import { WithFeedLayout } from '~/components/with-feed-layout'
-import { EntryPageData } from './entry'
 import { EntryPage } from './entry-page'
 import { renderPageContent } from './render-page-content'
 
@@ -20,23 +19,15 @@ const commentResource = t.type({
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type CommentResource = t.TypeOf<typeof commentResource>
 
-type EntryResponse = {
+export type EntryResponse = {
   data: EntryResource,
   included: ReadonlyArray<CollectionResource>,
 }
 
-const toEntryPageData = (doc: EntryResponse): EntryPageData => ({
-  ...doc.data,
-  collection: {
-    id: doc.included[0].id,
-    name: doc.included[0].attributes.name,
-  },
-})
-
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const response = await fetch(`http://views:44002/entries/${params.entryid}?include=collection,comments,work`)
   const value: EntryResponse = await response.json()
-  return json(toEntryPageData(value))
+  return json(value)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
