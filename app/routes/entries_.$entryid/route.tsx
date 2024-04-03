@@ -1,22 +1,46 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
+import * as t from 'io-ts'
 import { v4 } from 'uuid'
-import { CollectionResource } from '~/api-resources/collection'
-import { CommentResource } from '~/api-resources/comment'
-import { EntryResource } from '~/api-resources/entry'
+import { commentResource } from '~/api-resources/comment'
+import { entryResource } from '~/api-resources/entry'
+import { loadAndParse } from '~/api-resources/load-and-parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { EntryPage } from './entry-page'
 import { renderPageContent } from './render-page-content'
 
-export type EntryResponse = {
-  data: EntryResource,
-  included: ReadonlyArray<CollectionResource | CommentResource>,
-}
+const collectionResource = t.type({
+  type: t.literal('collection'),
+  id: t.string,
+  attributes: t.type({
+    name: t.string,
+    description: t.string,
+    handle: t.string,
+  }),
+})
+
+const workResource = t.type({
+  type: t.literal('work'),
+  id: t.string,
+})
+
+const entryResponse = t.type({
+  data: entryResource,
+  included: t.array(t.union([
+    collectionResource,
+    commentResource,
+    workResource,
+  ])),
+})
+
+export type EntryResponse = t.TypeOf<typeof entryResponse>
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await fetch(`http://views:44002/entries/${params.entryid}?include=collection,comments,work`)
-  const value: EntryResponse = await response.json()
-  return json(value)
+  const response = await loadAndParse(
+    `http://views:44002/entries/${params.entryid}?include=collection,comments,work`,
+    entryResponse,
+  )
+  return json(response)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {

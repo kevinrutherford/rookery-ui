@@ -1,6 +1,6 @@
 import * as t from 'io-ts'
 
-const commentResource = t.type({
+export const commentResource = t.type({
   type: t.literal('comment'),
   id: t.string,
   attributes: t.type({
