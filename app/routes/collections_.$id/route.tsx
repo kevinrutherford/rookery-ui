@@ -1,36 +1,22 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import * as E from 'fp-ts/lib/Either.js'
-import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
-import { formatValidationErrors } from 'io-ts-reporters'
 import { v4 } from 'uuid'
 import { collectionResource } from '~/api-resources/collection'
 import { WithFeedLayout } from '~/components/with-feed-layout'
-import { Collection } from './collection'
+import { loadAndParse } from './load-and-parse'
 import { renderPageContent } from './render-page-content'
 
 const collectionResponse = t.type({
   data: collectionResource,
 })
 
-type CollectionWithEntries = {
-  type: 'Collection',
-  data: Collection,
-}
-
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await fetch(`http://views:44002/collections/${params.id}?include=entries,entries.work`)
-  const value: CollectionWithEntries = await response.json()
-  return pipe(
-    value,
-    collectionResponse.decode,
-    E.getOrElseW((errors) => {
-      throw new Error(formatValidationErrors(errors).join('\n'))
-    }),
-    (res) => res.data,
-    json,
+  const response = await loadAndParse(
+    `http://views:44002/collections/${params.id}?include=entries,entries.work`,
+    collectionResponse,
   )
+  return json(response.data)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {

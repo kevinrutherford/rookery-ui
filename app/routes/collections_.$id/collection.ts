@@ -10,10 +10,3 @@ export type EntryResource = {
   },
 }
 
-export type Collection = {
-  id: string,
-  name: string,
-  description: string,
-  entries: ReadonlyArray<EntryResource>,
-}
-
