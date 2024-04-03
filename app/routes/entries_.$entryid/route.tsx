@@ -6,18 +6,9 @@ import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
 import { loadAndParse } from '~/api-resources/load-and-parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
+import { collectionResource } from '../collections/route'
 import { EntryPage } from './entry-page'
 import { renderPageContent } from './render-page-content'
-
-const collectionResource = t.type({
-  type: t.literal('collection'),
-  id: t.string,
-  attributes: t.type({
-    name: t.string,
-    description: t.string,
-    handle: t.string,
-  }),
-})
 
 const workResource = t.type({
   type: t.literal('work'),

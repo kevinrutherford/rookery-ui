@@ -5,7 +5,7 @@ import { loadAndParse } from '~/api-resources/load-and-parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { renderPageContent } from './render-page-content'
 
-const collectionResource = t.type({
+export const collectionResource = t.type({
   type: t.literal('collection'),
   id: t.string,
   attributes: t.type({
