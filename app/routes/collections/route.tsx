@@ -7,7 +7,6 @@ import { CollectionSummary } from './collection-summary'
 import { renderPageContent } from './render-page-content'
 
 type CollectionsResponse = {
-  type: 'Collections',
   data: ReadonlyArray<CollectionSummary>,
 }
 

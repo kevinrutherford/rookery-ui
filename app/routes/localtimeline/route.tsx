@@ -4,14 +4,13 @@ import { useEffect } from 'react'
 import { FeedEvent } from '~/components/feed-event'
 import { renderFeed } from '~/components/render-feed'
 
-type AboutResponse = {
-  type: 'About',
+type LocalTimelineResponse = {
   data: ReadonlyArray<FeedEvent>,
 }
 
 export const loader = async () => {
   const response = await fetch('http://views:44002/timelines/local')
-  const value: AboutResponse = await response.json()
+  const value: LocalTimelineResponse = await response.json()
   return json(value.data)
 }
 

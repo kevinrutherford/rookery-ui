@@ -4,7 +4,6 @@ import { Info } from './info'
 import { renderPageContent } from './render-page-content'
 
 type AboutResponse = {
-  type: 'About',
   data: Info,
 }
 
