@@ -3,8 +3,8 @@ import { useLoaderData } from '@remix-run/react'
 import * as t from 'io-ts'
 import { v4 } from 'uuid'
 import { collectionResource } from '~/api-resources/collection'
+import { loadAndParse } from '~/api-resources/load-and-parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
-import { loadAndParse } from './load-and-parse'
 import { renderPageContent } from './render-page-content'
 
 const collectionResponse = t.type({
