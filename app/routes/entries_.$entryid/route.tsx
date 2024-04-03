@@ -5,15 +5,11 @@ import { v4 } from 'uuid'
 import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
 import { loadAndParse } from '~/api-resources/load-and-parse'
+import { workResource } from '~/api-resources/work'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { collectionResource } from '../collections/route'
 import { EntryPage } from './entry-page'
 import { renderPageContent } from './render-page-content'
-
-const workResource = t.type({
-  type: t.literal('work'),
-  id: t.string,
-})
 
 const entryResponse = t.type({
   data: entryResource,
