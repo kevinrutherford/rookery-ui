@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     'node': true,
-    'es6': true
+    'es6': true,
   },
   extends: [
     'eslint:recommended',
@@ -11,14 +11,14 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
-    'plugin:@stylistic/disable-legacy'
+    'plugin:@stylistic/disable-legacy',
   ],
   plugins: [
     '@typescript-eslint',
     '@stylistic',
     '@stylistic/ts',
     'react-hooks',
-    'simple-import-sort'
+    'simple-import-sort',
   ],
   rules: {
     '@stylistic/comma-dangle': ['error', 'always-multiline'],
@@ -27,13 +27,13 @@ module.exports = {
     '@stylistic/ts/member-delimiter-style': ['error', {
       'multiline': {
         'delimiter': 'comma',
-        'requireLast': true
+        'requireLast': true,
       },
       'singleline': {
         'delimiter': 'comma',
-        'requireLast': false
+        'requireLast': false,
       },
-      'multilineDetection': 'brackets'
+      'multilineDetection': 'brackets',
     }],
     '@stylistic/ts/semi': ['error', 'never'],
     'arrow-body-style': ['error', 'as-needed'],
@@ -45,18 +45,18 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'quotes': ['error', 'single'],
     'simple-import-sort/imports': ['error', {
-      'groups': [['^\\u0000', '^node:', '^@?\\w', '^', '^\\.']]
+      'groups': [['^\\u0000', '^node:', '^@?\\w', '^', '^\\.']],
     }],
-    'simple-import-sort/exports': 'error'
+    'simple-import-sort/exports': 'error',
   },
   settings: {
     'import/resolver': {
       typescript: true,
-      node: true
+      node: true,
     },
     react: {
-      version: 'detect'
-    }
-  }
+      version: 'detect',
+    },
+  },
 }
 

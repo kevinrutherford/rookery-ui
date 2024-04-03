@@ -1,3 +1,4 @@
+DEPCRUISE_CONFIG := .dependency-cruiser.cjs
 DEV_SERVER_DIR := build
 IMAGE := kevinrutherford/rookery-ui
 IMAGE_VERSION := $(shell git describe --tags)
@@ -29,9 +30,11 @@ $(MK_COMPILED): $(SOURCES) node_modules tsconfig.json
 
 $(MK_LINTED): node_modules .eslintrc.cjs $(SOURCES)
 	npx eslint --ext .js,.ts,.tsx $(SRC_DIR)
-	npx ts-unused-exports tsconfig.json --silent --ignoreTestFiles
-	$(depcruise) src
+	$(depcruise) $(SRC_DIR)
 	@touch $@
+
+check-unused:
+	npx ts-unused-exports tsconfig.json --silent --ignoreFiles='tailwind'
 
 # CI pipeline - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -69,15 +72,4 @@ clean:
 clobber: clean
 	rm -rf node_modules
 	docker system prune --force --volumes
-
-
-
-
-
-
-
-
-
-
-
 
