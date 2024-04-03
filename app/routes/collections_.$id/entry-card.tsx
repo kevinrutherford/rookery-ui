@@ -13,7 +13,7 @@ export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
       {(props.entry.frontMatter) && (
         <h2 className={'font-semibold mb-4'}>{props.entry.frontMatter.title}</h2>
       )}
-      <p className='mb-4'>doi: {props.entry.relationships.work.id}</p>
+      <p>doi: {props.entry.relationships.work.id}</p>
     </Link>
   </div>
 )

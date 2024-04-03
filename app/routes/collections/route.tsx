@@ -1,13 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ActionFunctionArgs, json, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { v4 } from 'uuid'
+import * as t from 'io-ts'
 import { WithFeedLayout } from '~/components/with-feed-layout'
-import { CollectionSummary } from './collection-summary'
 import { renderPageContent } from './render-page-content'
 
+const collectionResource = t.type({
+  type: t.literal('collection'),
+  id: t.string,
+  attributes: t.type({
+    name: t.string,
+    description: t.string,
+    handle: t.string,
+  }),
+})
+
+export type CollectionResource = t.TypeOf<typeof collectionResource>
+
 type CollectionsResponse = {
-  data: ReadonlyArray<CollectionSummary>,
+  data: ReadonlyArray<CollectionResource>,
 }
 
 export const loader = async () => {
@@ -16,17 +26,8 @@ export const loader = async () => {
   return json(value.data)
 }
 
-export const action = async ({ params, request }: ActionFunctionArgs) => {
-  const formData = await request.formData()
-  const updates = Object.fromEntries(formData)
-  const response = await fetch('http://commands:44001/collections', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...updates,
-      id: v4(),
-    }),
-  })
+export const action = async ({ request }: ActionFunctionArgs) => {
+  await request.formData()
   return redirect('/collections')
 }
 
