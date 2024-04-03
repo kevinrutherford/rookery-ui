@@ -9,6 +9,8 @@ MK_COMPILED := .mk-compiled
 MK_IMAGE := .mk-image
 MK_LINTED := .mk-linted
 
+depcruise := npx depcruise --config $(DEPCRUISE_CONFIG)
+
 .PHONY: all ci-* clean clobber dev prod watch-*
 
 all: $(MK_COMPILED) $(MK_LINTED)
@@ -25,8 +27,10 @@ $(MK_COMPILED): $(SOURCES) node_modules tsconfig.json
 	npx tsc --noEmit
 	touch $@
 
-$(MK_LINTED): $(SOURCES) node_modules .eslintrc.cjs
+$(MK_LINTED): node_modules .eslintrc.cjs $(SOURCES)
 	npx eslint --ext .js,.ts,.tsx $(SRC_DIR)
+	npx ts-unused-exports tsconfig.json --silent --ignoreTestFiles
+	$(depcruise) src
 	@touch $@
 
 # CI pipeline - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -65,4 +69,15 @@ clean:
 clobber: clean
 	rm -rf node_modules
 	docker system prune --force --volumes
+
+
+
+
+
+
+
+
+
+
+
 
