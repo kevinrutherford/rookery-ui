@@ -5,6 +5,7 @@ export const entryResource = t.type({
   id: t.string,
   attributes: t.type({
     addedAt: t.string,
+    commentsCount: t.number,
   }),
   relationships: t.type({
     work: t.type({
