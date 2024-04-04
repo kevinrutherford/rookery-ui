@@ -1,7 +1,7 @@
 import { Link } from '@remix-run/react'
 import { FC } from 'react'
 import ReactTimeAgo from 'react-time-ago'
-import { EntryResource } from './collection'
+import { EntryResource } from '~/api-resources/entry'
 
 type EntryCardProps = {
   collectionid: string,

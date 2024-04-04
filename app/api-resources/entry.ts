@@ -16,11 +16,5 @@ export const entryResource = t.type({
   }),
 })
 
-export type EntryResource = {
-  type: 'entry',
-  id: string,
-  attributes: {
-    addedAt: Date,
-  },
-}
+export type EntryResource = t.TypeOf<typeof entryResource>
 
