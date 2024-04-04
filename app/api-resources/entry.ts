@@ -25,11 +25,5 @@ export type EntryResource = {
     abstract: string,
     authors: ReadonlyArray<string>,
   },
-  relationships: {
-    work: {
-      type: 'work',
-      id: string,
-    },
-  },
 }
 

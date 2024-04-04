@@ -5,3 +5,5 @@ export const workResource = t.type({
   id: t.string,
 })
 
+export type WorkResource = t.TypeOf<typeof workResource>
+
