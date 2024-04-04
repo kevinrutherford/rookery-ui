@@ -2,12 +2,12 @@ import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-r
 import { useLoaderData } from '@remix-run/react'
 import * as t from 'io-ts'
 import { v4 } from 'uuid'
+import { collectionResource } from '~/api-resources/collection'
 import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
 import { loadAndParse } from '~/api-resources/load-and-parse'
 import { workResource } from '~/api-resources/work'
 import { WithFeedLayout } from '~/components/with-feed-layout'
-import { collectionResource } from '../collections/route'
 import { EntryPage } from './entry-page'
 import { renderPageContent } from './render-page-content'
 

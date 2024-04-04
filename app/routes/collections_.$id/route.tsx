@@ -2,10 +2,10 @@ import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-r
 import { useLoaderData } from '@remix-run/react'
 import * as t from 'io-ts'
 import { v4 } from 'uuid'
+import { collectionResource } from '~/api-resources/collection'
 import { entryResource } from '~/api-resources/entry'
 import { loadAndParse } from '~/api-resources/load-and-parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
-import { collectionResource } from '../collections/route'
 import { renderPageContent } from './render-page-content'
 
 const collectionResponse = t.type({

@@ -1,7 +1,7 @@
 import { Link } from '@remix-run/react'
 import { FC } from 'react'
+import { CollectionResource } from '~/api-resources/collection'
 import { Card } from '~/components/card'
-import { CollectionResource } from './route'
 
 type CollectionCardProps = {
   collection: CollectionResource,

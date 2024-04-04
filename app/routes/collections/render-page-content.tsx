@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
+import { CollectionResource } from '~/api-resources/collection'
 import { CollectionCard } from './collection-card'
 import { CreateCollection } from './create-collection'
-import { CollectionResource } from './route'
 
 export const renderPageContent = (data: ReadonlyArray<CollectionResource>): ReactNode => (
   <div className='grow'>

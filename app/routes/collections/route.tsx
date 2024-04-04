@@ -1,25 +1,14 @@
 import { ActionFunctionArgs, json, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import * as t from 'io-ts'
+import { collectionResource } from '~/api-resources/collection'
 import { loadAndParse } from '~/api-resources/load-and-parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { renderPageContent } from './render-page-content'
 
-export const collectionResource = t.type({
-  type: t.literal('collection'),
-  id: t.string,
-  attributes: t.type({
-    name: t.string,
-    description: t.string,
-    handle: t.string,
-  }),
-})
-
 const collectionsResponse = t.type({
   data: t.array(collectionResource),
 })
-
-export type CollectionResource = t.TypeOf<typeof collectionResource>
 
 export const loader = async () => {
   const response = await loadAndParse('http://views:44002/collections', collectionsResponse)
