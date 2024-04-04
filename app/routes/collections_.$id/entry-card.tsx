@@ -15,7 +15,7 @@ export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
       <div className='text-sm text-slate-500 flex justify-between'>
         <span>{props.entry.attributes.commentsCount} comments</span>
         <div>
-          Added <ReactTimeAgo date={new Date(props.entry.attributes.addedAt)} />
+          Added <ReactTimeAgo date={props.entry.attributes.addedAt} />
         </div>
       </div>
     </Link>

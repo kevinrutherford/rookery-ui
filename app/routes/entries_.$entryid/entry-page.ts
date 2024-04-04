@@ -33,8 +33,8 @@ export class EntryPage {
     )
   }
 
-  addedAt() {
-    return new Date(this.entry.attributes.addedAt)
+  addedAt(): Date {
+    return this.entry.attributes.addedAt
   }
 
   collectionId() {

@@ -1,10 +1,11 @@
 import * as t from 'io-ts'
+import * as tt from 'io-ts-types'
 
 export const entryResource = t.type({
   type: t.literal('entry'),
   id: t.string,
   attributes: t.type({
-    addedAt: t.string,
+    addedAt: tt.DateFromISOString,
     commentsCount: t.number,
   }),
   relationships: t.type({
@@ -19,7 +20,7 @@ export type EntryResource = {
   type: 'entry',
   id: string,
   attributes: {
-    addedAt: string,
+    addedAt: Date,
   },
 }
 

@@ -1,7 +1,7 @@
 export type EntryResource = {
   id: string,
   attributes: {
-    addedAt: string,
+    addedAt: Date,
     commentsCount: number,
   },
   relationships: {
