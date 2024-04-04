@@ -1,11 +1,12 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
+import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import { v4 } from 'uuid'
 import { collectionResource } from '~/api-resources/collection'
 import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
-import { loadAndParse } from '~/api-resources/load-and-parse'
+import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { EntryPage } from './entry-page'
@@ -23,11 +24,9 @@ const entryResponse = t.type({
 export type EntryResponse = t.TypeOf<typeof entryResponse>
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await loadAndParse(
-    `http://views:44002/entries/${params.entryid}?include=collection,comments,work`,
-    entryResponse,
-  )
-  return json(response)
+  const response = await fetch(`http://views:44002/entries/${params.entryid}?include=collection,comments,work`)
+  const value = await response.json()
+  return json(value)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -45,7 +44,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 }
 
 export default function CollectionDetails() {
-  const entry = useLoaderData<typeof loader>()
+  const entry = pipe(
+    useLoaderData<unknown>(),
+    parse(entryResponse),
+  )
   return (
     <WithFeedLayout pageContent={renderPageContent(new EntryPage(entry))} />
   )

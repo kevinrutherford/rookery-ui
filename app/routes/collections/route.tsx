@@ -1,8 +1,9 @@
 import { ActionFunctionArgs, json, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
+import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import { collectionResource } from '~/api-resources/collection'
-import { loadAndParse } from '~/api-resources/load-and-parse'
+import { parse } from '~/api-resources/parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { renderPageContent } from './render-page-content'
 
@@ -11,8 +12,9 @@ const collectionsResponse = t.type({
 })
 
 export const loader = async () => {
-  const response = await loadAndParse('http://views:44002/collections', collectionsResponse)
-  return json(response.data)
+  const response = await fetch('http://views:44002/collections')
+  const value = await response.json()
+  return json(value)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -21,9 +23,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 }
 
 export default function Collections() {
-  const collections = useLoaderData<typeof loader>()
+  const collections = pipe(
+    useLoaderData<unknown>(),
+    parse(collectionsResponse),
+  )
   return (
-    <WithFeedLayout pageContent={renderPageContent(collections)} />
+    <WithFeedLayout pageContent={renderPageContent(collections.data)} />
   )
 }
 
