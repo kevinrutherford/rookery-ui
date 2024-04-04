@@ -21,10 +21,5 @@ export type EntryResource = {
   attributes: {
     addedAt: string,
   },
-  frontMatter?: {
-    title: string,
-    abstract: string,
-    authors: ReadonlyArray<string>,
-  },
 }
 

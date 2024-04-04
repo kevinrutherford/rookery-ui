@@ -9,15 +9,7 @@ import { Replies } from './replies'
 export const renderPageContent = (entry: EntryPage): ReactNode => (
   <div className='flex flex-col overflow-hidden'>
     <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
-      {entry.frontMatter() ? (
-        <>
-          <h2 className='font-semibold mb-4'>{entry.frontMatter()?.title}</h2>
-          <div className='mb-4'>{entry.frontMatter()?.abstract}</div>
-          <div className='mb-4'>{entry.frontMatter()?.authors.join(', ')}</div>
-        </>
-      ) : (
-        <p className='mb-4'>doi: {entry.doi()}</p>
-      )}
+      <p className='mb-4'>doi: {entry.doi()}</p>
       <div className='text-sm text-slate-500 flex justify-between mb-20'>
         <div>
           <a className='block hover:underline'

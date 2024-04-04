@@ -53,10 +53,6 @@ export class EntryPage {
     return this.work.id
   }
 
-  frontMatter() {
-    return this.entry.frontMatter
-  }
-
   id() {
     return this.entry.id
   }

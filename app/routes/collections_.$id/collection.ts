@@ -4,9 +4,6 @@ export type EntryResource = {
     addedAt: string,
     commentsCount: number,
   },
-  frontMatter?: {
-    title: string,
-  },
   relationships: {
     work: {
       id: string,
