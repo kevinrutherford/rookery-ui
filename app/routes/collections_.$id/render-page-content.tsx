@@ -11,7 +11,10 @@ export const renderPageContent = (collection: CollectionResponse): ReactNode => 
       <ul className='overflow-y-auto mb-4'>
         { collection.included.map((entry) => (
           <li key={entry.id} className='mb-4'>
-            <EntryCard collectionid={collection.data.id} entry={entry} />
+            <EntryCard collectionid={collection.data.id} entry={entry} work={{
+              type: 'work',
+              id: entry.relationships.work.id,
+            }}/>
           </li>
         ))
         }
