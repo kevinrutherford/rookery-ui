@@ -2,14 +2,13 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { Link } from '@remix-run/react'
 import { ReactNode } from 'react'
 import ReactTimeAgo from 'react-time-ago'
-import { Card } from '~/components/card'
 import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
 import { Replies } from './replies'
 
 export const renderPageContent = (entry: EntryPage): ReactNode => (
   <div className='flex flex-col overflow-hidden'>
-    <Card>
+    <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
       {entry.frontMatter() ? (
         <>
           <h2 className='font-semibold mb-4'>{entry.frontMatter()?.title}</h2>
@@ -19,7 +18,7 @@ export const renderPageContent = (entry: EntryPage): ReactNode => (
       ) : (
         <p className='mb-4'>doi: {entry.doi()}</p>
       )}
-      <div className='text-sm text-slate-500 flex justify-between'>
+      <div className='text-sm text-slate-500 flex justify-between mb-20'>
         <div>
           <a className='block hover:underline'
             href={`https://doi.org/${entry.doi()}`}
@@ -34,9 +33,9 @@ export const renderPageContent = (entry: EntryPage): ReactNode => (
           </Link> <ReactTimeAgo date={entry.addedAt()} />
         </div>
       </div>
-    </Card>
-    <div className='overflow-y-auto mb-4'>
-      <Replies comments={entry.comments()} />
+      <div className='overflow-y-auto'>
+        <Replies comments={entry.comments()} />
+      </div>
     </div>
     <AddComment entryId={entry.id()} />
   </div>
