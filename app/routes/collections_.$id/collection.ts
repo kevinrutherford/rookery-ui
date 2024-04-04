@@ -1,5 +1,8 @@
 export type EntryResource = {
   id: string,
+  attributes: {
+    addedAt: string,
+  },
   frontMatter?: {
     title: string,
   },

@@ -1,5 +1,6 @@
 import { Link } from '@remix-run/react'
 import { FC } from 'react'
+import ReactTimeAgo from 'react-time-ago'
 import { EntryResource } from './collection'
 
 type EntryCardProps = {
@@ -13,7 +14,13 @@ export const EntryCard: FC<EntryCardProps> = (props: EntryCardProps) => (
       {(props.entry.frontMatter) && (
         <h2 className={'font-semibold mb-4'}>{props.entry.frontMatter.title}</h2>
       )}
-      <p>doi: {props.entry.relationships.work.id}</p>
+      <p className='mb-4'>doi: {props.entry.relationships.work.id}</p>
+      <div className='text-sm text-slate-500 flex justify-between'>
+        <span>0 comments</span>
+        <div>
+          Added <ReactTimeAgo date={new Date(props.entry.attributes.addedAt)} />
+        </div>
+      </div>
     </Link>
   </div>
 )
