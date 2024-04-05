@@ -1,4 +1,5 @@
 import { pipe } from 'fp-ts/lib/function.js'
+import * as O from 'fp-ts/lib/Option.js'
 import * as RA from 'fp-ts/lib/ReadonlyArray.js'
 import { ReactNode } from 'react'
 import { CollectionResource } from '~/api-resources/collection'
@@ -24,13 +25,13 @@ class CollectionPage {
       RA.filter((inc): inc is EntryResource => inc.type === 'entry'),
       RA.map((entry) => ({
         entry,
-        work: {
-          type: 'work',
-          id: entry.relationships.work.data.id,
-          attributes: {
-            crossrefStatus: 'not-determined',
-          },
-        },
+        work: pipe(
+          response.included,
+          RA.filter((inc): inc is WorkResource => inc.type === 'work'),
+          RA.filter((work) => work.id === entry.relationships.work.data.id),
+          RA.head,
+          O.getOrElseW(() => { throw new Error('Work for entry not found') }),
+        ),
       })),
     )
   }
