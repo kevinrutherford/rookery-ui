@@ -10,8 +10,10 @@ export const entryResource = t.type({
   }),
   relationships: t.type({
     work: t.type({
-      type: t.literal('work'),
-      id: t.string,
+      data: t.type({
+        type: t.literal('work'),
+        id: t.string,
+      }),
     }),
   }),
 })
