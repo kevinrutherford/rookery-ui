@@ -27,6 +27,9 @@ class CollectionPage {
         work: {
           type: 'work',
           id: entry.relationships.work.id,
+          attributes: {
+            crossrefStatus: 'not-determined',
+          },
         },
       })),
     )
