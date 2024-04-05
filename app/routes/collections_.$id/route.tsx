@@ -6,12 +6,13 @@ import { v4 } from 'uuid'
 import { collectionResource } from '~/api-resources/collection'
 import { entryResource } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
+import { workResource } from '~/api-resources/work'
 import { WithFeedLayout } from '~/components/with-feed-layout'
 import { renderPageContent } from './render-page-content'
 
 const collectionResponse = t.type({
   data: collectionResource,
-  included: t.array(entryResource),
+  included: t.array(t.union([entryResource, workResource])),
 })
 
 export type CollectionResponse = t.TypeOf<typeof collectionResponse>
