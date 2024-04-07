@@ -9,15 +9,17 @@ import { Replies } from './replies'
 export const renderPageContent = (entry: EntryPage): ReactNode => (
   <div className='flex flex-col overflow-hidden'>
     <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
-      <p className='mb-4'>doi: {entry.doi()}</p>
+      <p className='mb-4 font-semibold'>{entry.title()}</p>
       <div className='text-sm text-slate-500 flex justify-between mb-20'>
         <div>
-          <a className='block hover:underline'
-            href={`https://doi.org/${entry.doi()}`}
-            target='_blank' rel="noreferrer"
-          >
+          {entry.isPaper() && (
+            <a className='block hover:underline'
+              href={`https://doi.org/${entry.doi()}`}
+              target='_blank' rel="noreferrer"
+            >
             Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
-          </a>
+            </a>
+          )}
         </div>
         <div>
             Added to <Link to={`/collections/${entry.collectionId()}`} className='inline hover:underline'>

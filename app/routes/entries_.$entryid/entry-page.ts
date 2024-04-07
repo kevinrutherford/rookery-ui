@@ -56,5 +56,19 @@ export class EntryPage {
   id() {
     return this.entry.id
   }
+
+  isPaper() {
+    return this.work.attributes.crossrefStatus !== 'not-found'
+  }
+
+  title() {
+    switch (this.work.attributes.crossrefStatus) {
+      case 'not-determined':
+      case 'not-found':
+        return `doi: ${this.work.id}`
+      case 'found':
+        return this.work.attributes.title
+    }
+  }
 }
 
