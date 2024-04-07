@@ -9,7 +9,7 @@ const frontMatterNotFound = t.type({
 })
 
 const frontMatterFound = t.type({
-  crossrefStatus: t.literal('not-found'),
+  crossrefStatus: t.literal('found'),
   title: t.string,
   abstract: t.string,
   authors: t.array(t.string),
