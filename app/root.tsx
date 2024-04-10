@@ -9,10 +9,12 @@ import {
   Scripts,
   ScrollRestoration,
   useLocation,
+  useRevalidator,
   useRouteError,
 } from '@remix-run/react'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import { useEffect } from 'react'
 import stylesheet from '~/tailwind.css'
 import { Column } from './components/column'
 import { contentNavItems } from './components/content-nav-items'
@@ -57,6 +59,14 @@ export function ErrorBoundary() {
 export default function App() {
   const location = useLocation()
   const feed = location.search.length === 0 ? '?timeline=local' : location.search
+
+  const { revalidate } = useRevalidator()
+
+  useEffect(() => {
+    const id = setInterval(revalidate, 1000)
+    return () => clearInterval(id)
+  }, [revalidate])
+
   return (
     <html lang="en">
       <head>
