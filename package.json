@@ -35,7 +35,7 @@
     "@stylistic/eslint-plugin": "1.7.0",
     "@stylistic/eslint-plugin-ts": "1.7.0",
     "@types/react": "18.2.75",
-    "@types/react-dom": "18.2.24",
+    "@types/react-dom": "18.2.25",
     "@types/uuid": "9.0.8",
     "@typescript-eslint/eslint-plugin": "7.6.0",
     "dependency-cruiser": "16.3.0",
