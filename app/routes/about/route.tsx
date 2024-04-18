@@ -1,20 +1,26 @@
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { Info } from './info'
+import { pipe } from 'fp-ts/lib/function'
+import * as t from 'io-ts'
+import { communityResource } from '~/api-resources/community'
+import { parse } from '~/api-resources/parse'
 import { renderPageContent } from './render-page-content'
 
-type AboutResponse = {
-  data: Info,
-}
+const communityResponse = t.type({
+  data: communityResource,
+})
 
 export const loader = async () => {
-  const response = await fetch('http://views:44002/about')
-  const value: AboutResponse = await response.json()
+  const response = await fetch('http://views:44002/community')
+  const value = await response.json()
   return json(value.data)
 }
 
 export default function About() {
-  const about = useLoaderData<typeof loader>()
-  return renderPageContent(about)
+  const community = pipe(
+    useLoaderData<unknown>(),
+    parse(communityResponse),
+  )
+  return renderPageContent(community.data)
 }
 

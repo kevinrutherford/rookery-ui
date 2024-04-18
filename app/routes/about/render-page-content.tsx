@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
+import { CommunityResource } from '~/api-resources/community'
 import { Card } from '~/components/card'
-import { Info } from './info'
 
-export const renderPageContent = (about: Info): ReactNode => (
+export const renderPageContent = (about: CommunityResource): ReactNode => (
   <div className='grow'>
     <Card>
       <h1 className='font-semibold text-xl mb-4'>{about.community.name}</h1>
