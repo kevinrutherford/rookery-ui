@@ -32,6 +32,8 @@ export const links: LinksFunction = () => [
 ]
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const response = await fetch('http://views:44002/')
+  await response.json()
   if (new URL(request.url).pathname === '/')
     return redirect('/about')
   return json({})
