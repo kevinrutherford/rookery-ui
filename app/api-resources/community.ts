@@ -1,11 +1,12 @@
 import * as t from 'io-ts'
 
 export const communityResource = t.type({
-  community: t.type({
+  type: t.literal('community'),
+  id: t.string,
+  attributes: t.type({
     name: t.string,
     affiliation: t.string,
     overview: t.string,
-    admins: t.array(t.string),
   }),
 })
 
