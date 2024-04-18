@@ -1,4 +1,4 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/node'
+import { json, LinksFunction, LoaderFunctionArgs, MetaFunction, redirect } from '@remix-run/node'
 import {
   isRouteErrorResponse,
   Links,
@@ -30,6 +30,12 @@ export const meta: MetaFunction = () => [
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
 ]
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  if (new URL(request.url).pathname === '/')
+    return redirect('/about')
+  return json({})
+}
 
 export function ErrorBoundary() {
   const error = useRouteError()
@@ -63,7 +69,7 @@ export default function App() {
   const { revalidate } = useRevalidator()
 
   useEffect(() => {
-    const id = setInterval(revalidate, 1000)
+    const id = setInterval(revalidate, 2000)
     return () => clearInterval(id)
   }, [revalidate])
 
