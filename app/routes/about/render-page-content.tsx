@@ -15,11 +15,6 @@ export const renderPageContent = (about: Info): ReactNode => (
         <li key={admin}>{admin}</li>
       ))}</ul>
     </Card>
-    <Card>
-      <p>
-        <span className='font-semibold mb-4'>Backend version:</span> {about.backend.version}
-      </p>
-    </Card>
   </div>
 )
 

@@ -5,8 +5,5 @@ export type Info = {
     overview: string,
     admins: ReadonlyArray<string>,
   },
-  backend: {
-    version: string,
-  },
 }
 
