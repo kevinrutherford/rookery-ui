@@ -12,10 +12,15 @@ import {
   useRevalidator,
   useRouteError,
 } from '@remix-run/react'
+import { pipe } from 'fp-ts/lib/function.js'
+import * as O from 'fp-ts/lib/Option.js'
+import * as t from 'io-ts'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import { useEffect } from 'react'
 import stylesheet from '~/tailwind.css'
+import { parse } from './api-resources/parse'
+import { rootResource } from './api-resources/root'
 import { Column } from './components/column'
 import { contentNavItems } from './components/content-nav-items'
 import { LocalTimeline } from './routes/localtimeline/route'
@@ -31,12 +36,26 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
 ]
 
+const rootResponse = t.type({
+  data: rootResource,
+})
+
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const response = await fetch('http://views:44002/')
-  await response.json()
-  if (new URL(request.url).pathname === '/')
-    return redirect('/about')
-  return json({})
+  const data = await response.json()
+  return pipe(
+    data,
+    parse(rootResponse),
+    (o) => o.data.relationships,
+    O.match(
+      () => redirect('/setup'),
+      (c) => {
+        if (new URL(request.url).pathname === '/')
+          return redirect('/about')
+        return json(c)
+      },
+    ),
+  )
 }
 
 export function ErrorBoundary() {
