@@ -46,7 +46,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return pipe(
     data,
     parse(rootResponse),
-    (o) => o.data.relationships,
+    (o) => o.data.relationships.community.data,
     O.match(
       () => redirect('/setup'),
       (c) => {
