@@ -7,7 +7,9 @@ export const renderPageContent = (community: CommunityResource): ReactNode => (
     <Card>
       <h1 className='font-semibold text-xl mb-4'>{community.attributes.name}</h1>
       <h2 className='italic mb-4'>{community.attributes.affiliation}</h2>
-      <div className='mb-4'>{community.attributes.overview}</div>
+      {community.attributes.overview.map((para, ix) => (
+        <p key={ix} className='mb-4'>{para}</p>
+      ))}
     </Card>
   </div>
 )

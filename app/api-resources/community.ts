@@ -6,7 +6,7 @@ export const communityResource = t.type({
   attributes: t.type({
     name: t.string,
     affiliation: t.string,
-    overview: t.string,
+    overview: t.array(t.string),
   }),
 })
 
