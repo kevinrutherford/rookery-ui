@@ -85,7 +85,6 @@ export function ErrorBoundary() {
 
 export default function App() {
   const location = useLocation()
-  const feed = location.search.length === 0 ? '?timeline=local' : location.search
 
   const { revalidate } = useRevalidator()
 
@@ -110,10 +109,8 @@ export default function App() {
                 <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
                   <li className='inline mr-6 mt-6 mb-6'>
                     <NavLink
-                      className={({ isActive }) => isActive
-                        ? 'border-b-4 border-slate-400'
-                        : '' }
-                      to={`${location.pathname}?timeline=local`}
+                      className='border-b-4 border-slate-400'
+                      to={location.pathname}
                     >
                       Local timeline
                     </NavLink>
@@ -129,7 +126,7 @@ export default function App() {
                         className={({ isActive }) => isActive
                           ? 'border-b-4 border-slate-400'
                           : '' }
-                        to={`${item.route}${feed}`}
+                        to={`${item.route}`}
                       >
                         {item.title}
                       </NavLink>
