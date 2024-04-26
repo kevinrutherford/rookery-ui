@@ -4,11 +4,9 @@ import {
   Links,
   LiveReload,
   Meta,
-  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
   useRevalidator,
   useRouteError,
 } from '@remix-run/react'
@@ -21,9 +19,6 @@ import { useEffect } from 'react'
 import stylesheet from '~/tailwind.css'
 import { parse } from './api-resources/parse'
 import { rootResource } from './api-resources/root'
-import { Column } from './components/column'
-import { contentNavItems } from './components/content-nav-items'
-import { LocalTimeline } from './routes/localtimeline/route'
 
 TimeAgo.addDefaultLocale(en)
 
@@ -84,7 +79,6 @@ export function ErrorBoundary() {
 }
 
 export default function App() {
-  const location = useLocation()
 
   const { revalidate } = useRevalidator()
 
@@ -104,38 +98,7 @@ export default function App() {
       <body className="h-screen bg-slate-200 text-slate-600">
         <div className="min-h-screen h-full flex flex-col">
           <div className='container mx-auto my-12 h-full overflow-hidden'>
-            <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
-              <Column>
-                <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
-                  <li className='inline mr-6 mt-6 mb-6'>
-                    <NavLink
-                      className='border-b-4 border-slate-400'
-                      to={location.pathname}
-                    >
-                      Local timeline
-                    </NavLink>
-                  </li>
-                </ul>
-                <LocalTimeline />
-              </Column>
-              <Column>
-                <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
-                  {Object.values(contentNavItems).map((item) => (
-                    <li key={item.route} className='inline mr-6 mt-6 mb-6'>
-                      <NavLink
-                        className={({ isActive }) => isActive
-                          ? 'border-b-4 border-slate-400'
-                          : '' }
-                        to={`${item.route}`}
-                      >
-                        {item.title}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-                <Outlet />
-              </Column>
-            </div>
+            <Outlet />
           </div>
         </div>
         <ScrollRestoration />
