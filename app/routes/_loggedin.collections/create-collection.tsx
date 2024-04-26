@@ -8,7 +8,7 @@ export const CreateCollection: FC = () => {
     <Card>
       <h3 className='font-semibold mb-6'>Create a new collection:</h3>
       <fetcher.Form method="post" action="/collections" className="w-full">
-        <div className="md:flex md:items-center mb-2">
+        <div className="md:flex md:items-center mb-4">
           <div className="md:w-1/3">
             <label className="block text-slate-500 md:text-right md:mb-0 pr-4" htmlFor="name">
               Name
@@ -23,7 +23,7 @@ export const CreateCollection: FC = () => {
             />
           </div>
         </div>
-        <div className="md:flex md:items-center mb-2">
+        <div className="md:flex md:items-center mb-4">
           <div className="md:w-1/3">
             <label className="block text-slate-500 md:text-right md:mb-0 pr-4" htmlFor="description">
               Description

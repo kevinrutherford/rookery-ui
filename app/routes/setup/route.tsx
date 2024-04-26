@@ -8,7 +8,7 @@ const SetUpCommunity: FC = () => {
     <Card>
       <h3 className='font-semibold mb-6'>Let&apos;s get your community set up</h3>
       <fetcher.Form method="post" action="/community">
-        <div className="md:flex md:items-center mb-2">
+        <div className="md:flex md:items-center mb-4">
           <div className="md:w-1/3">
             <label className="block text-slate-500 md:text-right md:mb-0 pr-4" htmlFor="name">
               Name
@@ -38,7 +38,7 @@ const SetUpCommunity: FC = () => {
             />
           </div>
         </div>
-        <div className="md:flex md:items-center mb-2">
+        <div className="md:flex md:items-center mb-4">
           <div className="md:w-1/3">
             <label className="block text-slate-500 md:text-right md:mb-0 pr-4" htmlFor="overview">
               Overview
