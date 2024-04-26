@@ -2,6 +2,7 @@ import { ActionFunctionArgs, json, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
+import { v4 } from 'uuid'
 import { collectionResource } from '~/api-resources/collection'
 import { parse } from '~/api-resources/parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
@@ -18,7 +19,16 @@ export const loader = async () => {
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  await request.formData()
+  const formData = await request.formData()
+  const updates = Object.fromEntries(formData)
+  await fetch('http://commands:44001/collections', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...updates,
+      id: v4(),
+    }),
+  })
   return redirect('/collections')
 }
 
