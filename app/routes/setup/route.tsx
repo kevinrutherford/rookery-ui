@@ -2,42 +2,37 @@ import { useFetcher } from '@remix-run/react'
 import { FC } from 'react'
 import { Card } from '~/components/card'
 
+type Props = {
+  label: string,
+  attr: string,
+}
+
+const TextField: FC<Props> = (props: Props) => (
+  <div className="md:flex md:items-center mb-4">
+    <div className="md:w-1/3">
+      <label className="block text-slate-500 md:text-right md:mb-0 pr-4" htmlFor={props.attr}>
+        {props.label}
+      </label>
+    </div>
+    <div className="md:w-2/3">
+      <input
+        id={props.attr}
+        name={props.attr}
+        type="text"
+        className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+      />
+    </div>
+  </div>
+)
+
 const SetUpCommunity: FC = () => {
   const fetcher = useFetcher()
   return (
     <Card>
       <h3 className='font-semibold mb-6'>Let&apos;s get your community set up</h3>
       <fetcher.Form method="post" action="/community">
-        <div className="md:flex md:items-center mb-4">
-          <div className="md:w-1/3">
-            <label className="block text-slate-500 md:text-right md:mb-0 pr-4" htmlFor="name">
-              Name
-            </label>
-          </div>
-          <div className="md:w-2/3">
-            <input
-              id="name"
-              name="name"
-              type="text"
-              className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-            />
-          </div>
-        </div>
-        <div className="md:flex md:items-center mb-4">
-          <div className="md:w-1/3">
-            <label className="block text-slate-500 md:text-right mb-1 md:mb-0 pr-4" htmlFor="affiliation">
-              Affiliation
-            </label>
-          </div>
-          <div className="md:w-2/3">
-            <input
-              id="affiliation"
-              name="affiliation"
-              type="text"
-              className="bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-            />
-          </div>
-        </div>
+        <TextField label='Name' attr='name' />
+        <TextField label='Affiliation' attr='affiliation' />
         <div className="md:flex md:items-center mb-4">
           <div className="md:w-1/3">
             <label className="block text-slate-500 md:text-right md:mb-0 pr-4" htmlFor="overview">
