@@ -2,6 +2,7 @@ import { useFetcher } from '@remix-run/react'
 import { FC } from 'react'
 import { Card } from '~/components/card'
 import { TextField } from '~/components/forms'
+import { SubmitButton } from '~/components/forms/submit-button'
 
 const SetUpCommunity: FC = () => {
   const fetcher = useFetcher()
@@ -25,14 +26,7 @@ const SetUpCommunity: FC = () => {
             />
           </div>
         </div>
-        <div className="md:flex md:items-center">
-          <div className="md:w-1/3"></div>
-          <div className="md:w-2/3">
-            <button className="shadow bg-slate-500 hover:bg-slate-400 focus:shadow-outline focus:outline-none text-white font-semibold py-2 px-4 rounded" type="submit">
-              Save
-            </button>
-          </div>
-        </div>
+        <SubmitButton label='Save' />
       </fetcher.Form>
     </Card>
   )
