@@ -36,21 +36,25 @@ const rootResponse = t.type({
 })
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const response = await fetch('http://views:44002/')
-  const data = await response.json()
-  return pipe(
-    data,
-    parse(rootResponse),
-    (o) => o.data.relationships.community.data,
-    O.match(
-      () => redirect('/setup'),
-      (c) => {
-        if (new URL(request.url).pathname === '/')
-          return redirect('/about')
-        return json(c)
-      },
-    ),
-  )
+  const path = new URL(request.url).pathname
+  if (path === '/') {
+    const response = await fetch('http://views:44002/')
+    const data = await response.json()
+    return pipe(
+      data,
+      parse(rootResponse),
+      (o) => o.data.relationships.community.data,
+      O.match(
+        () => redirect('/setup'),
+        (c) => {
+          if (path === '/')
+            return redirect('/about')
+          return json(c)
+        },
+      ),
+    )
+  } else
+    return json({})
 }
 
 export function ErrorBoundary() {
