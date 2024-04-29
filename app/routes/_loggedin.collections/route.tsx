@@ -2,7 +2,6 @@ import { ActionFunctionArgs, json, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
-import { v4 } from 'uuid'
 import { collectionResource } from '~/api-resources/collection'
 import { parse } from '~/api-resources/parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
@@ -26,7 +25,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       ...updates,
-      id: v4(),
+      id: updates.handle,
     }),
   })
   return redirect('/collections')
