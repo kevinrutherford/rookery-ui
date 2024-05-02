@@ -2,7 +2,9 @@ import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-r
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
+import invariant from 'tiny-invariant'
 import { v4 } from 'uuid'
+import { fetchCollection } from '~/api/fetch-collection.server'
 import { collectionResource } from '~/api-resources/collection'
 import { entryResource } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
@@ -18,9 +20,9 @@ const collectionResponse = t.type({
 export type CollectionResponse = t.TypeOf<typeof collectionResponse>
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await fetch(`http://views:44002/collections/${params.id}?include=entries,entries.work`)
-  const value = await response.json()
-  return json(value)
+  invariant(params.id, 'params.id is required')
+  const collection = await fetchCollection(params.id)
+  return json(collection)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
