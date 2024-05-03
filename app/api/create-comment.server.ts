@@ -1,14 +1,11 @@
 import { v4 } from 'uuid'
+import { post } from './post.server'
 
 export const createComment = async (formData: FormData) => {
   const updates = Object.fromEntries(formData)
-  await fetch('http://commands:44001/comments', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...updates,
-      id: v4(),
-    }),
+  await post('/comments', {
+    ...updates,
+    id: v4(),
   })
 }
 
