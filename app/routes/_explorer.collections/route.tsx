@@ -2,8 +2,7 @@ import { ActionFunctionArgs, json, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
-import { createCollection } from '~/api/create-collection.server'
-import { fetchAllCollections } from '~/api/fetch-all-collections.server'
+import * as api from '~/api'
 import { collectionResource } from '~/api-resources/collection'
 import { parse } from '~/api-resources/parse'
 import { WithFeedLayout } from '~/components/with-feed-layout'
@@ -14,13 +13,13 @@ const collectionsResponse = t.type({
 })
 
 export const loader = async () => {
-  const collections = await fetchAllCollections()
+  const collections = await api.fetchAllCollections()
   return json(collections)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  await createCollection(formData)
+  await api.createCollection(formData)
   return redirect('/collections')
 }
 

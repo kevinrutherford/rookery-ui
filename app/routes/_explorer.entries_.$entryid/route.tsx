@@ -3,8 +3,7 @@ import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import invariant from 'tiny-invariant'
-import { createComment } from '~/api/create-comment.server'
-import { fetchEntry } from '~/api/fetch-entry.server'
+import * as api from '~/api'
 import { collectionResource } from '~/api-resources/collection'
 import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
@@ -27,13 +26,13 @@ export type EntryResponse = t.TypeOf<typeof entryResponse>
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariant(params.entryid, 'entryid must be supplied')
-  const value = await fetchEntry(params.entryid)
+  const value = await api.fetchEntry(params.entryid)
   return json(value)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  await createComment(formData)
+  await api.createComment(formData)
   return redirect(`/entries/${formData.get('entryId')}`)
 }
 
