@@ -1,21 +1,13 @@
 import { ActionFunctionArgs, redirect } from '@remix-run/node'
 import { useFetcher } from '@remix-run/react'
 import { FC } from 'react'
+import * as api from '~/api'
 import { Card } from '~/components/card'
 import { SubmitButton, TextArea, TextField } from '~/components/forms'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  const updates = Object.fromEntries(formData)
-  await fetch('http://commands:44001/community', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...updates,
-      id: 'local-community',
-      overview: updates.overview.toString().split('\n'),
-    }),
-  })
+  await api.createCommunity(formData)
   return redirect('/collections')
 }
 
