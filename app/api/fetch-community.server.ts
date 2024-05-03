@@ -1,5 +1,7 @@
+import { get } from './get.server'
+
 export const fetchCommunity = async () => {
-  const response = await fetch('http://views:44002/community')
+  const response = await get('/community')
   return await response.json()
 }
 
