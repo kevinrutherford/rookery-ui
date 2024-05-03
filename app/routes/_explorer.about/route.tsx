@@ -2,6 +2,7 @@ import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
+import { fetchCommunity } from '~/api/fetch-community.server'
 import { communityResource } from '~/api-resources/community'
 import { parse } from '~/api-resources/parse'
 import { renderPageContent } from './render-page-content'
@@ -11,8 +12,7 @@ const communityResponse = t.type({
 })
 
 export const loader = async () => {
-  const response = await fetch('http://views:44002/community')
-  const value = await response.json()
+  const value = await fetchCommunity()
   return json(value)
 }
 

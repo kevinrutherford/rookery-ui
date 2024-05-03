@@ -3,7 +3,7 @@ import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import invariant from 'tiny-invariant'
-import { v4 } from 'uuid'
+import { createEntry } from '~/api/create-entry.server'
 import { fetchCollection } from '~/api/fetch-collection.server'
 import { collectionResource } from '~/api-resources/collection'
 import { entryResource } from '~/api-resources/entry'
@@ -27,16 +27,8 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  const updates = Object.fromEntries(formData)
-  await fetch('http://commands:44001/entries', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...updates,
-      id: v4(),
-    }),
-  })
-  return redirect(`/collections/${updates['collectionId']}`)
+  await createEntry(formData)
+  return redirect(`/collections/${formData.get('collectionId')}`)
 }
 
 export default function CollectionDetails() {

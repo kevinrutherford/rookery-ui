@@ -2,7 +2,9 @@ import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-r
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
-import { v4 } from 'uuid'
+import invariant from 'tiny-invariant'
+import { createComment } from '~/api/create-comment.server'
+import { fetchEntry } from '~/api/fetch-entry.server'
 import { collectionResource } from '~/api-resources/collection'
 import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
@@ -24,23 +26,15 @@ const entryResponse = t.type({
 export type EntryResponse = t.TypeOf<typeof entryResponse>
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await fetch(`http://views:44002/entries/${params.entryid}?include=collection,comments,work`)
-  const value = await response.json()
+  invariant(params.entryid, 'entryid must be supplied')
+  const value = await fetchEntry(params.entryid)
   return json(value)
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  const updates = Object.fromEntries(formData)
-  await fetch('http://commands:44001/comments', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...updates,
-      id: v4(),
-    }),
-  })
-  return redirect(`/entries/${updates['entryId']}`)
+  await createComment(formData)
+  return redirect(`/entries/${formData.get('entryId')}`)
 }
 
 export default function CollectionDetails() {
