@@ -5,8 +5,6 @@ import { sessionStorage } from '~/services/session.server'
 
 export const authenticator = new Authenticator<string>(sessionStorage)
 
-// The rest of the code above here...
-
 authenticator.use(
   new FormStrategy(async ({ form }) => {
     const username = form.get('username')
