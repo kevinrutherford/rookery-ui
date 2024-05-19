@@ -3,7 +3,7 @@ import { CollectionResource } from '~/api-resources/collection'
 import { CollectionCard } from './collection-card'
 import { CreateCollection } from './create-collection'
 
-export const renderPageContent = (data: ReadonlyArray<CollectionResource>): ReactNode => (
+export const renderPageContent = (data: ReadonlyArray<CollectionResource>, authenticatedUser: boolean): ReactNode => (
   <div className='grow'>
     <ul className='overflow-y-auto'>
       { data.map((collection) => (
@@ -13,7 +13,7 @@ export const renderPageContent = (data: ReadonlyArray<CollectionResource>): Reac
       ))
       }
     </ul>
-    <CreateCollection />
+    { authenticatedUser && <CreateCollection /> }
   </div>
 )
 
