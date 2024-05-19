@@ -3,11 +3,11 @@ import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import * as api from '~/api'
-import { collectionResource } from '~/api-resources/collection'
+import { collectionResource  } from '~/api-resources/collection'
 import { parse } from '~/api-resources/parse'
-import { WithFeedLayout } from '~/components/with-feed-layout'
 import { authenticator } from '~/services/auth.server'
-import { renderPageContent } from './render-page-content'
+import { CollectionCard } from './collection-card'
+import { CreateCollection } from './create-collection'
 
 const collectionsResponse = t.type({
   collections: t.type({
@@ -36,7 +36,17 @@ export default function Collections() {
     parse(collectionsResponse),
   )
   return (
-    <WithFeedLayout pageContent={renderPageContent(data.collections.data, data.authenticatedUser)} />
+    <div className='grow'>
+      <ul className='overflow-y-auto'>
+        { data.collections.data.map((collection) => (
+          <li key={collection.attributes.name} className='mb-4'>
+            <CollectionCard collection={collection} />
+          </li>
+        ))
+        }
+      </ul>
+      { data.authenticatedUser && <CreateCollection /> }
+    </div>
   )
 }
 
