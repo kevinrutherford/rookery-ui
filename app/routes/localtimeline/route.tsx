@@ -1,6 +1,6 @@
 import { json } from '@remix-run/node'
 import { useFetcher } from '@remix-run/react'
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import * as api from '~/api'
 import { FeedEvent } from '~/components/feed-event'
 import { renderFeed } from '~/components/render-feed'
@@ -14,7 +14,7 @@ export const loader = async () => {
   return json(value.data)
 }
 
-export const LocalTimeline = () => {
+export const LocalTimeline: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
   useEffect(() => {
@@ -26,6 +26,8 @@ export const LocalTimeline = () => {
     return () => clearInterval(interval)
   }, [fetcher])
 
-  return fetcher.data ? renderFeed(fetcher.data) : <p>Loading...</p>
+  return fetcher.data
+    ? renderFeed(fetcher.data)
+    : (<p>Loading...</p>)
 }
 

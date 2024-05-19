@@ -70,9 +70,7 @@ export default function App() {
       </head>
       <body className="h-screen bg-slate-200 text-slate-600">
         <div className="min-h-screen h-full flex flex-col">
-          <div className='container mx-auto my-12 h-full overflow-hidden'>
-            <Outlet />
-          </div>
+          <Outlet />
         </div>
         <ScrollRestoration />
         <Scripts />
