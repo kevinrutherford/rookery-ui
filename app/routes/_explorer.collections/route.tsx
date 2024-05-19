@@ -21,7 +21,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request)
   return json({
     collections,
-    authenticatedUser: user !== undefined,
+    authenticatedUser: user !== null,
   })
 }
 
