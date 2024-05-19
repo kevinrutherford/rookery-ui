@@ -1,7 +1,8 @@
-import { ActionFunctionArgs } from '@remix-run/node'
+import { json, LoaderFunctionArgs } from '@remix-run/node'
 import {
   NavLink,
   Outlet,
+  useLoaderData,
   useLocation,
 } from '@remix-run/react'
 import { Column } from '~/components/column'
@@ -10,16 +11,19 @@ import { authenticator } from '~/services/auth.server'
 import { AuthBar } from '../authbar/route'
 import { LocalTimeline } from '../localtimeline/route'
 
-export async function action({ request }: ActionFunctionArgs) {
-  await authenticator.logout(request, { redirectTo: '/' })
-};
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const user = await authenticator.isAuthenticated(request)
+  return json(user)
+}
 
 const ExplorerLayout = () => {
   const location = useLocation()
+  const user = useLoaderData<typeof loader>()
+  const username = user?.username
 
   return (
     <>
-      <AuthBar />
+      <AuthBar username={username} />
       <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
         <Column>
           <ul className='p-4 bg-slate-100 mb-4 rounded-md'>

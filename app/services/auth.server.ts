@@ -3,7 +3,11 @@ import { FormStrategy } from 'remix-auth-form'
 import invariant from 'tiny-invariant'
 import { sessionStorage } from '~/services/session.server'
 
-export const authenticator = new Authenticator<string>(sessionStorage)
+export type User = {
+  username: string,
+}
+
+export const authenticator = new Authenticator<User>(sessionStorage)
 
 authenticator.use(
   new FormStrategy(async ({ form }) => {
@@ -17,7 +21,7 @@ authenticator.use(
     invariant(password.length > 0, 'password must not be empty')
 
     if (username === process.env.DEVELOPMENT_USERNAME)
-      return username
+      return { username } satisfies User
 
     throw new Error('Unknown username')
   }),
