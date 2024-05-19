@@ -6,6 +6,7 @@ import {
   useLocation,
 } from '@remix-run/react'
 import { Column } from '~/components/column'
+import { Container } from '~/components/container'
 import { contentNavItems } from '~/components/content-nav-items'
 import { authenticator } from '~/services/auth.server'
 import { AuthBar } from '../authbar/route'
@@ -24,7 +25,7 @@ const ExplorerLayout = () => {
   return (
     <>
       <AuthBar username={username} />
-      <div className='container mx-auto h-full overflow-hidden'>
+      <Container>
         <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
           <Column>
             <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
@@ -57,7 +58,7 @@ const ExplorerLayout = () => {
             <Outlet />
           </Column>
         </div>
-      </div>
+      </Container>
     </>
   )
 }

@@ -3,6 +3,7 @@ import { useFetcher } from '@remix-run/react'
 import { FC } from 'react'
 import * as api from '~/api'
 import { Card } from '~/components/card'
+import { Container } from '~/components/container'
 import { SubmitButton, TextArea, TextField } from '~/components/forms'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -14,7 +15,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 const SetUpCommunity: FC = () => {
   const fetcher = useFetcher()
   return (
-    <div className='container mx-auto my-12 h-full overflow-hidden'>
+    <Container>
       <Card>
         <h3 className='font-semibold mb-6'>Let&apos;s get your community set up</h3>
         <fetcher.Form method="post">
@@ -24,7 +25,7 @@ const SetUpCommunity: FC = () => {
           <SubmitButton label='Save' />
         </fetcher.Form>
       </Card>
-    </div>
+    </Container>
   )
 }
 

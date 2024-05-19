@@ -1,12 +1,13 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
 import { Form } from '@remix-run/react'
 import { Card } from '~/components/card'
+import { Container } from '~/components/container'
 import { SubmitButton, TextField } from '~/components/forms'
 import { authenticator } from '~/services/auth.server'
 
 export default function LoginScreen() {
   return (
-    <div className='container mx-auto h-full overflow-hidden'>
+    <Container>
       <Card>
         <h3>Log in</h3>
         <Form method="post">
@@ -26,7 +27,7 @@ export default function LoginScreen() {
           <SubmitButton label='Log in' />
         </Form>
       </Card>
-    </div>
+    </Container>
   )
 }
 
