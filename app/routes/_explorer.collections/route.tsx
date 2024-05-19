@@ -26,8 +26,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const formData = await request.formData()
-  await api.createCollection(formData)
+  await api.createCollection(request)
   return redirect('/collections')
 }
 

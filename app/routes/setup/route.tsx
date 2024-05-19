@@ -7,8 +7,7 @@ import { Container } from '~/components/container'
 import { SubmitButton, TextArea, TextField } from '~/components/forms'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const formData = await request.formData()
-  await api.createCommunity(formData)
+  await api.createCommunity(request)
   return redirect('/collections')
 }
 

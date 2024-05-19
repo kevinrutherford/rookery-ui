@@ -30,10 +30,10 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json(value)
 }
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: where is the form itself?
   const formData = await request.formData()
-  await api.createComment(formData)
-  return redirect(`/entries/${formData.get('entryId')}`)
+  await api.createComment(request)
+  return redirect(`/entries/${formData.get('entryId')}`) // SMELL: HATEOAS here?
 }
 
 export default function CollectionDetails() {

@@ -24,10 +24,10 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json(collection)
 }
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: not clear where the form is
   const formData = await request.formData()
-  await api.createEntry(formData)
-  return redirect(`/collections/${formData.get('collectionId')}`)
+  await api.createEntry(request)
+  return redirect(`/collections/${formData.get('collectionId')}`) // SMELL: HATEOAS here?
 }
 
 export default function CollectionDetails() {
@@ -36,7 +36,7 @@ export default function CollectionDetails() {
     parse(collectionResponse),
   )
   return (
-    <WithFeedLayout pageContent={renderPageContent(collection)} />
+    <WithFeedLayout pageContent={renderPageContent(collection)} /> // SMELL: do this with a proper layout?
   )
 }
 
