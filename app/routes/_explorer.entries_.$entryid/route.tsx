@@ -1,7 +1,9 @@
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
+import { Link,useLoaderData  } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
+import ReactTimeAgo from 'react-time-ago'
 import invariant from 'tiny-invariant'
 import * as api from '~/api'
 import { collectionResource } from '~/api-resources/collection'
@@ -9,9 +11,9 @@ import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
-import { WithFeedLayout } from '~/components/with-feed-layout'
+import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
-import { renderPageContent } from './render-page-content'
+import { Replies } from './replies'
 
 const entryResponse = t.type({
   data: entryResource,
@@ -30,19 +32,47 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json(value)
 }
 
-export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: where is the form itself?
+export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: move to AddComment?
   const formData = await request.formData()
   await api.createComment(request)
   return redirect(`/entries/${formData.get('entryId')}`) // SMELL: HATEOAS here?
 }
 
 export default function CollectionDetails() {
-  const entry = pipe(
+  const data = pipe(
     useLoaderData<unknown>(),
     parse(entryResponse),
   )
+  const entry = new EntryPage(data)
+
   return (
-    <WithFeedLayout pageContent={renderPageContent(new EntryPage(entry))} />
+    <div className='flex flex-col overflow-hidden'>
+      <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
+        <p className='mb-4 font-semibold'>{entry.title()}</p>
+        <div className='text-sm text-slate-500 flex justify-between mb-20'>
+          <div>
+            {entry.isPaper() && (
+              <a className='block hover:underline'
+                href={`https://doi.org/${entry.doi()}`}
+                target='_blank' rel="noreferrer"
+              >
+            Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
+              </a>
+            )}
+          </div>
+          <div>
+            Added to <Link to={`/collections/${entry.collectionId()}`} className='inline hover:underline'>
+              {entry.collectionName()}
+            </Link> <ReactTimeAgo date={entry.addedAt()} />
+          </div>
+        </div>
+        <div className='overflow-y-auto'>
+          <Replies comments={entry.comments()} />
+        </div>
+      </div>
+      <AddComment entryId={entry.id()} />
+    </div>
   )
+
 }
 
