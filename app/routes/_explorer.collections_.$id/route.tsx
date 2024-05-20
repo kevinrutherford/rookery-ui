@@ -8,21 +8,29 @@ import { collectionResource  } from '~/api-resources/collection'
 import { entryResource  } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
 import { workResource  } from '~/api-resources/work'
+import { authenticator } from '~/services/auth.server'
 import { AddEntry } from './add-entry'
 import { CollectionPage } from './collection-page'
 import { EntryCard } from './entry-card'
 
 const collectionResponse = t.type({
-  data: collectionResource,
-  included: t.array(t.union([entryResource, workResource])),
+  collection: t.type({
+    data: collectionResource,
+    included: t.array(t.union([entryResource, workResource])),
+  }),
+  authenticatedUser: t.boolean,
 })
 
-export type CollectionResponse = t.TypeOf<typeof collectionResponse>
+export type CollectionResponse = t.TypeOf<typeof collectionResponse>['collection']
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   invariant(params.id, 'params.id is required')
   const collection = await api.fetchCollection(params.id)
-  return json(collection)
+  const user = await authenticator.isAuthenticated(request)
+  return json({
+    collection,
+    authenticatedUser: user !== null,
+  })
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: not clear where the form is
@@ -32,11 +40,11 @@ export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: not
 }
 
 export default function CollectionDetails() {
-  const collection = pipe(
+  const data = pipe(
     useLoaderData<unknown>(),
     parse(collectionResponse),
   )
-  const page = new CollectionPage(collection)
+  const page = new CollectionPage(data.collection)
 
   return (
     <div className='flex flex-col overflow-hidden'>
@@ -52,7 +60,7 @@ export default function CollectionDetails() {
           }
         </ul>
       </div>
-      <AddEntry collectionId={page.id()} />
+      { data.authenticatedUser && <AddEntry collectionId={page.id()} /> }
     </div>
   )
 }
