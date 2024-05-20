@@ -11,25 +11,32 @@ import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
+import { authenticator } from '~/services/auth.server'
 import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
 import { Replies } from './replies'
 
 const entryResponse = t.type({
-  data: entryResource,
-  included: t.array(t.union([
-    collectionResource,
-    commentResource,
-    workResource,
-  ])),
+  entry: t.type({ data: entryResource,
+    included: t.array(t.union([
+      collectionResource,
+      commentResource,
+      workResource,
+    ])),
+  }),
+  authenticatedUser: t.boolean,
 })
 
-export type EntryResponse = t.TypeOf<typeof entryResponse>
+export type EntryResponse = t.TypeOf<typeof entryResponse>['entry']
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   invariant(params.entryid, 'entryid must be supplied')
-  const value = await api.fetchEntry(params.entryid)
-  return json(value)
+  const entry = await api.fetchEntry(params.entryid)
+  const user = await authenticator.isAuthenticated(request)
+  return json({
+    entry,
+    authenticatedUser: user !== null,
+  })
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: move to AddComment?
@@ -43,7 +50,7 @@ export default function CollectionDetails() {
     useLoaderData<unknown>(),
     parse(entryResponse),
   )
-  const entry = new EntryPage(data)
+  const entry = new EntryPage(data.entry)
 
   return (
     <div className='flex flex-col overflow-hidden'>
@@ -70,7 +77,7 @@ export default function CollectionDetails() {
           <Replies comments={entry.comments()} />
         </div>
       </div>
-      <AddComment entryId={entry.id()} />
+      { data.authenticatedUser && <AddComment entryId={entry.id()} /> }
     </div>
   )
 
