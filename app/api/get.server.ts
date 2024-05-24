@@ -1,8 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const get = async (path: string, request: Request) => fetch(`http://views:44002${path}`, {
-  headers: {
+import { authenticator } from '~/services/auth.server'
+
+export const get = async (path: string, request: Request) => {
+  const user = await authenticator.isAuthenticated(request)
+  const headers: Record<string, string> = {
     'Accept': 'application/json',
-    'Authorization': `Bearer ${process.env.DEVELOPMENT_BEARER_TOKEN}`,
-  },
-})
+  }
+  if (user)
+    headers['Authorization'] = `Bearer ${process.env.DEVELOPMENT_BEARER_TOKEN}`
+  return fetch(`http://views:44002${path}`, {
+    method: 'GET',
+    headers,
+  })
+}
 
