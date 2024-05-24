@@ -1,4 +1,5 @@
-export const get = async (path: string) => fetch(`http://views:44002${path}`, {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const get = async (path: string, request: Request) => fetch(`http://views:44002${path}`, {
   headers: {
     'Accept': 'application/json',
     'Authorization': `Bearer ${process.env.DEVELOPMENT_BEARER_TOKEN}`,

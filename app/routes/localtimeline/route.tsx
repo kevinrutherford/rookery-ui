@@ -1,4 +1,4 @@
-import { json } from '@remix-run/node'
+import { json, LoaderFunctionArgs } from '@remix-run/node'
 import { useFetcher } from '@remix-run/react'
 import { FC, useEffect } from 'react'
 import * as api from '~/api'
@@ -9,8 +9,8 @@ type LocalTimelineResponse = {
   data: ReadonlyArray<FeedEvent>,
 }
 
-export const loader = async () => {
-  const value: LocalTimelineResponse = await api.fetchLocalTimeline()
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const value: LocalTimelineResponse = await api.fetchLocalTimeline(request)
   return json(value.data)
 }
 

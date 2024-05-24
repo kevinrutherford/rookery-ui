@@ -1,7 +1,7 @@
 import { get } from './get.server'
 
-export const fetchLocalTimeline = async () => {
-  const response = await get('/timelines/local')
+export const fetchLocalTimeline = async (request: Request) => {
+  const response = await get('/timelines/local', request)
   return await response.json()
 }
 

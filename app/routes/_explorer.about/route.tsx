@@ -1,4 +1,4 @@
-import { json } from '@remix-run/node'
+import { json, LoaderFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
@@ -11,8 +11,8 @@ const communityResponse = t.type({
   data: communityResource,
 })
 
-export const loader = async () => {
-  const value = await api.fetchCommunity()
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const value = await api.fetchCommunity(request)
   return json(value)
 }
 

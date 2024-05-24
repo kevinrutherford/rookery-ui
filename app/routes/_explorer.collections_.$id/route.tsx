@@ -26,7 +26,7 @@ export type CollectionResponse = t.TypeOf<typeof collectionResponse>['collection
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   invariant(params.id, 'params.id is required')
-  const collection = await api.fetchCollection(params.id)
+  const collection = await api.fetchCollection(params.id, request)
   const user = await authenticator.isAuthenticated(request)
   return json({
     collection,

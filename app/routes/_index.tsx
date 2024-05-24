@@ -17,7 +17,7 @@ const rootResponse = t.type({
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const path = new URL(request.url).pathname
-  const data = await api.fetchRoot()
+  const data = await api.fetchRoot(request)
   return pipe(
     data,
     parse(rootResponse),

@@ -31,7 +31,7 @@ export type EntryResponse = t.TypeOf<typeof entryResponse>['entry']
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   invariant(params.entryid, 'entryid must be supplied')
-  const entry = await api.fetchEntry(params.entryid)
+  const entry = await api.fetchEntry(params.entryid, request)
   const user = await authenticator.isAuthenticated(request)
   return json({
     entry,

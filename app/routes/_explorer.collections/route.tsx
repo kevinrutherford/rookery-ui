@@ -17,7 +17,7 @@ const collectionsResponse = t.type({
 })
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const collections = await api.fetchAllCollections()
+  const collections = await api.fetchAllCollections(request)
   const user = await authenticator.isAuthenticated(request)
   return json({
     collections,
