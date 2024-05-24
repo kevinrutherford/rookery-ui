@@ -1,3 +1,4 @@
+import { EyeSlashIcon } from '@heroicons/react/24/outline'
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
@@ -49,7 +50,10 @@ export default function CollectionDetails() {
   return (
     <div className='flex flex-col overflow-hidden'>
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
-        <p className='font-semibold'>{page.name()}</p>
+        <div className='flex justify-between mb-4'>
+          <h2 className='font-semibold'>{page.name()}</h2>
+          { false && <EyeSlashIcon className='h-5 w-5 pl-1 inline' /> }
+        </div>
         <p className='mb-8'>{page.description()}</p>
         <ul className='overflow-y-auto mb-4'>
           { page.entries().map((ew) => (
