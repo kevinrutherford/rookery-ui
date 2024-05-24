@@ -45,6 +45,10 @@ export class CollectionPage {
     return this.collection.id
   }
 
+  isPrivate() {
+    return this.collection.attributes.isPrivate
+  }
+
   name() {
     return this.collection.attributes.name
   }

@@ -52,7 +52,7 @@ export default function CollectionDetails() {
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <div className='flex justify-between mb-4'>
           <h2 className='font-semibold'>{page.name()}</h2>
-          { false && <EyeSlashIcon className='h-5 w-5 pl-1 inline' /> }
+          { page.isPrivate() && <EyeSlashIcon className='h-5 w-5 pl-1 inline' /> }
         </div>
         <p className='mb-8'>{page.description()}</p>
         <ul className='overflow-y-auto mb-4'>
