@@ -1,4 +1,3 @@
-import { EyeSlashIcon } from '@heroicons/react/24/outline'
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
@@ -9,6 +8,7 @@ import { collectionResource  } from '~/api-resources/collection'
 import { entryResource  } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
 import { workResource  } from '~/api-resources/work'
+import { CollectionTitle } from '~/components/collection-title'
 import { authenticator } from '~/services/auth.server'
 import { AddEntry } from './add-entry'
 import { CollectionPage } from './collection-page'
@@ -50,10 +50,7 @@ export default function CollectionDetails() {
   return (
     <div className='flex flex-col overflow-hidden'>
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
-        <div className='flex justify-between mb-4'>
-          <h2 className='font-semibold'>{page.name()}</h2>
-          { page.isPrivate() && <EyeSlashIcon className='h-5 w-5 pl-1 inline' /> }
-        </div>
+        <CollectionTitle name={page.name()} isPrivate={page.isPrivate()} />
         <p className='mb-8'>{page.description()}</p>
         <ul className='overflow-y-auto mb-4'>
           { page.entries().map((ew) => (
