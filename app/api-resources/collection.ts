@@ -6,6 +6,7 @@ export const collectionResource = t.type({
   attributes: t.type({
     name: t.string,
     description: t.string,
+    isPrivate: t.boolean,
   }),
 })
 
