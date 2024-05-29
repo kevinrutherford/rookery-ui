@@ -10,13 +10,13 @@ export default function FeedEventCard(props: FEProps) {
       <div className='flex justify-between mb-4'>
         <div className='flex gap-x-4'>
           <h2>
-            <span className='font-semibold'>@{props.userHandle}</span> {props.action}
+            <span className='font-semibold'>@{props.attributes.userHandle}</span> {props.attributes.action}
           </h2>
         </div>
-        <ReactTimeAgo date={new Date(props.timestamp)} timeStyle='twitter' />
+        <ReactTimeAgo date={new Date(props.attributes.timestamp)} timeStyle='twitter' />
       </div>
       <p>
-        {props.content}
+        {props.attributes.content}
       </p>
     </Card>
   )
