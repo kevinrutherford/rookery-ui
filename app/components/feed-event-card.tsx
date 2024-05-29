@@ -1,10 +1,10 @@
 import ReactTimeAgo from 'react-time-ago'
+import { TimelineParagraphResource } from '~/api-resources/timeline-paragraph'
 import { Card } from './card'
-import { FeedEvent } from './feed-event'
 
-type FEProps = FeedEvent
+type Props = TimelineParagraphResource
 
-export default function FeedEventCard(props: FEProps) {
+export default function FeedEventCard(props: Props) {
   return (
     <Card>
       <div className='flex justify-between mb-4'>
