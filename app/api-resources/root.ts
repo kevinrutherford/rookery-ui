@@ -14,5 +14,3 @@ export const rootResource = t.type({
   }),
 })
 
-export type RootResource = t.TypeOf<typeof rootResource>
-

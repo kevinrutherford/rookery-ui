@@ -19,6 +19,7 @@ module.exports = {
     '@stylistic/ts',
     'react-hooks',
     'simple-import-sort',
+    'unused-imports',
   ],
   rules: {
     '@stylistic/comma-dangle': ['error', 'always-multiline'],
@@ -48,6 +49,7 @@ module.exports = {
       'groups': [['^\\u0000', '^node:', '^@?\\w', '^', '^\\.']],
     }],
     'simple-import-sort/exports': 'error',
+    'unused-imports/no-unused-imports-ts': 'error',
   },
   settings: {
     'import/resolver': {
