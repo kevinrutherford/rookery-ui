@@ -15,7 +15,7 @@ export default function LoginScreen() {
           <div className="md:flex md:items-center mb-4">
             <div className="md:w-1/3">
               <label className="block text-slate-500 md:text-right md:mb-0 pr-4" htmlFor='password'>
-            Password
+                Password
               </label>
             </div>
             <div className="md:w-2/3">

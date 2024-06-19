@@ -34,7 +34,7 @@ const ExplorerLayout = () => {
                   className='border-b-4 border-slate-400'
                   to={location.pathname}
                 >
-                Local timeline
+                  Local timeline
                 </NavLink>
               </li>
             </ul>

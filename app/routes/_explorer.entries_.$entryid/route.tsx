@@ -63,7 +63,7 @@ export default function CollectionDetails() {
                 href={`https://doi.org/${entry.doi()}`}
                 target='_blank' rel="noreferrer"
               >
-            Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
+                Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
               </a>
             )}
           </div>
