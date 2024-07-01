@@ -5,7 +5,7 @@ export const timelineParagraphResource = t.type({
   type: t.literal('timeline-paragraph'),
   id: t.string,
   attributes: t.type({
-    userHandle: t.string,
+    actor: t.string,
     timestamp: tt.DateFromISOString,
     action: t.string,
     content: t.string,
