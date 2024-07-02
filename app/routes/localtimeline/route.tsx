@@ -5,11 +5,11 @@ import * as t from 'io-ts'
 import { FC, useEffect } from 'react'
 import * as api from '~/api'
 import { parse } from '~/api-resources/parse'
-import { timelineParagraphResource } from '~/api-resources/timeline-paragraph'
+import { updateResource } from '~/api-resources/update'
 import { renderFeed } from '~/components/render-feed'
 
 const localTimelineResponse = t.type({
-  data: t.array(timelineParagraphResource),
+  data: t.array(updateResource),
 })
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

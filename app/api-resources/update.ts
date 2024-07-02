@@ -1,8 +1,8 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
 
-export const timelineParagraphResource = t.type({
-  type: t.literal('timeline-paragraph'),
+export const updateResource = t.type({
+  type: t.literal('update'),
   id: t.string,
   attributes: t.type({
     actor: t.string,
@@ -12,5 +12,5 @@ export const timelineParagraphResource = t.type({
   }),
 })
 
-export type TimelineParagraphResource = t.TypeOf<typeof timelineParagraphResource>
+export type UpdateResource = t.TypeOf<typeof updateResource>
 
