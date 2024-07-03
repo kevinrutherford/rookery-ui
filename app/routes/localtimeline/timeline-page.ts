@@ -18,6 +18,10 @@ export class TimelinePage {
     )
   }
 
+  actorHandle() {
+    return 'xxx'
+  }
+
   communityName() {
     return pipe(
       this.community,

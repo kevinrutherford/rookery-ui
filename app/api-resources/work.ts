@@ -15,11 +15,17 @@ const frontMatterFound = t.type({
   authors: t.array(t.string),
 })
 
-export const workResource = t.type({
+export const workIdentifier = t.type({
   type: t.literal('work'),
   id: t.string,
-  attributes: t.union([frontMatterNotDetermined, frontMatterNotFound, frontMatterFound]),
 })
+
+export const workResource = t.intersection([
+  workIdentifier,
+  t.type({
+    attributes: t.union([frontMatterNotDetermined, frontMatterNotFound, frontMatterFound]),
+  }),
+])
 
 export type WorkResource = t.TypeOf<typeof workResource>
 

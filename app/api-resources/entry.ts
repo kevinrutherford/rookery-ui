@@ -1,5 +1,6 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
+import { workIdentifier } from './work'
 
 export const entryResource = t.type({
   type: t.literal('entry'),
@@ -9,12 +10,7 @@ export const entryResource = t.type({
     commentsCount: t.number,
   }),
   relationships: t.type({
-    work: t.type({
-      data: t.type({
-        type: t.literal('work'),
-        id: t.string,
-      }),
-    }),
+    work: t.type({ data: workIdentifier }),
   }),
 })
 
