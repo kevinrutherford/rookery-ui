@@ -17,7 +17,8 @@ import { EntryPage } from './entry-page'
 import { Replies } from './replies'
 
 const entryResponse = t.type({
-  entry: t.type({ data: entryResource,
+  entry: t.type({
+    data: entryResource,
     included: t.array(t.union([
       collectionResource,
       commentResource,
