@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react'
-import { UpdateResource } from '~/api-resources/update'
+import { TimelinePage } from '~/routes/localtimeline/timeline-page'
 import UpdateCard from './update-card'
 
-export const renderFeed = (data: ReadonlyArray<UpdateResource>): ReactNode => (
+export const renderFeed = (page: TimelinePage): ReactNode => (
   <ul className='overflow-y-auto'>
-    { data.map((event, ix) => (
+    { page.updates.map((update, ix) => (
       <li key={ix} className='mb-4'>
-        <UpdateCard {...event} />
+        <UpdateCard update={update} page={page} />
       </li>
     ))}
   </ul>

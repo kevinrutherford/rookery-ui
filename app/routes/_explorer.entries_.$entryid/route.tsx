@@ -47,11 +47,11 @@ export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: mov
 }
 
 export default function CollectionDetails() {
-  const data = pipe(
+  const response = pipe(
     useLoaderData<unknown>(),
     parse(entryResponse),
   )
-  const entry = new EntryPage(data.entry)
+  const entry = new EntryPage(response.entry)
 
   return (
     <div className='flex flex-col overflow-hidden'>
@@ -78,7 +78,7 @@ export default function CollectionDetails() {
           <Replies comments={entry.comments()} />
         </div>
       </div>
-      { data.authenticatedUser && <AddComment entryId={entry.id()} /> }
+      { response.authenticatedUser && <AddComment entryId={entry.id()} /> }
     </div>
   )
 
