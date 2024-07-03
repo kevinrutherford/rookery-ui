@@ -1,5 +1,6 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
+import { communityIdentifier } from './community'
 
 const classicUpdate = t.type({
   type: t.literal('update'),
@@ -18,6 +19,9 @@ const updateCommunityCreated = t.type({
   attributes: t.type({
     occurred_at: tt.DateFromISOString,
     summary: t.string,
+  }),
+  relationships: t.type({
+    community: t.type({ data: tt.optionFromNullable(communityIdentifier) }),
   }),
 })
 
