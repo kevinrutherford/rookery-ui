@@ -18,7 +18,6 @@ const updateCommunityCreated = t.type({
   id: t.string,
   attributes: t.type({
     occurred_at: tt.DateFromISOString,
-    summary: t.string,
   }),
   relationships: t.type({
     community: t.type({ data: tt.optionFromNullable(communityIdentifier) }),
