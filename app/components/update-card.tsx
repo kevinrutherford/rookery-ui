@@ -13,7 +13,7 @@ export default function UpdateCard(props: Props) {
             <span className='font-semibold'>@{props.attributes.actor}</span> {props.attributes.action}
           </h2>
         </div>
-        <ReactTimeAgo date={new Date(props.attributes.timestamp)} timeStyle='twitter' />
+        <ReactTimeAgo date={new Date(props.attributes.occurred_at)} timeStyle='twitter' />
       </div>
       <p>
         {props.attributes.content}

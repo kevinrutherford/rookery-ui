@@ -6,7 +6,7 @@ export const updateResource = t.type({
   id: t.string,
   attributes: t.type({
     actor: t.string,
-    timestamp: tt.DateFromISOString,
+    occurred_at: tt.DateFromISOString,
     action: t.string,
     content: t.string,
   }),
