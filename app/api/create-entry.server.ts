@@ -1,8 +1,7 @@
 import { v4 } from 'uuid'
 import { post } from './post.server'
 
-export const createEntry = async (request: Request) => {
-  const formData = await request.formData()
+export const createEntry = async (formData: FormData, request: Request) => {
   const updates = Object.fromEntries(formData)
   await post('/entries', {
     ...updates,
