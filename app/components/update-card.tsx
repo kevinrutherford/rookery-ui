@@ -8,7 +8,7 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
     case 'update:community-created': return (
       <div>
         <h2 className='mb-4'>
-          <span className='font-semibold mr-4'>@{page.actorHandle()}</span> created this community
+          <span className='font-semibold mr-4'>@{update.attributes.actor}</span> created this community
         </h2>
         <p>
           {page.communityName()}

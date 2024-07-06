@@ -17,6 +17,7 @@ const updateCommunityCreated = t.type({
   type: t.literal('update:community-created'),
   id: t.string,
   attributes: t.type({
+    actor: t.string,
     occurred_at: tt.DateFromISOString,
   }),
   relationships: t.type({
