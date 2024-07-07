@@ -7,9 +7,12 @@ export const get = async (path: string, request: Request) => {
   }
   if (user)
     headers['Authorization'] = `Bearer ${process.env.DEVELOPMENT_BEARER_TOKEN}`
-  return fetch(`http://views:44002${path}`, {
+  const response = await fetch(`http://views:44002${path}`, {
     method: 'GET',
     headers,
   })
+  if (response.status !== 200)
+    throw new Error(response.statusText)
+  return response
 }
 
