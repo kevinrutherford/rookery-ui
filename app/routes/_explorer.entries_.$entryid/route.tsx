@@ -11,6 +11,7 @@ import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
+import { Card } from '~/components/card'
 import { authenticator } from '~/services/auth.server'
 import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
@@ -82,5 +83,13 @@ export default function CollectionDetails() {
     </div>
   )
 
+}
+
+export function ErrorBoundary() {
+  return (
+    <Card>
+      <p>Something went wrong!</p>
+    </Card>
+  )
 }
 
