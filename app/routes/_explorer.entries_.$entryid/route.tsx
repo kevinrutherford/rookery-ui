@@ -58,7 +58,7 @@ export default function CollectionDetails() {
     <div className='flex flex-col overflow-hidden'>
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <p className='mb-4 font-semibold'>{entry.title()}</p>
-        <div className='text-sm text-slate-500 flex justify-between mb-20'>
+        <div className='text-sm text-slate-500 flex justify-between'>
           <div>
             {entry.isPaper() && (
               <a className='block hover:underline'
@@ -75,6 +75,8 @@ export default function CollectionDetails() {
             </Link> <ReactTimeAgo date={entry.addedAt()} />
           </div>
         </div>
+      </div>
+      <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <div className='overflow-y-auto'>
           <Replies comments={entry.comments()} />
         </div>
