@@ -6,7 +6,9 @@ import { SubmitButton } from '~/components/forms'
 import { authenticator } from '~/services/auth.server'
 
 export async function action({ request }: ActionFunctionArgs) {
-  await authenticator.logout(request, { redirectTo: '/' })
+  const url = new URL(request.url)
+  const returnTo = url.searchParams.get('returnTo') ?? '/' // SMELL -- OAOO: "returnTo"
+  await authenticator.logout(request, { redirectTo: returnTo })
 };
 
 type Props = {
@@ -21,7 +23,7 @@ export const AuthBar: FC<Props> = (props: Props) => {
         {
           (props.username)
             ? (
-              <Form method='post' action='/authbar'>
+              <Form method='post' action={`/authbar?returnTo=${location.pathname}`}>
                 <SubmitButton label='Logout' />
               </Form>
             )

@@ -33,7 +33,7 @@ export default function LoginScreen() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const url = new URL(request.url)
-  const returnTo = url.searchParams.get('returnTo') ?? '/'
+  const returnTo = url.searchParams.get('returnTo') ?? '/' // SMELL -- OAOO: "returnTo"
   return await authenticator.authenticate('user-pass', request, {
     successRedirect: returnTo,
     failureRedirect: '/login',
