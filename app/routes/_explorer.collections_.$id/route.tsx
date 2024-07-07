@@ -8,6 +8,7 @@ import { collectionResource  } from '~/api-resources/collection'
 import { entryResource  } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
 import { workResource  } from '~/api-resources/work'
+import { Card } from '~/components/card'
 import { CollectionTitle } from '~/components/collection-title'
 import { authenticator } from '~/services/auth.server'
 import { AddEntry } from './add-entry'
@@ -63,6 +64,14 @@ export default function CollectionDetails() {
       </div>
       { data.authenticatedUser && <AddEntry collectionId={page.id()} /> }
     </div>
+  )
+}
+
+export function ErrorBoundary() {
+  return (
+    <Card>
+      <p>Something went wrong!</p>
+    </Card>
   )
 }
 

@@ -1,12 +1,11 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node'
 import {
-  isRouteErrorResponse,
   NavLink,
   Outlet,
   useLoaderData,
   useLocation,
-  useRouteError,
 } from '@remix-run/react'
+import { Card } from '~/components/card'
 import { Column } from '~/components/column'
 import { Container } from '~/components/container'
 import { contentNavItems } from '~/components/content-nav-items'
@@ -68,27 +67,10 @@ const ExplorerLayout = () => {
 export default ExplorerLayout
 
 export function ErrorBoundary() {
-  const error = useRouteError()
-  if (isRouteErrorResponse(error)) {
-    return (
-      <div>
-        <h1>
-          {error.status} {error.statusText}
-        </h1>
-        <p>{error.data}</p>
-      </div>
-    )
-  } else if (error instanceof Error) {
-    return (
-      <div>
-        <h1>Error</h1>
-        <p>{error.message}</p>
-        <p>The stack trace is:</p>
-        <pre>{error.stack}</pre>
-      </div>
-    )
-  } else {
-    return <h1>Unknown Error</h1>
-  }
+  return (
+    <Card>
+      <p>Something went wrong!</p>
+    </Card>
+  )
 }
 
