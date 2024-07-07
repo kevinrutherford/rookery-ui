@@ -32,8 +32,10 @@ export default function LoginScreen() {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
+  const url = new URL(request.url)
+  const returnTo = url.searchParams.get('returnTo') ?? '/'
   return await authenticator.authenticate('user-pass', request, {
-    successRedirect: '/',
+    successRedirect: returnTo,
     failureRedirect: '/login',
   })
 };
