@@ -1,5 +1,6 @@
 import ReactTimeAgo from 'react-time-ago'
 import { UpdateResource } from '~/api-resources/update'
+import { WorkResource } from '~/api-resources/work'
 import { TimelinePage } from '~/routes/localtimeline/timeline-page'
 import { Card } from './card'
 
@@ -20,6 +21,9 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
         <h2 className='mb-4'>
           <span className='font-semibold mr-4'>@{update.attributes.actor}</span> could not find this paper
         </h2>
+        <p>
+          {(page.included(update.relationships.work.data) as WorkResource).attributes.doi}
+        </p>
       </div>
     )
     default: return (

@@ -34,7 +34,7 @@ const updateWorkNotFound = t.type({
     occurred_at: tt.DateFromISOString,
   }),
   relationships: t.type({
-    work: t.type({ data: tt.optionFromNullable(workIdentifier) }),
+    work: t.type({ data: workIdentifier }),
   }),
 })
 
