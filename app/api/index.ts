@@ -8,4 +8,5 @@ export { fetchCommunity } from './fetch-community.server'
 export { fetchEntry } from './fetch-entry.server'
 export { fetchLocalTimeline } from './fetch-local-timeline.server'
 export { fetchRoot } from './fetch-root.server'
+export { fetchWork } from './fetch-work.server'
 
