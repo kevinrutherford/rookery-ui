@@ -1,6 +1,7 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
 import { communityIdentifier } from './community'
+import { workIdentifier } from './work'
 
 const classicUpdate = t.type({
   type: t.literal('update'),
@@ -25,9 +26,22 @@ const updateCommunityCreated = t.type({
   }),
 })
 
+const updateWorkNotFound = t.type({
+  type: t.literal('update:work-not-found'),
+  id: t.string,
+  attributes: t.type({
+    actor: t.string,
+    occurred_at: tt.DateFromISOString,
+  }),
+  relationships: t.type({
+    work: t.type({ data: tt.optionFromNullable(workIdentifier) }),
+  }),
+})
+
 export const updateResource = t.union([
   classicUpdate,
   updateCommunityCreated,
+  updateWorkNotFound,
 ])
 
 export type UpdateResource = t.TypeOf<typeof updateResource>

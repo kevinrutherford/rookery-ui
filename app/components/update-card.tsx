@@ -15,6 +15,13 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
         </p>
       </div>
     )
+    case 'update:work-not-found': return (
+      <div>
+        <h2 className='mb-4'>
+          <span className='font-semibold mr-4'>@{update.attributes.actor}</span> could not find this paper
+        </h2>
+      </div>
+    )
     default: return (
       <div>
         <h2 className='mb-4'>

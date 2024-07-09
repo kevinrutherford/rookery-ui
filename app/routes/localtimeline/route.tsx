@@ -7,12 +7,16 @@ import * as api from '~/api'
 import { communityResource } from '~/api-resources/community'
 import { parse } from '~/api-resources/parse'
 import { updateResource } from '~/api-resources/update'
+import { workResource } from '~/api-resources/work'
 import { renderFeed } from '~/components/render-feed'
 import { TimelinePage } from './timeline-page'
 
 const localTimelineResponse = t.type({
   data: t.array(updateResource),
-  included: t.array(communityResource),
+  included: t.array(t.union([
+    communityResource,
+    workResource,
+  ])),
 })
 
 export type LocalTimelineResponse = t.TypeOf<typeof localTimelineResponse>
