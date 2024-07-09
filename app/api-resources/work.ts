@@ -23,7 +23,12 @@ export const workIdentifier = t.type({
 export const workResource = t.intersection([
   workIdentifier,
   t.type({
-    attributes: t.union([frontMatterNotDetermined, frontMatterNotFound, frontMatterFound]),
+    attributes: t.intersection([
+      t.type({
+        doi: t.string,
+      }),
+      t.union([frontMatterNotDetermined, frontMatterNotFound, frontMatterFound]),
+    ]),
   }),
 ])
 
