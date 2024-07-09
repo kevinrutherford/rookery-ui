@@ -61,12 +61,15 @@ export default function CollectionDetails() {
         <div className='text-sm text-slate-500 flex justify-between'>
           <div>
             {entry.isPaper() && (
-              <a className='block hover:underline'
-                href={`https://doi.org/${entry.doi()}`}
-                target='_blank' rel="noreferrer"
-              >
-                Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
-              </a>
+              <>
+                <a className='block hover:underline'
+                  href={`https://doi.org/${entry.doi()}`}
+                  target='_blank' rel="noreferrer"
+                >
+                  Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
+                </a>
+                <Link to={`/works/${encodeURIComponent(entry.work.id)}`}>Details</Link>
+              </>
             )}
           </div>
           <div>
