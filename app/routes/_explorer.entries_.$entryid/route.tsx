@@ -68,9 +68,9 @@ export default function CollectionDetails() {
                 >
                   Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
                 </a>
-                <Link to={`/works/${entry.work.id}`}>Details</Link>
               </>
             )}
+            <Link to={`/works/${entry.work.id}`}>Details</Link>
           </div>
           <div>
             Added to <Link to={`/collections/${entry.collectionId()}`} className='inline hover:underline'>
