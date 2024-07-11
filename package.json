@@ -11,7 +11,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@heroicons/react": "2.1.4",
+    "@heroicons/react": "2.1.5",
     "@remix-run/css-bundle": "2.10.2",
     "@remix-run/express": "2.10.2",
     "@remix-run/node": "2.10.2",
