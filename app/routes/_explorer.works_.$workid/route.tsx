@@ -67,6 +67,25 @@ export default function WorkDetails() {
           </a>
         </div>
       </div>
+      <p className='font-semibold mb-4'>Conversations</p>
+      <Card>
+        <div className='flex justify-between'>
+          <span>Local collection CHS</span>
+          <span>3 comments</span>
+        </div>
+      </Card>
+      <Card>
+        <div className='flex justify-between'>
+          <span>Hypothes.is</span>
+          <span>3 annotations</span>
+        </div>
+      </Card>
+      <Card>
+        <div className='flex justify-between'>
+          <span>Sciety</span>
+          <span>3 evaluations</span>
+        </div>
+      </Card>
     </div>
   )
 
