@@ -70,7 +70,7 @@ export default function CollectionDetails() {
                 </a>
               </>
             )}
-            <Link to={`/works/${entry.work.id}`}>Details</Link>
+            <Link to={`/works/${encodeURIComponent(entry.work.id)}`}>Details</Link>
           </div>
           <div>
             Added to <Link to={`/collections/${entry.collectionId()}`} className='inline hover:underline'>
