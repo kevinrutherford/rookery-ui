@@ -9,7 +9,7 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
     case 'update:community-created': return (
       <div>
         <h2 className='mb-4'>
-          <span className='font-semibold mr-4'>@{update.attributes.actor}</span> created this community
+          <span className='text-red-500 font-semibold mr-4'>@{update.attributes.actor}</span> created this community
         </h2>
         <p>
           {page.communityName()}
@@ -19,7 +19,7 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
     case 'update:work-not-found': return (
       <div>
         <h2 className='mb-4'>
-          <span className='font-semibold mr-4'>@{update.attributes.actor}</span> could not find this paper
+          <span className='text-red-500 font-semibold mr-4'>@{update.attributes.actor}</span> could not find this paper
         </h2>
         <p>
           {(page.included(update.relationships.work.data) as WorkResource).attributes.doi}
@@ -29,7 +29,7 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
     default: return (
       <div>
         <h2 className='mb-4'>
-          <span className='font-semibold mr-4'>@{update.attributes.actor}</span> {update.attributes.action}
+          <span className='text-red-500 font-semibold mr-4'>@{update.attributes.actor}</span> {update.attributes.action}
         </h2>
         <p>
           {update.attributes.content}
