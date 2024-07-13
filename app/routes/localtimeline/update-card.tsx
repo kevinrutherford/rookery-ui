@@ -22,7 +22,7 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
           <span className='text-red-500 font-semibold mr-4'>@{update.attributes.actor}</span> could not find this paper
         </h2>
         <p>
-          {(page.included(update.relationships.work.data) as WorkResource).attributes.doi}
+          DOI: {(page.included(update.relationships.work.data) as WorkResource).attributes.doi}
         </p>
       </div>
     )
