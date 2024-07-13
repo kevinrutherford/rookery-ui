@@ -1,3 +1,4 @@
+import {Link} from '@remix-run/react'
 import ReactTimeAgo from 'react-time-ago'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
@@ -21,9 +22,9 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
         <h2 className='mb-4'>
           <span className='text-red-500 font-semibold mr-4'>@{update.attributes.actor}</span> could not find this paper
         </h2>
-        <p>
+        <Link to={`/works/${encodeURIComponent((page.included(update.relationships.work.data) as WorkResource).attributes.doi)}`} className='block hover:underline'>
           DOI: {(page.included(update.relationships.work.data) as WorkResource).attributes.doi}
-        </p>
+        </Link>
       </div>
     )
     default: return (
