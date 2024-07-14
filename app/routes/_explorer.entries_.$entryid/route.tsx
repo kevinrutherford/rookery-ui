@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
-import { Link,useLoaderData, useOutletContext  } from '@remix-run/react'
+import { useLoaderData  } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import ReactTimeAgo from 'react-time-ago'
@@ -11,8 +11,8 @@ import { entryResource } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
+import { Navigate } from '~/components/navigate'
 import { authenticator } from '~/services/auth.server'
-import { ExplorerContext } from '../_explorer/route'
 import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
 import { Replies } from './replies'
@@ -48,7 +48,6 @@ export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: mov
 }
 
 export default function CollectionDetails() {
-  const ctx = useOutletContext<ExplorerContext>()
   const response = pipe(
     useLoaderData<unknown>(),
     parse(entryResponse),
@@ -60,11 +59,11 @@ export default function CollectionDetails() {
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <p className='mb-4 font-semibold'>{entry.title()}</p>
         <div className='text-sm text-slate-500 flex justify-between'>
-          <Link to={`/works/${encodeURIComponent(entry.work.id)}${ctx.feedSelection}`}>Details</Link>
+          <Navigate to={`/works/${encodeURIComponent(entry.work.id)}`}>Details</Navigate>
           <div>
-            Added to <Link to={`/collections/${entry.collectionId()}${ctx.feedSelection}`} className='inline hover:underline'>
+            Added to <Navigate to={`/collections/${entry.collectionId()}`}>
               {entry.collectionName()}
-            </Link> <ReactTimeAgo date={entry.addedAt()} />
+            </Navigate> <ReactTimeAgo date={entry.addedAt()} />
           </div>
         </div>
       </div>
