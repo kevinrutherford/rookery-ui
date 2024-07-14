@@ -1,5 +1,6 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node'
 import {
+  Link,
   NavLink,
   Outlet,
   useLoaderData,
@@ -20,6 +21,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 const ExplorerLayout = () => {
   const location = useLocation()
+  const feedSelection = location.search
   const user = useLoaderData<typeof loader>()
   const username = user?.username
 
@@ -31,19 +33,28 @@ const ExplorerLayout = () => {
           <Column>
             <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
               <li className='inline mr-6 mt-6 mb-6'>
-                <NavLink className='border-slate-400' to={location.pathname}>
+                <Link
+                  className={`${feedSelection === '?f=ff' ? 'border-b-4 border-slate-400' : ''}`}
+                  to={`${location.pathname}?f=ff`}
+                >
                   Following
-                </NavLink>
+                </Link>
               </li>
               <li className='inline mr-6 mt-6 mb-6'>
-                <NavLink className='border-b-4 border-slate-400' to={location.pathname}>
+                <Link
+                  className={`${feedSelection === '?f=lt' ? 'border-b-4 border-slate-400' : ''}`}
+                  to={`${location.pathname}?f=lt`}
+                >
                   Local
-                </NavLink>
+                </Link>
               </li>
               <li className='inline mr-6 mt-6 mb-6'>
-                <NavLink className='border-slate-400' to={location.pathname}>
+                <Link
+                  className={`${feedSelection === '?f=ft' ? 'border-b-4 border-slate-400' : ''}`}
+                  to={`${location.pathname}?f=ft`}
+                >
                   Federated
-                </NavLink>
+                </Link>
               </li>
             </ul>
             <LocalTimeline />
