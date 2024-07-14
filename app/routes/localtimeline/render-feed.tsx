@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { TimelinePage } from './timeline-page'
+import { TimelinePage } from '~/routes/localtimeline/timeline-page'
 import UpdateCard from './update-card'
 
 export const renderFeed = (page: TimelinePage): ReactNode => (

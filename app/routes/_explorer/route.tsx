@@ -12,7 +12,7 @@ import { Container } from '~/components/container'
 import { contentNavItems } from '~/components/content-nav-items'
 import { authenticator } from '~/services/auth.server'
 import { AuthBar } from '../authbar/route'
-import { LocalTimeline } from '../feeds/route'
+import { LocalTimeline } from '../localtimeline/route'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request)
