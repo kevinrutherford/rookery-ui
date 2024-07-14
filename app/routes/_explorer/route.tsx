@@ -12,6 +12,7 @@ import { Container } from '~/components/container'
 import { contentNavItems } from '~/components/content-nav-items'
 import { authenticator } from '~/services/auth.server'
 import { AuthBar } from '../authbar/route'
+import { FollowingFeed } from '../followingfeed/route'
 import { LocalTimeline } from '../localtimeline/route'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -57,7 +58,7 @@ const ExplorerLayout = () => {
                 </Link>
               </li>
             </ul>
-            <LocalTimeline />
+            { (feedSelection === '?f=ff') ? <FollowingFeed /> : <LocalTimeline /> }
           </Column>
           <Column>
             <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
