@@ -21,15 +21,15 @@ const localTimelineResponse = t.type({
 
 export type LocalTimelineResponse = t.TypeOf<typeof localTimelineResponse>
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const value = await api.fetchLocalTimeline(request)
+export const loader = async ({ request }: LoaderFunctionArgs) => { // SMELL -- duplicated with all other feeds
+  const value = await api.fetchTimeline('local', request)
   return json(value)
 }
 
 export const LocalTimeline: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
-  useEffect(() => {
+  useEffect(() => { // SMELL -- duplicated with the other feeds
     if (fetcher.state === 'idle')
       fetcher.load('/localtimeline')
     const interval = setInterval(() => {

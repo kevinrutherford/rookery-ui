@@ -1,8 +1,9 @@
-import { json } from '@remix-run/node'
+import { json, LoaderFunctionArgs } from '@remix-run/node'
 import { useFetcher } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import { FC, useEffect } from 'react'
+import * as api from '~/api'
 import { communityResource } from '~/api-resources/community'
 import { parse } from '~/api-resources/parse'
 import { updateResource } from '~/api-resources/update'
@@ -20,15 +21,15 @@ const federatedTimelineResponse = t.type({
 
 export type LocalTimelineResponse = t.TypeOf<typeof federatedTimelineResponse>
 
-export const loader = async () => json({
-  data: [],
-  included: [],
-})
+export const loader = async ({ request }: LoaderFunctionArgs) => { // SMELL -- duplicated with all other feeds
+  const value = await api.fetchTimeline('federated', request)
+  return json(value)
+}
 
 export const FederatedTimeline: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
-  useEffect(() => {
+  useEffect(() => { // SMELL -- duplicated with the other feeds
     if (fetcher.state === 'idle')
       fetcher.load('/federatedtimeline')
     const interval = setInterval(() => {
