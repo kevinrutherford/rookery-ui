@@ -29,10 +29,11 @@ export const FollowingFeed: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
   useEffect(() => {
+    if (fetcher.state === 'idle')
+      fetcher.load('/followingfeed')
     const interval = setInterval(() => {
-      if (fetcher.state === 'idle') {
+      if (fetcher.state === 'idle')
         fetcher.load('/followingfeed')
-      }
     }, 5000)
     return () => clearInterval(interval)
   }, [fetcher])

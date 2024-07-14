@@ -29,10 +29,11 @@ export const FederatedTimeline: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
   useEffect(() => {
+    if (fetcher.state === 'idle')
+      fetcher.load('/federatedtimeline')
     const interval = setInterval(() => {
-      if (fetcher.state === 'idle') {
+      if (fetcher.state === 'idle')
         fetcher.load('/federatedtimeline')
-      }
     }, 5000)
     return () => clearInterval(interval)
   }, [fetcher])

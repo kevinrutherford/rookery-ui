@@ -30,10 +30,11 @@ export const LocalTimeline: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
   useEffect(() => {
+    if (fetcher.state === 'idle')
+      fetcher.load('/localtimeline')
     const interval = setInterval(() => {
-      if (fetcher.state === 'idle') {
+      if (fetcher.state === 'idle')
         fetcher.load('/localtimeline')
-      }
     }, 5000)
     return () => clearInterval(interval)
   }, [fetcher])
