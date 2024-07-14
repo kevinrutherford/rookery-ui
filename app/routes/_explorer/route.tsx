@@ -21,6 +21,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return json(user)
 }
 
+export type ExplorerContext = {
+  feedSelection: string,
+}
+
 const ExplorerLayout = () => {
   const location = useLocation()
   const feedSelection = location.search
@@ -72,14 +76,14 @@ const ExplorerLayout = () => {
                     className={({ isActive }) => isActive
                       ? 'border-b-4 border-slate-400'
                       : ''}
-                    to={`${item.route}`}
+                    to={`${item.route}${feedSelection}`}
                   >
                     {item.title}
                   </NavLink>
                 </li>
               ))}
             </ul>
-            <Outlet />
+            <Outlet context={{ feedSelection }} />
           </Column>
         </div>
       </Container>

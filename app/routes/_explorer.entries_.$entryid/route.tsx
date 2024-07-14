@@ -1,6 +1,6 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
-import { Link,useLoaderData  } from '@remix-run/react'
+import { Link,useLoaderData, useOutletContext  } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import ReactTimeAgo from 'react-time-ago'
@@ -13,6 +13,7 @@ import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
 import { authenticator } from '~/services/auth.server'
+import { ExplorerContext } from '../_explorer/route'
 import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
 import { Replies } from './replies'
@@ -48,6 +49,7 @@ export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: mov
 }
 
 export default function CollectionDetails() {
+  const ctx = useOutletContext<ExplorerContext>()
   const response = pipe(
     useLoaderData<unknown>(),
     parse(entryResponse),
@@ -70,10 +72,10 @@ export default function CollectionDetails() {
                 </a>
               </>
             )}
-            <Link to={`/works/${encodeURIComponent(entry.work.id)}`}>Details</Link>
+            <Link to={`/works/${encodeURIComponent(entry.work.id)}${ctx.feedSelection}`}>Details</Link>
           </div>
           <div>
-            Added to <Link to={`/collections/${entry.collectionId()}`} className='inline hover:underline'>
+            Added to <Link to={`/collections/${entry.collectionId()}${ctx.feedSelection}`} className='inline hover:underline'>
               {entry.collectionName()}
             </Link> <ReactTimeAgo date={entry.addedAt()} />
           </div>
