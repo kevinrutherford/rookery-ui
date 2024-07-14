@@ -1,4 +1,4 @@
-import {Link} from '@remix-run/react'
+import { Link } from '@remix-run/react'
 import ReactTimeAgo from 'react-time-ago'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
