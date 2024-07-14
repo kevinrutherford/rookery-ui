@@ -1,4 +1,3 @@
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { ActionFunctionArgs, json, LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { Link,useLoaderData, useOutletContext  } from '@remix-run/react'
 import { pipe } from 'fp-ts/lib/function.js'
@@ -61,19 +60,7 @@ export default function CollectionDetails() {
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <p className='mb-4 font-semibold'>{entry.title()}</p>
         <div className='text-sm text-slate-500 flex justify-between'>
-          <div>
-            {entry.isPaper() && (
-              <>
-                <a className='block hover:underline'
-                  href={`https://doi.org/${entry.doi()}`}
-                  target='_blank' rel="noreferrer"
-                >
-                  Original document <ArrowTopRightOnSquareIcon className='h-5 w-5 pl-1 pb-1 inline' />
-                </a>
-              </>
-            )}
-            <Link to={`/works/${encodeURIComponent(entry.work.id)}${ctx.feedSelection}`}>Details</Link>
-          </div>
+          <Link to={`/works/${encodeURIComponent(entry.work.id)}${ctx.feedSelection}`}>Details</Link>
           <div>
             Added to <Link to={`/collections/${entry.collectionId()}${ctx.feedSelection}`} className='inline hover:underline'>
               {entry.collectionName()}
