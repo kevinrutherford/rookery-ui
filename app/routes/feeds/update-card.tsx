@@ -3,7 +3,7 @@ import ReactTimeAgo from 'react-time-ago'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
-import { TimelinePage } from '~/routes/localtimeline/timeline-page'
+import { TimelinePage } from './timeline-page'
 
 const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
   switch (update.type) {
