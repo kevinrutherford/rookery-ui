@@ -1,5 +1,6 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
+import { accountIdentifier } from './account'
 import { communityIdentifier } from './community'
 import { workIdentifier } from './work'
 
@@ -12,6 +13,9 @@ const classicUpdate = t.type({
     action: t.string,
     content: t.string,
   }),
+  relationships: t.type({
+    actor: t.type({ data: accountIdentifier }),
+  }),
 })
 
 const updateCommunityCreated = t.type({
@@ -22,6 +26,7 @@ const updateCommunityCreated = t.type({
     occurred_at: tt.DateFromISOString,
   }),
   relationships: t.type({
+    actor: t.type({ data: accountIdentifier }),
     community: t.type({ data: tt.optionFromNullable(communityIdentifier) }),
   }),
 })
@@ -34,6 +39,7 @@ const updateWorkNotFound = t.type({
     occurred_at: tt.DateFromISOString,
   }),
   relationships: t.type({
+    actor: t.type({ data: accountIdentifier }),
     work: t.type({ data: workIdentifier }),
   }),
 })
