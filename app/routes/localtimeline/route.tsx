@@ -4,6 +4,7 @@ import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import { FC, useEffect } from 'react'
 import * as api from '~/api'
+import { accountResource } from '~/api-resources/account'
 import { communityResource } from '~/api-resources/community'
 import { parse } from '~/api-resources/parse'
 import { updateResource } from '~/api-resources/update'
@@ -14,6 +15,7 @@ import { TimelinePage } from './timeline-page'
 const localTimelineResponse = t.type({
   data: t.array(updateResource),
   included: t.array(t.union([
+    accountResource,
     communityResource,
     workResource,
   ])),
