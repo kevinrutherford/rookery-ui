@@ -30,8 +30,6 @@ export const FederatedTimeline: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
   useEffect(() => { // SMELL -- duplicated with the other feeds
-    if (fetcher.state === 'idle')
-      fetcher.load('/federatedtimeline')
     const interval = setInterval(() => {
       if (fetcher.state === 'idle')
         fetcher.load('/federatedtimeline')

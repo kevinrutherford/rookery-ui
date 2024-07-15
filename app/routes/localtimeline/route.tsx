@@ -32,8 +32,6 @@ export const LocalTimeline: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
   useEffect(() => { // SMELL -- duplicated with the other feeds
-    if (fetcher.state === 'idle')
-      fetcher.load('/localtimeline')
     const interval = setInterval(() => {
       if (fetcher.state === 'idle')
         fetcher.load('/localtimeline')

@@ -56,7 +56,7 @@ export default function App() {
   const { revalidate } = useRevalidator()
 
   useEffect(() => {
-    const id = setInterval(revalidate, 2000)
+    const id = setInterval(revalidate, 5000)
     return () => clearInterval(id)
   }, [revalidate])
 
