@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
+import UpdateCard from '~/components/update-card'
 import { TimelinePage } from '~/routes/localtimeline/timeline-page'
-import UpdateCard from './update-card'
 
 export const renderFeed = (page: TimelinePage): ReactNode => (
   <ul className='overflow-y-auto'>
