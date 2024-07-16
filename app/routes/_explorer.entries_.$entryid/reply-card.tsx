@@ -13,7 +13,7 @@ type Props = {
 export const ReplyCard: FC<Props> = (props: Props) => {
   const actor = lookupResource(props.resources, props.comment.relationships.author) as AccountResource
   return (
-    <ActionCard actor={actor} timestamp={new Date(props.comment.attributes.createdAt)}>
+    <ActionCard actor={actor} timestamp={props.comment.attributes.createdAt}>
       {props.comment.attributes.content}
     </ActionCard>
   )
