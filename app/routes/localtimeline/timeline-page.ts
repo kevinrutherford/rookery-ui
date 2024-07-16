@@ -7,11 +7,6 @@ import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import { LocalTimelineResponse } from './route'
 
-type Identifier = {
-  type: string,
-  id: string,
-}
-
 export class TimelinePage {
   readonly updates: ReadonlyArray<UpdateResource>
   readonly includes: ReadonlyArray<AccountResource | CommunityResource | WorkResource>
@@ -32,15 +27,6 @@ export class TimelinePage {
       this.community,
       O.getOrElseW(() => { throw new Error('No community included with local timeline') }),
       (community) => community.attributes.name,
-    )
-  }
-
-  included(ref: Identifier) {
-    return pipe(
-      this.includes,
-      RA.filter((inc) => inc.type === ref.type && inc.id === ref.id),
-      RA.head,
-      O.getOrElseW(() => { throw new Error(`Local timeline expected to include ${JSON.stringify(ref)}`) }),
     )
   }
 
