@@ -6,5 +6,10 @@ export default {
     extend: {},
   },
   plugins: [],
+  variants: {
+    extend: {
+      grayscale: ['hover'],
+    },
+  },
 } satisfies Config
 

@@ -14,7 +14,7 @@ export default function ActionCard(props: Props) {
     <Card>
       <div className='flex flex-row gap-4'>
         <img
-          className='h-10 w-10 rounded-full'
+          className='h-10 w-10 rounded-full filter grayscale hover:grayscale-0'
           src={props.actor.attributes.avatar_url} />
         <div className='w-full'>
           <div className='flex justify-between mb-2 text-slate-500'>
