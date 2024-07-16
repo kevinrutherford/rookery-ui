@@ -8,6 +8,11 @@ import { lookupResource } from './lookup-resource'
 
 const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
   switch (update.type) {
+    case 'update:comment-created': return (
+      <div>
+        Commented: &ldquo;{update.attributes.content}&rdquo;
+      </div>
+    )
     case 'update:community-created': return (
       <div>
         Created this community &ldquo;{page.communityName()}&rdquo;.

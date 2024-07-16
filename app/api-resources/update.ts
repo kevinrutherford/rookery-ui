@@ -17,6 +17,18 @@ const classicUpdate = t.type({
   }),
 })
 
+const updateCommentCreated = t.type({
+  type: t.literal('update:comment-created'),
+  id: t.string,
+  attributes: t.type({
+    content: t.string,
+    occurred_at: tt.DateFromISOString,
+  }),
+  relationships: t.type({
+    actor: t.type({ data: accountIdentifier }),
+  }),
+})
+
 const updateCommunityCreated = t.type({
   type: t.literal('update:community-created'),
   id: t.string,
@@ -43,6 +55,7 @@ const updateWorkNotFound = t.type({
 
 export const updateResource = t.union([
   classicUpdate,
+  updateCommentCreated,
   updateCommunityCreated,
   updateWorkNotFound,
 ])
