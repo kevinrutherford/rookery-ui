@@ -1,4 +1,5 @@
 import * as t from 'io-ts'
+import { accountIdentifier } from './account'
 
 export const commentResource = t.type({
   type: t.literal('comment'),
@@ -6,6 +7,9 @@ export const commentResource = t.type({
   attributes: t.type({
     content: t.string,
     createdAt: t.string,
+  }),
+  relationships: t.type({
+    author: t.type({ data: accountIdentifier }),
   }),
 })
 

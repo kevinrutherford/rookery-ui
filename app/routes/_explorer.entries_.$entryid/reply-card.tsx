@@ -1,22 +1,21 @@
 import { FC } from 'react'
-import ReactTimeAgo from 'react-time-ago'
+import { AccountResource } from '~/api-resources/account'
 import { CommentResource } from '~/api-resources/comment'
+import ActionCard from '~/components/action-card'
+import { lookupResource } from '~/components/lookup-resource'
+import { EntryResponse } from './route'
 
 type Props = {
   comment: CommentResource,
+  resources: EntryResponse['included'],
 }
 
-export const ReplyCard: FC<Props> = (props: Props) => (
-  <div className='bg-slate-100 mb-4 p-4 rounded-md'>
-    <div className='flex justify-between gap-8 mb-4'>
-      <span className='text-red-500 mr-4'>@you</span>
-      <span className='text-slate-500 text-sm'>
-        <ReactTimeAgo date={new Date(props.comment.attributes.createdAt)} timeStyle='twitter' />
-      </span>
-    </div>
-    <p>
+export const ReplyCard: FC<Props> = (props: Props) => {
+  const actor = lookupResource(props.resources, props.comment.relationships.author) as AccountResource
+  return (
+    <ActionCard actor={actor} timestamp={new Date(props.comment.attributes.createdAt)}>
       {props.comment.attributes.content}
-    </p>
-  </div>
-)
+    </ActionCard>
+  )
+}
 

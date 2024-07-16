@@ -71,7 +71,7 @@ export default function CollectionDetails() {
       </div>
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <div className='overflow-y-auto'>
-          <Replies comments={entry.comments()} />
+          <Replies comments={entry.comments()} resources={response.entry.included} />
         </div>
       </div>
       { response.authenticatedUser && <AddComment entryId={entry.id()} /> }
