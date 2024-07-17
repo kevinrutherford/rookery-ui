@@ -38,14 +38,16 @@ const ExplorerLayout = () => {
         <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
           <Column>
             <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
-              <li className='inline mr-6 mt-6 mb-6'>
-                <Link
-                  className={`${feedSelection === '?f=ff' ? 'border-b-4 border-slate-400' : ''}`}
-                  to={`${location.pathname}?f=ff`}
-                >
-                  Following
-                </Link>
-              </li>
+              { user && (
+                <li className='inline mr-6 mt-6 mb-6'>
+                  <Link
+                    className={`${feedSelection === '?f=ff' ? 'border-b-4 border-slate-400' : ''}`}
+                    to={`${location.pathname}?f=ff`}
+                  >
+                    Following
+                  </Link>
+                </li>
+              )}
               <li className='inline mr-6 mt-6 mb-6'>
                 <Link
                   className={`${feedSelection === '?f=lt' ? 'border-b-4 border-slate-400' : ''}`}
@@ -54,14 +56,16 @@ const ExplorerLayout = () => {
                   Local
                 </Link>
               </li>
-              <li className='inline mr-6 mt-6 mb-6'>
-                <Link
-                  className={`${feedSelection === '?f=ft' ? 'border-b-4 border-slate-400' : ''}`}
-                  to={`${location.pathname}?f=ft`}
-                >
-                  Federated
-                </Link>
-              </li>
+              { user && (
+                <li className='inline mr-6 mt-6 mb-6'>
+                  <Link
+                    className={`${feedSelection === '?f=ft' ? 'border-b-4 border-slate-400' : ''}`}
+                    to={`${location.pathname}?f=ft`}
+                  >
+                    Federated
+                  </Link>
+                </li>
+              )}
             </ul>
             {
               (feedSelection === '?f=ff')
