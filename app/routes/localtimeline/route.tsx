@@ -9,8 +9,8 @@ import { communityResource } from '~/api-resources/community'
 import { parse } from '~/api-resources/parse'
 import { updateResource } from '~/api-resources/update'
 import { workResource } from '~/api-resources/work'
-import { renderFeed } from './render-feed'
-import { TimelinePage } from './timeline-page'
+import { renderFeed } from '~/components/render-feed'
+import { TimelinePage } from '~/components/timeline-page'
 
 const localTimelineResponse = t.type({
   data: t.array(updateResource),

@@ -4,16 +4,18 @@ import { pipe } from 'fp-ts/lib/function.js'
 import * as t from 'io-ts'
 import { FC, useEffect } from 'react'
 import * as api from '~/api'
+import { accountResource } from '~/api-resources/account'
 import { communityResource } from '~/api-resources/community'
 import { parse } from '~/api-resources/parse'
 import { updateResource } from '~/api-resources/update'
 import { workResource } from '~/api-resources/work'
-import { renderFeed } from './render-feed'
-import { TimelinePage } from './timeline-page'
+import { renderFeed } from '~/components/render-feed'
+import { TimelinePage } from '~/components/timeline-page'
 
 const federatedTimelineResponse = t.type({
   data: t.array(updateResource),
   included: t.array(t.union([
+    accountResource,
     communityResource,
     workResource,
   ])),

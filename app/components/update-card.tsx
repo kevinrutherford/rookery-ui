@@ -2,9 +2,9 @@ import { Link } from '@remix-run/react'
 import { AccountResource } from '~/api-resources/account'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
-import { TimelinePage } from '~/routes/localtimeline/timeline-page'
 import ActionCard from './action-card'
 import { lookupResource } from './lookup-resource'
+import { TimelinePage } from './timeline-page'
 
 const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
   switch (update.type) {

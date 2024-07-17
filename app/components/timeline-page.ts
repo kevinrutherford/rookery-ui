@@ -5,7 +5,7 @@ import { AccountResource } from '~/api-resources/account'
 import { CommunityResource } from '~/api-resources/community'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
-import { LocalTimelineResponse } from './route'
+import { LocalTimelineResponse } from '~/routes/localtimeline/route'
 
 export class TimelinePage {
   readonly updates: ReadonlyArray<UpdateResource>
