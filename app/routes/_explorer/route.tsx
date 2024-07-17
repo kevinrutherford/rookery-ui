@@ -27,7 +27,7 @@ export type ExplorerContext = {
 
 const ExplorerLayout = () => {
   const location = useLocation()
-  const feedSelection = location.search
+  const feedSelection = location.search === '' ? '?f=lt' : location.search
   const user = useLoaderData<typeof loader>()
   const username = user?.username
 
