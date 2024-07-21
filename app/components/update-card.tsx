@@ -3,15 +3,14 @@ import { AccountResource } from '~/api-resources/account'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import ActionCard from './action-card'
+import { CommentUpdateBody } from './comment-update-body'
 import { lookupResource } from './lookup-resource'
 import { TimelinePage } from './timeline-page'
 
 const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
   switch (update.type) {
     case 'update:comment-created': return (
-      <div>
-        Commented: &ldquo;{update.attributes.content}&rdquo;
-      </div>
+      <CommentUpdateBody update={update} />
     )
     case 'update:community-created': return (
       <div>

@@ -29,6 +29,8 @@ const updateCommentCreated = t.type({
   }),
 })
 
+export type UpdateCommentCreated = t.TypeOf<typeof updateCommentCreated>
+
 const updateCommunityCreated = t.type({
   type: t.literal('update:community-created'),
   id: t.string,
