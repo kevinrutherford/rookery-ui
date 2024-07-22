@@ -61,15 +61,15 @@ export default function App() {
   }, [revalidate])
 
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Meta />
         <Links />
       </head>
-      <body className="h-screen bg-slate-200 text-slate-600">
-        <div className="min-h-screen h-full flex flex-col">
+      <body className='h-screen text-slate-600'>
+        <div className='min-h-screen h-full flex flex-col'>
           <Outlet />
         </div>
         <ScrollRestoration />

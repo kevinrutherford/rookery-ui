@@ -56,7 +56,7 @@ const ExplorerLayout = () => {
         <Container>
           <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
             <Column>
-              <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
+              <ul className={`p-4 bg-${theme}-100 mb-4 rounded-md`}>
                 { O.isSome(response.username) && (
                   <li className='inline mr-6 mt-6 mb-6'>
                     <Link
@@ -92,7 +92,7 @@ const ExplorerLayout = () => {
                   : ((feedSelection === '?f=lt') ? <LocalTimeline /> : <FederatedTimeline />) }
             </Column>
             <Column>
-              <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
+              <ul className={`p-4 bg-${theme}-100 mb-4 rounded-md`}>
                 {Object.values(contentNavItems).map((item) => (
                   <li key={item.route} className='inline mr-6 mt-6 mb-6'>
                     <NavLink

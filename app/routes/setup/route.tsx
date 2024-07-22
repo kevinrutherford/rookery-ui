@@ -17,7 +17,7 @@ const SetUpCommunity: FC = () => {
     <Container>
       <Card>
         <h3 className='font-semibold mb-6'>Let&apos;s get your community set up</h3>
-        <fetcher.Form method="post">
+        <fetcher.Form method='post'>
           <TextField label='Name' attr='name' />
           <TextField label='Affiliation' attr='affiliation' />
           <TextArea label='Overview' attr='overview' />
@@ -67,6 +67,52 @@ const SetUpCommunity: FC = () => {
           <div className='bg-fuschia-200'></div>
           <div className='bg-pink-200'></div>
           <div className='bg-rose-200'></div>
+
+          <div className='bg-slate-400'></div>
+          <div className='bg-gray-400'></div>
+          <div className='bg-zinc-400'></div>
+          <div className='bg-neutral-400'></div>
+          <div className='bg-stone-400'></div>
+          <div className='bg-red-400'></div>
+          <div className='bg-orange-400'></div>
+          <div className='bg-amber-400'></div>
+          <div className='bg-yellow-400'></div>
+          <div className='bg-lime-400'></div>
+          <div className='bg-green-400'></div>
+          <div className='bg-emerald-400'></div>
+          <div className='bg-teal-400'></div>
+          <div className='bg-cyan-400'></div>
+          <div className='bg-sky-400'></div>
+          <div className='bg-blue-400'></div>
+          <div className='bg-indigo-400'></div>
+          <div className='bg-violet-400'></div>
+          <div className='bg-purple-400'></div>
+          <div className='bg-fuschia-400'></div>
+          <div className='bg-pink-400'></div>
+          <div className='bg-rose-400'></div>
+
+          <div className='bg-slate-500'></div>
+          <div className='bg-gray-500'></div>
+          <div className='bg-zinc-500'></div>
+          <div className='bg-neutral-500'></div>
+          <div className='bg-stone-500'></div>
+          <div className='bg-red-500'></div>
+          <div className='bg-orange-500'></div>
+          <div className='bg-amber-500'></div>
+          <div className='bg-yellow-500'></div>
+          <div className='bg-lime-500'></div>
+          <div className='bg-green-500'></div>
+          <div className='bg-emerald-500'></div>
+          <div className='bg-teal-500'></div>
+          <div className='bg-cyan-500'></div>
+          <div className='bg-sky-500'></div>
+          <div className='bg-blue-500'></div>
+          <div className='bg-indigo-500'></div>
+          <div className='bg-violet-500'></div>
+          <div className='bg-purple-500'></div>
+          <div className='bg-fuschia-500'></div>
+          <div className='bg-pink-500'></div>
+          <div className='bg-rose-500'></div>
 
           <SubmitButton label='Save' />
         </fetcher.Form>
