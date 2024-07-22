@@ -27,7 +27,7 @@ const ExplorerLayout = () => {
   const feedSelection = location.search === '' ? '?f=lt' : location.search
   const user = useLoaderData<typeof loader>()
   const username = user?.username
-  const theme = 'slate'
+  const theme = 'teal'
 
   return (
     <ExplorerContext.Provider value={{ feedSelection, theme }}>
