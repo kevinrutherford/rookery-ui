@@ -32,7 +32,7 @@ const ExplorerLayout = () => {
   return (
     <ExplorerContext.Provider value={{ feedSelection, theme }}>
       <AuthBar username={username} />
-      <div className={`bg-${theme}-200`}>
+      <div className={`h-full pt-16 overflow-hidden bg-${theme}-200`}>
         <Container>
           <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
             <Column>

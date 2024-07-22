@@ -19,7 +19,7 @@ export const AuthBar: FC<Props> = (props: Props) => {
   const explorer = useExplorer()
   const location = useLocation()
   return (
-    <div className={`mb-12 pt-4 pb-4 overflow-hidden bg-${explorer.theme}-100`}>
+    <div className={`pt-4 pb-4 overflow-hidden bg-${explorer.theme}-100`}>
       <Container>
         <div className='flex justify-between'>
           <span className='font-bold'>Community name</span>
