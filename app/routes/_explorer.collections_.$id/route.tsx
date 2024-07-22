@@ -10,6 +10,7 @@ import { parse } from '~/api-resources/parse'
 import { workResource  } from '~/api-resources/work'
 import { Card } from '~/components/card'
 import { CollectionTitle } from '~/components/collection-title'
+import { Subsection } from '~/components/subsection'
 import { authenticator } from '~/services/auth.server'
 import { AddEntry } from './add-entry'
 import { CollectionPage } from './collection-page'
@@ -53,6 +54,8 @@ export default function CollectionDetails() {
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <CollectionTitle name={page.name()} isPrivate={page.isPrivate()} />
         <p className='mb-8'>{page.description()}</p>
+      </div>
+      <Subsection title='Papers'>
         <ul className='overflow-y-auto mb-4'>
           { page.entries().map((ew) => (
             <li key={ew.entry.id} className='mb-4'>
@@ -61,7 +64,7 @@ export default function CollectionDetails() {
           ))
           }
         </ul>
-      </div>
+      </Subsection>
       { data.authenticatedUser && <AddEntry collectionId={page.id()} /> }
     </div>
   )

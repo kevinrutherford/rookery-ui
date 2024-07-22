@@ -13,6 +13,7 @@ import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
 import { InternalLink } from '~/components/internal-link'
+import { Subsection } from '~/components/subsection'
 import { authenticator } from '~/services/auth.server'
 import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
@@ -71,14 +72,13 @@ export default function CollectionDetails() {
           </div>
         </div>
       </div>
-      <p className='font-semibold mb-4'>
-        Conversation
-      </p>
-      <div className='flex flex-col overflow-hidden'>
-        <div className='overflow-y-auto'>
-          <Replies comments={entry.comments()} resources={response.entry.included} />
+      <Subsection title='Conversation'>
+        <div className='flex flex-col overflow-hidden'>
+          <div className='overflow-y-auto'>
+            <Replies comments={entry.comments()} resources={response.entry.included} />
+          </div>
         </div>
-      </div>
+      </Subsection>
       { response.authenticatedUser && <AddComment entryId={entry.id()} /> }
     </div>
   )

@@ -2,6 +2,7 @@ import { FC } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { EntryResource } from '~/api-resources/entry'
 import { WorkResource } from '~/api-resources/work'
+import { Card } from '~/components/card'
 import { InternalLink } from '~/components/internal-link'
 
 const title = (work: WorkResource) => {
@@ -21,7 +22,7 @@ type Props = {
 }
 
 export const EntryCard: FC<Props> = (props: Props) => (
-  <div className='bg-slate-100 mb-4 p-4 rounded-md'>
+  <Card>
     <InternalLink to={`/entries/${props.entry.id}`}>
       <p className='mb-4'>{title(props.work)}</p>
     </InternalLink>
@@ -31,6 +32,6 @@ export const EntryCard: FC<Props> = (props: Props) => (
         Added <ReactTimeAgo date={props.entry.attributes.addedAt} />
       </div>
     </div>
-  </div>
+  </Card>
 )
 
