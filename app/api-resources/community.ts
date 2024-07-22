@@ -12,6 +12,7 @@ export const communityResource = t.intersection([
       name: t.string,
       affiliation: t.string,
       overview: t.array(t.string),
+      theme: t.string,
     }),
   }),
 ])

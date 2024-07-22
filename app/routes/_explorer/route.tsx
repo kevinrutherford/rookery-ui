@@ -43,11 +43,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 const ExplorerLayout = () => {
   const location = useLocation()
   const feedSelection = location.search === '' ? '?f=lt' : location.search
-  const theme = 'indigo'
   const response = pipe(
     useLoaderData<unknown>(),
     parse(communityResponse),
   )
+  const theme = response.community.data.attributes.theme
 
   return (
     <ExplorerContext.Provider value={{ feedSelection, theme }}>
