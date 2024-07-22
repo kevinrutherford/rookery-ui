@@ -2,6 +2,7 @@ import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
 import { accountIdentifier } from './account'
 import { communityIdentifier } from './community'
+import { entryIdentifier } from './entry'
 import { workIdentifier } from './work'
 
 const classicUpdate = t.type({
@@ -26,6 +27,8 @@ const updateCommentCreated = t.type({
   }),
   relationships: t.type({
     actor: t.type({ data: accountIdentifier }),
+    entry: t.type({ data: entryIdentifier }),
+    work: t.type({ data: workIdentifier }),
   }),
 })
 

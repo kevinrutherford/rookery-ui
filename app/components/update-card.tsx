@@ -10,7 +10,7 @@ import { TimelinePage } from './timeline-page'
 const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
   switch (update.type) {
     case 'update:comment-created': return (
-      <CommentUpdateBody update={update} />
+      <CommentUpdateBody update={update} related={page.includes} />
     )
     case 'update:community-created': return (
       <div>
