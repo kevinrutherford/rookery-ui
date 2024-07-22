@@ -60,10 +60,12 @@ export default function CollectionDetails() {
     <div className='flex flex-col overflow-hidden'>
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <p className='mb-4 font-semibold'>{entry.title()}</p>
-        <div className='text-sm text-slate-500 flex justify-between'>
-          <InternalLink to={`/works/${encodeURIComponent(entry.work.id)}`}>Details</InternalLink>
+        <div className='text-sm flex justify-between'>
+          <InternalLink to={`/works/${encodeURIComponent(entry.work.id)}`}>
+            Authors, abstract, history, etc
+          </InternalLink>
           <div>
-            Added to <InternalLink to={`/collections/${entry.collectionId()}`}>
+            Added to collection <InternalLink to={`/collections/${entry.collectionId()}`}>
               {entry.collectionName()}
             </InternalLink> <ReactTimeAgo date={entry.addedAt()} />
           </div>

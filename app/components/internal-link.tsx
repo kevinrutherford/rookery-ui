@@ -13,7 +13,7 @@ export const InternalLink: FC<Props> = (props: Props) => {
   return (
     <Link
       to={`${props.to}${ctx.feedSelection}`}
-      className='inline font-semibold hover:underline'
+      className='inline font-medium hover:underline'
     >
       {props.children}
     </Link>

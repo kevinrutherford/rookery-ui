@@ -21,16 +21,16 @@ type Props = {
 }
 
 export const EntryCard: FC<Props> = (props: Props) => (
-  <div className='bg-slate-100 mb-4 p-4 rounded-md hover:shadow-lg'>
+  <div className='bg-slate-100 mb-4 p-4 rounded-md'>
     <InternalLink to={`/entries/${props.entry.id}`}>
       <p className='mb-4'>{title(props.work)}</p>
-      <div className='text-sm text-slate-500 flex justify-between'>
-        <span>{props.entry.attributes.commentsCount} comments</span>
-        <div>
-          Added <ReactTimeAgo date={props.entry.attributes.addedAt} />
-        </div>
-      </div>
     </InternalLink>
+    <div className='text-sm text-slate-500 flex justify-between'>
+      <span>{props.entry.attributes.commentsCount} comments</span>
+      <div>
+        Added <ReactTimeAgo date={props.entry.attributes.addedAt} />
+      </div>
+    </div>
   </div>
 )
 
