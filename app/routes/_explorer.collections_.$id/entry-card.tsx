@@ -2,7 +2,7 @@ import { FC } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { EntryResource } from '~/api-resources/entry'
 import { WorkResource } from '~/api-resources/work'
-import { Navigate } from '~/components/navigate'
+import { InternalLink } from '~/components/internal-link'
 
 const title = (work: WorkResource) => {
   switch (work.attributes.crossrefStatus) {
@@ -22,7 +22,7 @@ type Props = {
 
 export const EntryCard: FC<Props> = (props: Props) => (
   <div className='bg-slate-100 mb-4 p-4 rounded-md hover:shadow-lg'>
-    <Navigate to={`/entries/${props.entry.id}`}>
+    <InternalLink to={`/entries/${props.entry.id}`}>
       <p className='mb-4'>{title(props.work)}</p>
       <div className='text-sm text-slate-500 flex justify-between'>
         <span>{props.entry.attributes.commentsCount} comments</span>
@@ -30,7 +30,7 @@ export const EntryCard: FC<Props> = (props: Props) => (
           Added <ReactTimeAgo date={props.entry.attributes.addedAt} />
         </div>
       </div>
-    </Navigate>
+    </InternalLink>
   </div>
 )
 

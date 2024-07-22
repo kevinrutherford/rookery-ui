@@ -12,7 +12,7 @@ import { entryResource } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
-import { Navigate } from '~/components/navigate'
+import { InternalLink } from '~/components/internal-link'
 import { authenticator } from '~/services/auth.server'
 import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
@@ -61,11 +61,11 @@ export default function CollectionDetails() {
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <p className='mb-4 font-semibold'>{entry.title()}</p>
         <div className='text-sm text-slate-500 flex justify-between'>
-          <Navigate to={`/works/${encodeURIComponent(entry.work.id)}`}>Details</Navigate>
+          <InternalLink to={`/works/${encodeURIComponent(entry.work.id)}`}>Details</InternalLink>
           <div>
-            Added to <Navigate to={`/collections/${entry.collectionId()}`}>
+            Added to <InternalLink to={`/collections/${entry.collectionId()}`}>
               {entry.collectionName()}
-            </Navigate> <ReactTimeAgo date={entry.addedAt()} />
+            </InternalLink> <ReactTimeAgo date={entry.addedAt()} />
           </div>
         </div>
       </div>

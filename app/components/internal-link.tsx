@@ -7,13 +7,13 @@ type Props = {
   children: ReactNode,
 }
 
-export const Navigate: FC<Props> = (props: Props) => {
+export const InternalLink: FC<Props> = (props: Props) => {
   const ctx = useOutletContext<ExplorerContext>()
 
   return (
     <Link
       to={`${props.to}${ctx.feedSelection}`}
-      className='inline hover:underline'
+      className='inline font-semibold hover:underline'
     >
       {props.children}
     </Link>
