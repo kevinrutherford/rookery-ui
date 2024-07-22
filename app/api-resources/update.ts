@@ -22,7 +22,6 @@ const updateCommentCreated = t.type({
   type: t.literal('update:comment-created'),
   id: t.string,
   attributes: t.type({
-    content: t.string,
     occurred_at: tt.DateFromISOString,
   }),
   relationships: t.type({
