@@ -12,7 +12,7 @@ const communityResponse = t.type({
 })
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const value = await api.fetchCommunity(request)
+  const value = await api.fetchCommunity(request) // SMELL -- already fetched by the explorer
   return json(value)
 }
 
