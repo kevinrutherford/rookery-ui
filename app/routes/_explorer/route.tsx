@@ -43,7 +43,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 const ExplorerLayout = () => {
   const location = useLocation()
   const feedSelection = location.search === '' ? '?f=lt' : location.search
-  const theme = 'teal'
+  const theme = 'indigo'
   const response = pipe(
     useLoaderData<unknown>(),
     parse(communityResponse),
