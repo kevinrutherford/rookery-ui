@@ -1,9 +1,9 @@
-import { Link } from '@remix-run/react'
 import { AccountResource } from '~/api-resources/account'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import ActionCard from './action-card'
 import { CommentUpdateBody } from './comment-update-body'
+import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 import { TimelinePage } from './timeline-page'
 
@@ -19,9 +19,10 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
     )
     case 'update:work-not-found': return (
       <div>
-        Could not find a paper with DOI <Link to={`/works/${encodeURIComponent((lookupResource(page.includes, update.relationships.work) as WorkResource).attributes.doi)}`} className='inline hover:underline'>
+        Could not find a paper with DOI&nbsp;
+        <InternalLink to={`/works/${encodeURIComponent((lookupResource(page.includes, update.relationships.work) as WorkResource).attributes.doi)}`}>
           {(lookupResource(page.includes, update.relationships.work) as WorkResource).attributes.doi}
-        </Link>.
+        </InternalLink>.
       </div>
     )
     default: return (

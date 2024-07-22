@@ -1,6 +1,10 @@
-import { Link, useOutletContext  } from '@remix-run/react'
+import { Link  } from '@remix-run/react'
 import { FC, ReactNode } from 'react'
-import { ExplorerContext } from '~/routes/_explorer/route'
+import { useExplorer } from './use-explorer'
+
+export type ExplorerContext = {
+  feedSelection: string,
+}
 
 type Props = {
   to: string,
@@ -8,11 +12,11 @@ type Props = {
 }
 
 export const InternalLink: FC<Props> = (props: Props) => {
-  const ctx = useOutletContext<ExplorerContext>()
+  const explorer = useExplorer()
 
   return (
     <Link
-      to={`${props.to}${ctx.feedSelection}`}
+      to={`${props.to}${explorer.feedSelection}`}
       className='inline font-medium hover:underline'
     >
       {props.children}
