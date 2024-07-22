@@ -27,12 +27,13 @@ const ExplorerLayout = () => {
   const feedSelection = location.search === '' ? '?f=lt' : location.search
   const user = useLoaderData<typeof loader>()
   const username = user?.username
+  const theme = 'slate'
 
   return (
-    <>
+    <ExplorerContext.Provider value={{ feedSelection, theme }}>
       <AuthBar username={username} />
-      <Container>
-        <ExplorerContext.Provider value={{ feedSelection }}>
+      <div className={`bg-${theme}-200`}>
+        <Container>
           <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
             <Column>
               <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
@@ -88,9 +89,9 @@ const ExplorerLayout = () => {
               <Outlet />
             </Column>
           </div>
-        </ExplorerContext.Provider>
-      </Container>
-    </>
+        </Container>
+      </div>
+    </ExplorerContext.Provider>
   )
 }
 

@@ -2,6 +2,7 @@ import { createContext, useContext } from 'react'
 
 type ExplorerCtx = {
   feedSelection: string,
+  theme: string,
 }
 
 export const ExplorerContext = createContext<ExplorerCtx | null>(null)
