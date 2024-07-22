@@ -1,5 +1,6 @@
 import { ActionFunctionArgs } from '@remix-run/node'
 import { Form, Link, useLocation } from '@remix-run/react'
+import * as O from 'fp-ts/lib/Option.js'
 import { FC } from 'react'
 import { Container } from '~/components/container'
 import { useExplorer } from '~/components/use-explorer'
@@ -12,7 +13,8 @@ export async function action({ request }: ActionFunctionArgs) {
 };
 
 type Props = {
-  username?: string,
+  communityName: string,
+  username: O.Option<string>,
 }
 
 export const AuthBar: FC<Props> = (props: Props) => {
@@ -22,16 +24,16 @@ export const AuthBar: FC<Props> = (props: Props) => {
     <div className={`pt-4 pb-4 overflow-hidden bg-${explorer.theme}-100`}>
       <Container>
         <div className='flex justify-between'>
-          <span className='font-bold'>Community name</span>
+          <span className='font-bold'>{props.communityName}</span>
           {
-            (props.username)
+            O.isSome(props.username)
               ? (
-                <span>Logged in as <span className='font-semibold'>{props.username}</span></span>
+                <span>Logged in as <span className='font-semibold'>{props.username.value}</span></span>
               )
               : ''
           }
           {
-            (props.username)
+            O.isSome(props.username)
               ? (
                 <Form method='post' action={`/authbar?returnTo=${location.pathname}`}>
                   <button type="submit">

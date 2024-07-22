@@ -6,6 +6,13 @@ import {
   useLoaderData,
   useLocation,
 } from '@remix-run/react'
+import { pipe } from 'fp-ts/lib/function.js'
+import * as O from 'fp-ts/lib/Option.js'
+import * as t from 'io-ts'
+import * as tt from 'io-ts-types'
+import * as api from '~/api'
+import { communityResource } from '~/api-resources/community'
+import { parse } from '~/api-resources/parse'
 import { Card } from '~/components/card'
 import { Column } from '~/components/column'
 import { Container } from '~/components/container'
@@ -17,27 +24,40 @@ import { FederatedTimeline } from '../federatedtimeline/route'
 import { FollowingFeed } from '../followingfeed/route'
 import { LocalTimeline } from '../localtimeline/route'
 
+const communityResponse = t.type({
+  community: t.type({
+    data: communityResource,
+  }),
+  username: tt.optionFromNullable(t.string),
+})
+
 export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const community = await api.fetchCommunity(request)
   const user = await authenticator.isAuthenticated(request)
-  return json(user)
+  return json({
+    community,
+    username: user === null ? null : user.username,
+  })
 }
 
 const ExplorerLayout = () => {
   const location = useLocation()
   const feedSelection = location.search === '' ? '?f=lt' : location.search
-  const user = useLoaderData<typeof loader>()
-  const username = user?.username
   const theme = 'teal'
+  const response = pipe(
+    useLoaderData<unknown>(),
+    parse(communityResponse),
+  )
 
   return (
     <ExplorerContext.Provider value={{ feedSelection, theme }}>
-      <AuthBar username={username} />
+      <AuthBar username={response.username} communityName={response.community.data.attributes.name} />
       <div className={`h-full pt-16 overflow-hidden bg-${theme}-200`}>
         <Container>
           <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
             <Column>
               <ul className='p-4 bg-slate-100 mb-4 rounded-md'>
-                { user && (
+                { O.isSome(response.username) && (
                   <li className='inline mr-6 mt-6 mb-6'>
                     <Link
                       className={`${feedSelection === '?f=ff' ? 'border-b-4 border-slate-400' : ''}`}
@@ -55,7 +75,7 @@ const ExplorerLayout = () => {
                     Local
                   </Link>
                 </li>
-                { user && (
+                { O.isSome(response.username) && (
                   <li className='inline mr-6 mt-6 mb-6'>
                     <Link
                       className={`${feedSelection === '?f=ft' ? 'border-b-4 border-slate-400' : ''}`}
