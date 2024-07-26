@@ -18,7 +18,7 @@
     "@remix-run/react": "2.10.3",
     "@remix-run/serve": "2.10.3",
     "express": "4.19.2",
-    "fp-ts": "2.16.8",
+    "fp-ts": "2.16.9",
     "io-ts": "2.2.21",
     "io-ts-reporters": "2.0.1",
     "io-ts-types": "0.5.19",
