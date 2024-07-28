@@ -1,8 +1,8 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
-import { accountIdentifier } from './account'
 import { communityIdentifier } from './community'
 import { entryIdentifier } from './entry'
+import { memberIdentifier } from './member'
 import { workIdentifier } from './work'
 
 const classicUpdate = t.type({
@@ -14,7 +14,7 @@ const classicUpdate = t.type({
     content: t.string,
   }),
   relationships: t.type({
-    actor: t.type({ data: accountIdentifier }),
+    actor: t.type({ data: memberIdentifier }),
   }),
 })
 
@@ -25,7 +25,7 @@ const updateCommentCreated = t.type({
     occurred_at: tt.DateFromISOString,
   }),
   relationships: t.type({
-    actor: t.type({ data: accountIdentifier }),
+    actor: t.type({ data: memberIdentifier }),
     entry: t.type({ data: entryIdentifier }),
     work: t.type({ data: workIdentifier }),
   }),
@@ -40,7 +40,7 @@ const updateCommunityCreated = t.type({
     occurred_at: tt.DateFromISOString,
   }),
   relationships: t.type({
-    actor: t.type({ data: accountIdentifier }),
+    actor: t.type({ data: memberIdentifier }),
     community: t.type({ data: tt.optionFromNullable(communityIdentifier) }),
   }),
 })
@@ -52,7 +52,7 @@ const updateWorkNotFound = t.type({
     occurred_at: tt.DateFromISOString,
   }),
   relationships: t.type({
-    actor: t.type({ data: accountIdentifier }),
+    actor: t.type({ data: memberIdentifier }),
     work: t.type({ data: workIdentifier }),
   }),
 })

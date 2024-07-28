@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
 import ReactTimeAgo from 'react-time-ago'
-import { AccountResource } from '~/api-resources/account'
+import { MemberResource } from '~/api-resources/member'
 import { Card } from '~/components/card'
 
 type Props = {
-  actor: AccountResource,
+  actor: MemberResource,
   timestamp: Date,
   children: ReactNode,
 }

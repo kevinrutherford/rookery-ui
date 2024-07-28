@@ -1,4 +1,4 @@
-import { AccountResource } from '~/api-resources/account'
+import { MemberResource } from '~/api-resources/member'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import ActionCard from './action-card'
@@ -44,7 +44,7 @@ type Props = {
 }
 
 export default function UpdateCard(props: Props) {
-  const actor = lookupResource(props.page.includes, props.update.relationships.actor) as AccountResource
+  const actor = lookupResource(props.page.includes, props.update.relationships.actor) as MemberResource
   return (
     <ActionCard actor={actor} timestamp={props.update.attributes.occurred_at}>
       { renderUpdate(props.update, props.page) }

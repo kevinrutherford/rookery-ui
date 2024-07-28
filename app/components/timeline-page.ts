@@ -1,16 +1,16 @@
 import { pipe } from 'fp-ts/lib/function.js'
 import * as O from 'fp-ts/lib/Option.js'
 import * as RA from 'fp-ts/lib/ReadonlyArray.js'
-import { AccountResource } from '~/api-resources/account'
 import { CommunityResource } from '~/api-resources/community'
 import { EntryResource } from '~/api-resources/entry'
+import { MemberResource } from '~/api-resources/member'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import { LocalTimelineResponse } from '~/routes/localtimeline/route'
 
 export class TimelinePage {
   readonly updates: ReadonlyArray<UpdateResource>
-  readonly includes: ReadonlyArray<AccountResource | CommunityResource | EntryResource | WorkResource>
+  readonly includes: ReadonlyArray<MemberResource | CommunityResource | EntryResource | WorkResource>
   readonly community: O.Option<CommunityResource>
 
   constructor(response: LocalTimelineResponse) {
