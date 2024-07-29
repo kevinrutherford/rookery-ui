@@ -6,7 +6,7 @@ export const get = async (path: string, request: Request) => {
     'Accept': 'application/json',
   }
   if (user)
-    headers['Authorization'] = `Bearer ${process.env.DEVELOPMENT_BEARER_TOKEN}`
+    headers['Authorization'] = `Bearer ${user.token}`
   const response = await fetch(`http://views:44002${path}`, {
     method: 'GET',
     headers,

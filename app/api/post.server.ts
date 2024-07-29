@@ -6,7 +6,7 @@ export const post = async (path: string, body: object, request: Request) => {
     'Content-Type': 'application/json',
   }
   if (user)
-    headers['Authorization'] = `Bearer ${process.env.DEVELOPMENT_BEARER_TOKEN}`
+    headers['Authorization'] = `Bearer ${user.token}` // SMELL -- same as for GET
   return fetch(`http://commands:44001${path}`, {
     method: 'POST',
     headers,

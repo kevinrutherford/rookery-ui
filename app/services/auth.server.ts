@@ -3,8 +3,16 @@ import { FormStrategy } from 'remix-auth-form'
 import invariant from 'tiny-invariant'
 import { sessionStorage } from '~/services/session.server'
 
+const hardcodedUsers = new Map([
+  [process.env.USER_1_USERNAME, process.env.USER_1_ID],
+  [process.env.USER_2_USERNAME, process.env.USER_2_ID],
+  [process.env.USER_3_USERNAME, process.env.USER_3_ID],
+])
+
 export type User = {
+  id: string,
   username: string,
+  token: string,
 }
 
 export const authenticator = new Authenticator<User>(sessionStorage)
@@ -20,8 +28,14 @@ authenticator.use(
     invariant(typeof password === 'string', 'password must be a string')
     invariant(password.length > 0, 'password must not be empty')
 
-    if (username === process.env.DEVELOPMENT_USERNAME)
-      return { username } satisfies User
+    const userId = hardcodedUsers.get(username)
+    if (userId) {
+      return {
+        id: userId,
+        username,
+        token: userId,
+      } satisfies User
+    }
 
     throw new Error('Unknown username')
   }),
