@@ -46,7 +46,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 
 export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: move to AddComment?
   const formData = await request.formData()
-  await api.createComment(request)
+  await api.createComment(formData, request)
   return redirect(`/entries/${formData.get('entryId')}`) // SMELL: HATEOAS here?
 }
 
