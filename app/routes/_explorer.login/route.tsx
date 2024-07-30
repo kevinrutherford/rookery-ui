@@ -3,9 +3,12 @@ import { Form } from '@remix-run/react'
 import { Card } from '~/components/card'
 import { Container } from '~/components/container'
 import { SubmitButton, TextField } from '~/components/forms'
+import { useExplorer } from '~/components/use-explorer'
 import { authenticator } from '~/services/auth.server'
 
+// SMELL -- duplicate styling on the password input field
 export default function LoginScreen() {
+  const explorer = useExplorer()
   return (
     <Container>
       <Card>
@@ -20,7 +23,7 @@ export default function LoginScreen() {
             </div>
             <div className='md:w-2/3'>
               <input type='password' name='password' required
-                className='bg-slate-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
+                className={`bg-${explorer.theme}-100 appearance-none border-2 border-slate-100 rounded w-full py-2 px-4 text-slate-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500`}
               />
             </div>
           </div>
