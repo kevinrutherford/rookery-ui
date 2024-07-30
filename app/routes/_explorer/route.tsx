@@ -41,11 +41,17 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 const ExplorerLayout = () => {
   const location = useLocation()
-  const feedSelection = location.search === '' ? '?f=lt' : location.search
   const response = pipe(
     useLoaderData<unknown>(),
     parse(communityResponse),
   )
+  const feedSelection = location.search === '' ? pipe(
+    response.username,
+    O.match(
+      () => '?f=lt', // SMELL -- duplicated values
+      () => '?f=ff', // SMELL -- duplicated values
+    ),
+  ): location.search
   const theme = response.community.data.attributes.theme
 
   return (

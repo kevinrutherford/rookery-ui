@@ -14,7 +14,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 type Props = {
   communityName: string,
-  username: O.Option<string>,
+  username: O.Option<string>, // SMELL -- coupling; split into logged-in vs logged-out components
 }
 
 export const AuthBar: FC<Props> = (props: Props) => {
