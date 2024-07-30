@@ -20,7 +20,6 @@ import { contentNavItems } from '~/components/content-nav-items'
 import { ExplorerContext } from '~/components/use-explorer'
 import { authenticator } from '~/services/auth.server'
 import { AuthBar } from '../authbar/route'
-import { FederatedTimeline } from '../federatedtimeline/route'
 import { FollowingFeed } from '../followingfeed/route'
 import { LocalTimeline } from '../localtimeline/route'
 
@@ -75,21 +74,10 @@ const ExplorerLayout = () => {
                     Local
                   </Link>
                 </li>
-                { O.isSome(response.username) && (
-                  <li className='inline mr-6 mt-6 mb-6'>
-                    <Link
-                      className={`${feedSelection === '?f=ft' ? 'border-b-4 border-slate-400' : ''}`}
-                      to={`${location.pathname}?f=ft`}
-                    >
-                      Federated
-                    </Link>
-                  </li>
-                )}
               </ul>
               {
-                (feedSelection === '?f=ff')
-                  ? <FollowingFeed />
-                  : ((feedSelection === '?f=lt') ? <LocalTimeline /> : <FederatedTimeline />) }
+                (feedSelection === '?f=ff') ? <FollowingFeed /> : <LocalTimeline />
+              }
             </Column>
             <Column>
               <ul className={`p-4 bg-${theme}-100 mb-4 rounded-md`}>
