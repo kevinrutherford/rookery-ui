@@ -6,6 +6,7 @@ import { UpdateCommentCreated } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
+import { PaperTitle } from './paper-title'
 
 type Props = {
   update: UpdateCommentCreated,
@@ -26,7 +27,9 @@ export const CommentUpdateBody: FC<Props> = (props: Props) => {
   }
   return (
     <div>
-      Commented on <InternalLink to={`/entries/${entry.id}`}>{title}</InternalLink>
+      Commented on <InternalLink to={`/entries/${entry.id}`}>
+        <PaperTitle text={title} />
+      </InternalLink>
     </div>
   )
 }

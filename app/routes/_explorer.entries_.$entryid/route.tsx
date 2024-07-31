@@ -13,6 +13,7 @@ import { parse } from '~/api-resources/parse'
 import { workResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
 import { InternalLink } from '~/components/internal-link'
+import { PaperTitle } from '~/components/paper-title'
 import { Subsection } from '~/components/subsection'
 import { authenticator } from '~/services/auth.server'
 import { AddComment } from './add-comment'
@@ -60,7 +61,9 @@ export default function CollectionDetails() {
   return (
     <div className='flex flex-col overflow-hidden'>
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
-        <p className='mb-4 font-semibold'>{entry.title()}</p>
+        <p className='mb-4'>
+          <PaperTitle text={entry.title()} />
+        </p>
         <div className='text-sm flex justify-between'>
           <InternalLink to={`/works/${encodeURIComponent(entry.work.id)}`}>
             Authors, abstract, history, etc
