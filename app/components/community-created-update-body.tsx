@@ -6,6 +6,7 @@ import { EntryResource } from '~/api-resources/entry'
 import { MemberResource } from '~/api-resources/member'
 import { UpdateCommunityCreated } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
+import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 
 type Props = {
@@ -22,7 +23,9 @@ export const CommunityCreatedUpdateBody: FC<Props> = (props: Props) => {
   const community = lookupResource(props.related, communityRef) as CommunityResource
   return (
     <div>
-      Created this community and called it &ldquo;{community.attributes.name}&rdquo;.
+      Created this community and called it &ldquo;<InternalLink to='/about'>
+        {community.attributes.name}
+      </InternalLink>&rdquo;.
     </div>
   )
 }
