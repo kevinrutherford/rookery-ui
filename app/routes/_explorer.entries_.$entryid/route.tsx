@@ -5,12 +5,9 @@ import * as t from 'io-ts'
 import ReactTimeAgo from 'react-time-ago'
 import invariant from 'tiny-invariant'
 import * as api from '~/api'
-import { collectionResource } from '~/api-resources/collection'
-import { commentResource } from '~/api-resources/comment'
 import { entryResource } from '~/api-resources/entry'
-import { memberResource } from '~/api-resources/member'
 import { parse } from '~/api-resources/parse'
-import { workResource } from '~/api-resources/work'
+import { relatedResources } from '~/api-resources/related-resources'
 import { Card } from '~/components/card'
 import { InternalLink } from '~/components/internal-link'
 import { PaperTitle } from '~/components/paper-title'
@@ -23,12 +20,7 @@ import { Replies } from './replies'
 const entryResponse = t.type({
   entry: t.type({
     data: entryResource,
-    included: t.array(t.union([
-      collectionResource,
-      commentResource,
-      memberResource,
-      workResource,
-    ])),
+    included: relatedResources,
   }),
   authenticatedUser: t.boolean,
 })

@@ -5,9 +5,8 @@ import * as t from 'io-ts'
 import invariant from 'tiny-invariant'
 import * as api from '~/api'
 import { collectionResource  } from '~/api-resources/collection'
-import { entryResource  } from '~/api-resources/entry'
 import { parse } from '~/api-resources/parse'
-import { workResource  } from '~/api-resources/work'
+import { relatedResources } from '~/api-resources/related-resources'
 import { Card } from '~/components/card'
 import { CollectionTitle } from '~/components/collection-title'
 import { Subsection } from '~/components/subsection'
@@ -19,7 +18,7 @@ import { EntryCard } from './entry-card'
 const collectionResponse = t.type({
   collection: t.type({
     data: collectionResource,
-    included: t.array(t.union([entryResource, workResource])),
+    included: relatedResources,
   }),
   authenticatedUser: t.boolean,
 })

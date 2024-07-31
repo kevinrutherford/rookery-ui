@@ -1,13 +1,19 @@
-import { CommunityResource } from '~/api-resources/community'
-import { EntryResource } from '~/api-resources/entry'
-import { MemberResource } from '~/api-resources/member'
-import { WorkResource } from '~/api-resources/work'
+import * as t from 'io-ts'
+import { collectionResource } from './collection'
+import { commentResource } from './comment'
+import { communityResource } from './community'
+import { entryResource } from './entry'
+import { memberResource } from './member'
+import { workResource } from './work'
 
-type AnyResource =
-  | CommunityResource
-  | EntryResource
-  | MemberResource
-  | WorkResource
+export const relatedResources = t.array(t.union([
+  collectionResource,
+  commentResource,
+  communityResource,
+  entryResource,
+  memberResource,
+  workResource,
+]))
 
-export type RelatedResources = ReadonlyArray<AnyResource>
+export type RelatedResources = t.TypeOf<typeof relatedResources>
 
