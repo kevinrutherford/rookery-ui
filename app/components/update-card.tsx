@@ -1,4 +1,5 @@
 import { MemberResource } from '~/api-resources/member'
+import { RelatedResources } from '~/api-resources/related-resources'
 import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import ActionCard from './action-card'
@@ -8,19 +9,19 @@ import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 import { TimelinePage } from './timeline-page'
 
-const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
+const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
   switch (update.type) {
     case 'update:comment-created': return (
-      <CommentUpdateBody update={update} related={page.includes} />
+      <CommentUpdateBody update={update} related={related} />
     )
     case 'update:community-created': return (
-      <CommunityCreatedUpdateBody update={update} related={page.includes} />
+      <CommunityCreatedUpdateBody update={update} related={related} />
     )
     case 'update:work-not-found': return (
       <div>
         Could not find a paper with DOI&nbsp;
-        <InternalLink to={`/works/${encodeURIComponent((lookupResource(page.includes, update.relationships.work) as WorkResource).attributes.doi)}`}>
-          {(lookupResource(page.includes, update.relationships.work) as WorkResource).attributes.doi}
+        <InternalLink to={`/works/${encodeURIComponent((lookupResource(related, update.relationships.work) as WorkResource).attributes.doi)}`}>
+          {(lookupResource(related, update.relationships.work) as WorkResource).attributes.doi}
         </InternalLink>.
       </div>
     )
@@ -46,7 +47,7 @@ export default function UpdateCard(props: Props) {
   const actor = lookupResource(props.page.includes, props.update.relationships.actor) as MemberResource
   return (
     <ActionCard actor={actor} timestamp={props.update.attributes.occurred_at}>
-      { renderUpdate(props.update, props.page) }
+      { renderUpdate(props.update, props.page.includes) }
     </ActionCard>
   )
 }
