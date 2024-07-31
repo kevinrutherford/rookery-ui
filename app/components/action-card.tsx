@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { MemberResource } from '~/api-resources/member'
 import { Card } from '~/components/card'
+import { InternalLink } from './internal-link'
 
 type Props = {
   actor: MemberResource,
@@ -18,10 +19,10 @@ export default function ActionCard(props: Props) {
           src={props.actor.attributes.avatar_url} />
         <div className='w-full'>
           <div className='flex justify-between mb-2 text-slate-500'>
-            <div>
+            <InternalLink to={`/members/${props.actor.id}`}>
               <span className='font-semibold mr-2'>{props.actor.attributes.display_name}</span>
               <span className='mr-4'>@{props.actor.attributes.username}</span>
-            </div>
+            </InternalLink>
             <ReactTimeAgo date={props.timestamp} timeStyle='twitter' />
           </div>
           { props.children }
