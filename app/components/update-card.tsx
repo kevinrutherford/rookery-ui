@@ -3,6 +3,7 @@ import { UpdateResource } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import ActionCard from './action-card'
 import { CommentUpdateBody } from './comment-update-body'
+import { CommunityCreatedUpdateBody } from './community-created-update-body'
 import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 import { TimelinePage } from './timeline-page'
@@ -13,9 +14,7 @@ const renderUpdate = (update: UpdateResource, page: TimelinePage) => {
       <CommentUpdateBody update={update} related={page.includes} />
     )
     case 'update:community-created': return (
-      <div>
-        Created this community &ldquo;{page.communityName()}&rdquo;.
-      </div>
+      <CommunityCreatedUpdateBody update={update} related={page.includes} />
     )
     case 'update:work-not-found': return (
       <div>

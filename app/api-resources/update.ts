@@ -45,6 +45,8 @@ const updateCommunityCreated = t.type({
   }),
 })
 
+export type UpdateCommunityCreated = t.TypeOf<typeof updateCommunityCreated>
+
 const updateWorkNotFound = t.type({
   type: t.literal('update:work-not-found'),
   id: t.string,
