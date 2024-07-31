@@ -2,16 +2,14 @@ import { pipe } from 'fp-ts/lib/function.js'
 import * as O from 'fp-ts/lib/Option.js'
 import { FC } from 'react'
 import { CommunityResource } from '~/api-resources/community'
-import { EntryResource } from '~/api-resources/entry'
-import { MemberResource } from '~/api-resources/member'
+import { RelatedResources } from '~/api-resources/related-resources'
 import { UpdateCommunityCreated } from '~/api-resources/update'
-import { WorkResource } from '~/api-resources/work'
 import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 
 type Props = {
   update: UpdateCommunityCreated,
-  related: ReadonlyArray<MemberResource | CommunityResource | EntryResource | WorkResource>,
+  related: RelatedResources,
 }
 
 export const CommunityCreatedUpdateBody: FC<Props> = (props: Props) => {

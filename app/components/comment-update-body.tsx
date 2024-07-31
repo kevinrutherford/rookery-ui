@@ -1,7 +1,6 @@
 import { FC } from 'react'
-import { CommunityResource } from '~/api-resources/community'
 import { EntryResource } from '~/api-resources/entry'
-import { MemberResource } from '~/api-resources/member'
+import { RelatedResources } from '~/api-resources/related-resources'
 import { UpdateCommentCreated } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import { InternalLink } from './internal-link'
@@ -10,7 +9,7 @@ import { PaperTitle } from './paper-title'
 
 type Props = {
   update: UpdateCommentCreated,
-  related: ReadonlyArray<MemberResource | CommunityResource | EntryResource | WorkResource>,
+  related: RelatedResources,
 }
 
 export const CommentUpdateBody: FC<Props> = (props: Props) => {

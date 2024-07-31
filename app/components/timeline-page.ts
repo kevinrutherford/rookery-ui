@@ -1,13 +1,10 @@
-import { CommunityResource } from '~/api-resources/community'
-import { EntryResource } from '~/api-resources/entry'
-import { MemberResource } from '~/api-resources/member'
+import { RelatedResources } from '~/api-resources/related-resources'
 import { UpdateResource } from '~/api-resources/update'
-import { WorkResource } from '~/api-resources/work'
 import { LocalTimelineResponse } from '~/routes/localtimeline/route'
 
 export class TimelinePage {
   readonly updates: ReadonlyArray<UpdateResource>
-  readonly includes: ReadonlyArray<MemberResource | CommunityResource | EntryResource | WorkResource>
+  readonly includes: RelatedResources
 
   constructor(response: LocalTimelineResponse) {
     this.updates = response.data
