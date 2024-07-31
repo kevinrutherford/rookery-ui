@@ -33,11 +33,18 @@ export default function CollectionDetails() {
     useLoaderData<unknown>(),
     parse(memberResponse),
   )
+  const profile = response.member.data.attributes
 
   return (
     <div className='flex flex-col overflow-hidden'>
-      <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
-        <p className='mb-4 font-semibold'>{response.member.data.attributes.display_name}</p>
+      <div className='flex flex-row gap-4 bg-white mb-4 p-4 rounded-md overflow-hidden'>
+        <img
+          className='w-1/4 rounded-full inline'
+          src={profile.avatar_url} />
+        <div>
+          <p className='text-4xl font-semibold'>{profile.display_name}</p>
+          <p className='text-2xl text-slate-400 font-semibold'>@{profile.username}</p>
+        </div>
       </div>
     </div>
   )
