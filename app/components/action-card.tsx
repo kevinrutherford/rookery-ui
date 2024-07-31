@@ -14,9 +14,11 @@ export default function ActionCard(props: Props) {
   return (
     <Card>
       <div className='flex flex-row gap-4'>
-        <img
-          className='h-10 w-10 rounded-full filter grayscale hover:grayscale-0'
-          src={props.actor.attributes.avatar_url} />
+        <InternalLink to={`/members/${props.actor.id}`}>
+          <img
+            className='h-10 w-10 rounded-full filter grayscale hover:grayscale-0'
+            src={props.actor.attributes.avatar_url} />
+        </InternalLink>
         <div className='w-full'>
           <div className='flex justify-between mb-2 text-slate-500'>
             <InternalLink to={`/members/${props.actor.id}`}>
