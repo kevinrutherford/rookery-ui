@@ -7,7 +7,6 @@ import { CommentUpdateBody } from './comment-update-body'
 import { CommunityCreatedUpdateBody } from './community-created-update-body'
 import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
-import { TimelinePage } from './timeline-page'
 
 const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
   switch (update.type) {
@@ -40,14 +39,14 @@ const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
 
 type Props = {
   update: UpdateResource,
-  page: TimelinePage,
+  related: RelatedResources,
 }
 
 export default function UpdateCard(props: Props) {
-  const actor = lookupResource(props.page.includes, props.update.relationships.actor) as MemberResource
+  const actor = lookupResource(props.related, props.update.relationships.actor) as MemberResource
   return (
     <ActionCard actor={actor} timestamp={props.update.attributes.occurred_at}>
-      { renderUpdate(props.update, props.page.includes) }
+      { renderUpdate(props.update, props.related) }
     </ActionCard>
   )
 }
