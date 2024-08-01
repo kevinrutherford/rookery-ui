@@ -14,8 +14,6 @@ const followingFeedResponse = t.type({
   included: relatedResources,
 })
 
-export type LocalTimelineResponse = t.TypeOf<typeof followingFeedResponse>
-
 export const loader = async ({ request }: LoaderFunctionArgs) => { // SMELL -- duplicated with all other feeds
   const value = await api.fetchTimeline('following', request)
   return json(value)
