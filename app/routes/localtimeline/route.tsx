@@ -7,8 +7,7 @@ import * as api from '~/api'
 import { parse } from '~/api-resources/parse'
 import { relatedResources } from '~/api-resources/related-resources'
 import { updateResource } from '~/api-resources/update'
-import { renderFeed } from '~/components/render-feed'
-import { TimelinePage } from '~/components/timeline-page'
+import { Feed } from '~/components/feed'
 
 const localTimelineResponse = t.type({
   data: t.array(updateResource),
@@ -42,8 +41,6 @@ export const LocalTimeline: FC = () => {
     parse(localTimelineResponse),
   )
 
-  const page = new TimelinePage(response)
-
-  return renderFeed(page)
+  return <Feed updates={response.data} related={response.included} />
 }
 
