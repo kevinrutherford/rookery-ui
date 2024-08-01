@@ -1,5 +1,6 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
+import { collectionIdentifier } from './collection'
 import { communityIdentifier } from './community'
 import { entryIdentifier } from './entry'
 import { memberIdentifier } from './member'
@@ -17,6 +18,20 @@ const classicUpdate = t.type({
     actor: t.type({ data: memberIdentifier }),
   }),
 })
+
+const updateCollectionCreated = t.type({
+  type: t.literal('update:collection-created'),
+  id: t.string,
+  attributes: t.type({
+    occurred_at: tt.DateFromISOString,
+  }),
+  relationships: t.type({
+    actor: t.type({ data: memberIdentifier }),
+    collection: t.type({ data: collectionIdentifier }),
+  }),
+})
+
+export type UpdateCollectionCreated = t.TypeOf<typeof updateCollectionCreated>
 
 const updateCommentCreated = t.type({
   type: t.literal('update:comment-created'),
@@ -63,6 +78,7 @@ export type UpdateWorkNotFound = t.TypeOf<typeof updateWorkNotFound>
 
 export const updateResource = t.union([
   classicUpdate,
+  updateCollectionCreated,
   updateCommentCreated,
   updateCommunityCreated,
   updateWorkNotFound,

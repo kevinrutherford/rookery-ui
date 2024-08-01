@@ -2,6 +2,7 @@ import { MemberResource } from '~/api-resources/member'
 import { RelatedResources } from '~/api-resources/related-resources'
 import { UpdateResource } from '~/api-resources/update'
 import ActionCard from './action-card'
+import { CollectionCreatedUpdateBody } from './collection-created-update-body'
 import { CommentUpdateBody } from './comment-update-body'
 import { CommunityCreatedUpdateBody } from './community-created-update-body'
 import { lookupResource } from './lookup-resource'
@@ -9,6 +10,9 @@ import { WorkNotFoundUpdateBody } from './work-not-found-update-body'
 
 const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
   switch (update.type) {
+    case 'update:collection-created': return (
+      <CollectionCreatedUpdateBody update={update} related={related} />
+    )
     case 'update:comment-created': return (
       <CommentUpdateBody update={update} related={related} />
     )
