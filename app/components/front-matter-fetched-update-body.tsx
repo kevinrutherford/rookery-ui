@@ -1,16 +1,16 @@
 import { FC } from 'react'
 import { RelatedResources } from '~/api-resources/related-resources'
-import { UpdateWorkFound } from '~/api-resources/update'
+import { UpdateFrontMatterFetched } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 
 type Props = {
-  update: UpdateWorkFound,
+  update: UpdateFrontMatterFetched,
   related: RelatedResources,
 }
 
-export const WorkFoundUpdateBody: FC<Props> = (props: Props) => {
+export const FrontMatterFetchedUpdateBody: FC<Props> = (props: Props) => {
   const work = lookupResource(props.related, props.update.relationships.work) as WorkResource
   return (
     <div>
