@@ -59,6 +59,8 @@ const updateWorkNotFound = t.type({
   }),
 })
 
+export type UpdateWorkNotFound = t.TypeOf<typeof updateWorkNotFound>
+
 export const updateResource = t.union([
   classicUpdate,
   updateCommentCreated,

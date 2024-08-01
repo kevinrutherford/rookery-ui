@@ -1,12 +1,11 @@
 import { MemberResource } from '~/api-resources/member'
 import { RelatedResources } from '~/api-resources/related-resources'
 import { UpdateResource } from '~/api-resources/update'
-import { WorkResource } from '~/api-resources/work'
 import ActionCard from './action-card'
 import { CommentUpdateBody } from './comment-update-body'
 import { CommunityCreatedUpdateBody } from './community-created-update-body'
-import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
+import { WorkNotFoundUpdateBody } from './work-not-found-update-body'
 
 const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
   switch (update.type) {
@@ -17,12 +16,7 @@ const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
       <CommunityCreatedUpdateBody update={update} related={related} />
     )
     case 'update:work-not-found': return (
-      <div>
-        Could not find a paper with DOI&nbsp;
-        <InternalLink to={`/works/${encodeURIComponent((lookupResource(related, update.relationships.work) as WorkResource).attributes.doi)}`}>
-          {(lookupResource(related, update.relationships.work) as WorkResource).attributes.doi}
-        </InternalLink>.
-      </div>
+      <WorkNotFoundUpdateBody update={update} related={related} />
     )
     default: return (
       <div className='flex-grow'>
