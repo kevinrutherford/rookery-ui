@@ -62,6 +62,20 @@ const updateCommunityCreated = t.type({
 
 export type UpdateCommunityCreated = t.TypeOf<typeof updateCommunityCreated>
 
+const updateDoiEntered = t.type({
+  type: t.literal('update:doi-entered'),
+  id: t.string,
+  attributes: t.type({
+    occurred_at: tt.DateFromISOString,
+  }),
+  relationships: t.type({
+    actor: t.type({ data: memberIdentifier }),
+    collection: t.type({ data: collectionIdentifier }),
+  }),
+})
+
+export type UpdateDoiEntered = t.TypeOf<typeof updateDoiEntered>
+
 const updateWorkNotFound = t.type({
   type: t.literal('update:work-not-found'),
   id: t.string,
@@ -81,6 +95,7 @@ export const updateResource = t.union([
   updateCollectionCreated,
   updateCommentCreated,
   updateCommunityCreated,
+  updateDoiEntered,
   updateWorkNotFound,
 ])
 
