@@ -24,22 +24,14 @@ const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
     case 'update:doi-entered': return (
       <DoiEnteredUpdateBody update={update} related={related} />
     )
-    case 'update:work-found': return (
+    case 'update:front-matter-fetched': return (
       <WorkFoundUpdateBody update={update} related={related} />
     )
     case 'update:work-not-found': return (
       <WorkNotFoundUpdateBody update={update} related={related} />
     )
-    default: return (
-      <div className='flex-grow text-red-500'>
-        <p>
-          {update.attributes.action}
-        </p>
-        <p>
-          {update.attributes.content}
-        </p>
-      </div>
-    )
+    default:
+      throw new Error(`Unknown update type: ${JSON.stringify(update)}`)
   }
 }
 

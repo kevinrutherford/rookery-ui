@@ -6,19 +6,6 @@ import { entryIdentifier } from './entry'
 import { memberIdentifier } from './member'
 import { workIdentifier } from './work'
 
-const classicUpdate = t.type({
-  type: t.literal('update'),
-  id: t.string,
-  attributes: t.type({
-    occurred_at: tt.DateFromISOString,
-    action: t.string,
-    content: t.string,
-  }),
-  relationships: t.type({
-    actor: t.type({ data: memberIdentifier }),
-  }),
-})
-
 const updateCollectionCreated = t.type({
   type: t.literal('update:collection-created'),
   id: t.string,
@@ -79,7 +66,7 @@ const updateDoiEntered = t.type({
 export type UpdateDoiEntered = t.TypeOf<typeof updateDoiEntered>
 
 const updateWorkFound = t.type({
-  type: t.literal('update:work-found'),
+  type: t.literal('update:front-matter-fetched'),
   id: t.string,
   attributes: t.type({
     occurred_at: tt.DateFromISOString,
@@ -107,7 +94,6 @@ const updateWorkNotFound = t.type({
 export type UpdateWorkNotFound = t.TypeOf<typeof updateWorkNotFound>
 
 export const updateResource = t.union([
-  classicUpdate,
   updateCollectionCreated,
   updateCommentCreated,
   updateCommunityCreated,
