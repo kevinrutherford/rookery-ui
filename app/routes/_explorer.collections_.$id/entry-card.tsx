@@ -5,7 +5,7 @@ import { WorkResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
 import { InternalLink } from '~/components/internal-link'
 
-const title = (work: WorkResource) => {
+export const title = (work: WorkResource) => {
   switch (work.attributes.crossrefStatus) {
     case 'not-determined':
     case 'not-found':

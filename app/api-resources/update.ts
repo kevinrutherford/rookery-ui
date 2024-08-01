@@ -71,6 +71,8 @@ const updateDoiEntered = t.type({
   relationships: t.type({
     actor: t.type({ data: memberIdentifier }),
     collection: t.type({ data: collectionIdentifier }),
+    entry: t.type({ data: entryIdentifier }),
+    work: t.type({ data: workIdentifier }),
   }),
 })
 
