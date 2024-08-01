@@ -35,7 +35,7 @@
   "devDependencies": {
     "@remix-run/dev": "2.10.3",
     "@remix-run/eslint-config": "2.10.3",
-    "@stylistic/eslint-plugin": "2.4.0",
+    "@stylistic/eslint-plugin": "2.6.1",
     "@stylistic/eslint-plugin-ts": "2.4.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
