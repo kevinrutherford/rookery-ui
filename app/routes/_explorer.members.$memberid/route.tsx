@@ -44,7 +44,7 @@ export default function CollectionDetails() {
         <div>
           <p className='text-4xl font-semibold'>{profile.display_name}</p>
           <p className='text-2xl mb-8 text-slate-400 font-semibold'>@{profile.username}</p>
-          <p>Following: 0</p>
+          <p>Following: {profile.followingCount}</p>
         </div>
       </div>
     </div>

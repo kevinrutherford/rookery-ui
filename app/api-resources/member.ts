@@ -12,6 +12,7 @@ export const memberResource = t.intersection([
       username: t.string,
       display_name: t.string,
       avatar_url: t.string,
+      followingCount: t.number,
     }),
   }),
 ])
