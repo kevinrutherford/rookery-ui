@@ -43,7 +43,8 @@ export default function CollectionDetails() {
           src={profile.avatar_url} />
         <div>
           <p className='text-4xl font-semibold'>{profile.display_name}</p>
-          <p className='text-2xl text-slate-400 font-semibold'>@{profile.username}</p>
+          <p className='text-2xl mb-8 text-slate-400 font-semibold'>@{profile.username}</p>
+          <p>Following: 0</p>
         </div>
       </div>
     </div>
