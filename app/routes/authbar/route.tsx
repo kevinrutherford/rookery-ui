@@ -3,9 +3,8 @@ import { Form, Link, useLocation } from '@remix-run/react'
 import * as O from 'fp-ts/lib/Option.js'
 import { FC } from 'react'
 import { Container } from '~/components/container'
-import { InternalLink } from '~/components/internal-link'
 import { useExplorer } from '~/components/use-explorer'
-import { authenticator, User } from '~/services/auth.server'
+import { authenticator } from '~/services/auth.server'
 
 export async function action({ request }: ActionFunctionArgs) {
   const url = new URL(request.url)
@@ -15,7 +14,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 type Props = {
   communityName: string,
-  profile: O.Option<User>, // SMELL -- coupling; split into logged-in vs logged-out components
+  username: O.Option<string>, // SMELL -- coupling; split into logged-in vs logged-out components
 }
 
 export const AuthBar: FC<Props> = (props: Props) => {
@@ -27,16 +26,14 @@ export const AuthBar: FC<Props> = (props: Props) => {
         <div className='flex justify-between'>
           <span className='font-bold'>{props.communityName}</span>
           {
-            O.isSome(props.profile)
+            O.isSome(props.username)
               ? (
-                <span>Logged in as <InternalLink to={`/members/${props.profile.value.id}`}>
-                  {props.profile.value.username}
-                </InternalLink></span>
+                <span>Logged in as <span className='font-semibold'>{props.username.value}</span></span>
               )
               : ''
           }
           {
-            O.isSome(props.profile)
+            O.isSome(props.username)
               ? (
                 <Form method='post' action={`/authbar?returnTo=${location.pathname}`}>
                   <button type="submit">

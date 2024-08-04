@@ -1,4 +1,3 @@
-import * as t from 'io-ts'
 import { Authenticator } from 'remix-auth'
 import { FormStrategy } from 'remix-auth-form'
 import invariant from 'tiny-invariant'
@@ -10,13 +9,11 @@ const hardcodedUsers = new Map([
   [process.env.USER_3_USERNAME, process.env.USER_3_ID],
 ])
 
-export const memberProfile = t.type({
-  id: t.string,
-  username: t.string,
-  token: t.string,
-})
-
-export type User = t.TypeOf<typeof memberProfile>
+export type User = {
+  id: string,
+  username: string,
+  token: string,
+}
 
 export const authenticator = new Authenticator<User>(sessionStorage)
 

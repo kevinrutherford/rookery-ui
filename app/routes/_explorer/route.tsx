@@ -18,7 +18,7 @@ import { Column } from '~/components/column'
 import { Container } from '~/components/container'
 import { contentNavItems } from '~/components/content-nav-items'
 import { ExplorerContext } from '~/components/use-explorer'
-import { authenticator, memberProfile } from '~/services/auth.server'
+import { authenticator } from '~/services/auth.server'
 import { AuthBar } from '../authbar/route'
 import { FollowingFeed } from '../followingfeed/route'
 import { LocalTimeline } from '../localtimeline/route'
@@ -27,7 +27,7 @@ const communityResponse = t.type({
   community: t.type({
     data: communityResource,
   }),
-  profile: tt.optionFromNullable(memberProfile),
+  username: tt.optionFromNullable(t.string),
 })
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -35,7 +35,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request)
   return json({
     community,
-    profile: user,
+    username: user === null ? null : user.username,
   })
 }
 
@@ -46,24 +46,23 @@ const ExplorerLayout = () => {
     parse(communityResponse),
   )
   const feedSelection = location.search === '' ? pipe(
-    response.profile,
-    O.match( // SMELL -- duplicated conditional
+    response.username,
+    O.match(
       () => '?f=lt', // SMELL -- duplicated values
       () => '?f=ff', // SMELL -- duplicated values
     ),
   ): location.search
   const theme = response.community.data.attributes.theme
-  const communityName = response.community.data.attributes.name
 
   return (
     <ExplorerContext.Provider value={{ feedSelection, theme }}>
-      <AuthBar profile={response.profile} communityName={communityName} />
+      <AuthBar username={response.username} communityName={response.community.data.attributes.name} />
       <div className={`h-full pt-16 overflow-hidden bg-${theme}-200`}>
         <Container>
           <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
             <Column>
               <ul className={`p-4 bg-${theme}-100 mb-4 rounded-md`}>
-                { O.isSome(response.profile) && (
+                { O.isSome(response.username) && (
                   <li className='inline mr-6 mt-6 mb-6'>
                     <Link
                       className={`${feedSelection === '?f=ff' ? 'border-b-4 border-slate-400' : ''}`}
