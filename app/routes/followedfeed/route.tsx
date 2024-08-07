@@ -9,23 +9,23 @@ import { relatedResources } from '~/api-resources/related-resources'
 import { updateResource } from '~/api-resources/update'
 import { Feed } from '~/components/feed'
 
-const followingFeedResponse = t.type({
+const followedFeedResponse = t.type({
   data: t.array(updateResource),
   included: relatedResources,
 })
 
 export const loader = async ({ request }: LoaderFunctionArgs) => { // SMELL -- duplicated with all other feeds
-  const value = await api.fetchTimeline('following', request)
+  const value = await api.fetchTimeline('followed', request)
   return json(value)
 }
 
-export const FollowingFeed: FC = () => {
+export const FollowedFeed: FC = () => {
   const fetcher = useFetcher<typeof loader>()
 
   useEffect(() => { // SMELL -- duplicated with the other feeds
     const interval = setInterval(() => {
       if (fetcher.state === 'idle')
-        fetcher.load('/followingfeed')
+        fetcher.load('/followedfeed')
     }, 5000)
     return () => clearInterval(interval)
   }, [fetcher])
@@ -36,7 +36,7 @@ export const FollowingFeed: FC = () => {
 
   const response = pipe(
     timeline,
-    parse(followingFeedResponse),
+    parse(followedFeedResponse),
   )
 
   return <Feed updates={response.data} related={response.included} />

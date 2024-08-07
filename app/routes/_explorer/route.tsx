@@ -20,7 +20,7 @@ import { contentNavItems } from '~/components/content-nav-items'
 import { ExplorerContext } from '~/components/use-explorer'
 import { authenticator } from '~/services/auth.server'
 import { AuthBar } from '../authbar/route'
-import { FollowingFeed } from '../followingfeed/route'
+import { FollowedFeed } from '../followedfeed/route'
 import { LocalTimeline } from '../localtimeline/route'
 
 const communityResponse = t.type({
@@ -68,7 +68,7 @@ const ExplorerLayout = () => {
                       className={`${feedSelection === '?f=ff' ? 'border-b-4 border-slate-400' : ''}`}
                       to={`${location.pathname}?f=ff`}
                     >
-                      Following
+                      Followed
                     </Link>
                   </li>
                 )}
@@ -82,7 +82,7 @@ const ExplorerLayout = () => {
                 </li>
               </ul>
               {
-                (feedSelection === '?f=ff') ? <FollowingFeed /> : <LocalTimeline />
+                (feedSelection === '?f=ff') ? <FollowedFeed /> : <LocalTimeline />
               }
             </Column>
             <Column>
