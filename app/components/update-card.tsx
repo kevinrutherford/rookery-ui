@@ -15,7 +15,8 @@ const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
     case 'update:collection-created': return (
       <CollectionCreatedUpdateBody update={update} related={related} />
     )
-    case 'update:comment-created': return (
+    case 'update:comment-created':
+    case 'inbox-update:comment-created': return (
       <CommentUpdateBody update={update} related={related} />
     )
     case 'update:community-created': return (

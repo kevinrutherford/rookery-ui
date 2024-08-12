@@ -1,14 +1,14 @@
 import { FC } from 'react'
 import { EntryResource } from '~/api-resources/entry'
 import { RelatedResources } from '~/api-resources/related-resources'
-import { UpdateCommentCreated } from '~/api-resources/update'
+import { InboxUpdateCommentCreated, UpdateCommentCreated } from '~/api-resources/update'
 import { WorkResource } from '~/api-resources/work'
 import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 import { PaperTitle } from './paper-title'
 
 type Props = {
-  update: UpdateCommentCreated,
+  update: UpdateCommentCreated | InboxUpdateCommentCreated,
   related: RelatedResources,
 }
 

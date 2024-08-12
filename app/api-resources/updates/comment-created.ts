@@ -17,3 +17,16 @@ export const updateCommentCreated = t.type({
   }),
 })
 
+export const inboxUpdateCommentCreated = t.type({
+  type: t.literal('inbox-update:comment-created'),
+  id: t.string,
+  attributes: t.type({
+    occurred_at: tt.DateFromISOString,
+  }),
+  relationships: t.type({
+    actor: t.type({ data: memberIdentifier }),
+    entry: t.type({ data: entryIdentifier }),
+    work: t.type({ data: workIdentifier }),
+  }),
+})
+
