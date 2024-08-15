@@ -4,9 +4,12 @@ import invariant from 'tiny-invariant'
 import { sessionStorage } from '~/services/session.server'
 
 const hardcodedUsers = new Map([
-  [process.env.USER_1_USERNAME, process.env.USER_1_ID],
-  [process.env.USER_2_USERNAME, process.env.USER_2_ID],
-  [process.env.USER_3_USERNAME, process.env.USER_3_ID],
+  [process.env.USER_A1_USERNAME, process.env.USER_A1_ID],
+  [process.env.USER_A2_USERNAME, process.env.USER_A2_ID],
+  [process.env.USER_A3_USERNAME, process.env.USER_A3_ID],
+  [process.env.USER_B1_USERNAME, process.env.USER_B1_ID],
+  [process.env.USER_B2_USERNAME, process.env.USER_B2_ID],
+  [process.env.USER_B3_USERNAME, process.env.USER_B3_ID],
 ])
 
 export type User = {
