@@ -11,6 +11,7 @@ export const collectionResource = t.intersection([
     attributes: t.type({
       name: t.string,
       description: t.string,
+      discussionCount: t.number,
       isPrivate: t.boolean,
     }),
   }),

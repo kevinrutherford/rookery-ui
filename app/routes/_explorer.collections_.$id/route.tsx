@@ -54,7 +54,7 @@ export default function CollectionDetails() {
         <CollectionTitle name={page.name()} isPrivate={page.isPrivate()} />
         <p className='mb-8'>{page.description()}</p>
       </div>
-      <Subsection title='Papers'>
+      <Subsection title='Discussions'>
         <ul className='overflow-y-auto mb-4'>
           { page.entries().map((ew) => (
             <li key={ew.entry.id} className='mb-4'>
