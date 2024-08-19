@@ -19,9 +19,9 @@ export const DoiEnteredUpdateBody: FC<Props> = (props: Props) => {
   const work = lookupResource(props.related, props.update.relationships.work) as WorkResource
   return (
     <div>
-      Added the paper <InternalLink to={`/entries/${props.update.relationships.entry.data.id}`}>
+      Started a discussion about <InternalLink to={`/entries/${props.update.relationships.entry.data.id}`}>
         <PaperTitle text={title(work)} />
-      </InternalLink> to the collection <InternalLink to={`/collections/${collection.id}`}>
+      </InternalLink> in the collection <InternalLink to={`/collections/${collection.id}`}>
         {collection.attributes.name}
       </InternalLink>.
     </div>
