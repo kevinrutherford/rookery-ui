@@ -13,7 +13,7 @@ import { Subsection } from '~/components/subsection'
 import { authenticator } from '~/services/auth.server'
 import { AddEntry } from './add-entry'
 import { CollectionPage } from './collection-page'
-import { EntryCard } from './entry-card'
+import { DiscussionCard } from './discussion-card'
 
 const collectionResponse = t.type({
   collection: t.type({
@@ -58,7 +58,7 @@ export default function CollectionDetails() {
         <ul className='overflow-y-auto mb-4'>
           { page.entries().map((ew) => (
             <li key={ew.entry.id} className='mb-4'>
-              <EntryCard collectionid={page.id()} entry={ew.entry} work={ew.work} />
+              <DiscussionCard collectionid={page.id()} entry={ew.entry} work={ew.work} />
             </li>
           ))
           }

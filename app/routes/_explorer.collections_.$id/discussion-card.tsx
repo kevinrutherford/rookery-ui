@@ -22,7 +22,7 @@ type Props = {
   work: WorkResource,
 }
 
-export const EntryCard: FC<Props> = (props: Props) => (
+export const DiscussionCard: FC<Props> = (props: Props) => (
   <Card>
     <InternalLink to={`/entries/${props.entry.id}`}>
       <p className='mb-4'>{title(props.work)}</p>
