@@ -8,6 +8,7 @@ import * as api from '~/api'
 import { parse } from '~/api-resources/parse'
 import { WorkResource, workResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
+import { Subheading } from '~/components/subheading'
 
 const workResponse = t.type({
   data: workResource,
@@ -67,7 +68,9 @@ export default function WorkDetails() {
           </a>
         </div>
       </div>
-      <p className='font-semibold mb-4'>Discussions</p>
+      <Subheading>
+        Discussions
+      </Subheading>
       <Card>
         <div className='text-red-500 flex justify-between'>
           <span>Local collection CHS</span>
