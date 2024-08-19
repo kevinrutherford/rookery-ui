@@ -26,7 +26,7 @@ export const CommentUpdateBody: FC<Props> = (props: Props) => {
   }
   return (
     <div>
-      Commented on <InternalLink to={`/entries/${entry.id}`}>
+      Commented on <InternalLink to={`/discussions/${entry.id}`}>
         <PaperTitle text={title} />
       </InternalLink>
     </div>

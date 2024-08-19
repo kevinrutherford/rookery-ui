@@ -12,7 +12,7 @@ type Props = {
 
 export const DiscussionCard: FC<Props> = (props: Props) => (
   <Card>
-    <InternalLink to={`/entries/${props.discussion.id}`}>
+    <InternalLink to={`/discussions/${props.discussion.id}`}>
       <p className='mb-4'>{props.discussion.attributes.title}</p>
     </InternalLink>
     <Metadata>
