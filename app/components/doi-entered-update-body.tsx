@@ -1,9 +1,8 @@
 import { FC } from 'react'
 import { CollectionResource } from '~/api-resources/collection'
+import { EntryResource } from '~/api-resources/entry'
 import { RelatedResources } from '~/api-resources/related-resources'
 import { UpdateDoiEntered } from '~/api-resources/update'
-import { WorkResource } from '~/api-resources/work'
-import { title } from '../routes/_explorer.collections_.$id/discussion-card'
 import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 import { PaperTitle } from './paper-title'
@@ -16,11 +15,11 @@ type Props = {
 export const DoiEnteredUpdateBody: FC<Props> = (props: Props) => {
   const collectionRef = props.update.relationships.collection
   const collection = lookupResource(props.related, collectionRef) as CollectionResource
-  const work = lookupResource(props.related, props.update.relationships.work) as WorkResource
+  const discussion = lookupResource(props.related, props.update.relationships.entry) as EntryResource
   return (
     <div>
       Started a discussion about <InternalLink to={`/entries/${props.update.relationships.entry.data.id}`}>
-        <PaperTitle text={title(work)} />
+        <PaperTitle text={discussion.attributes.title} />
       </InternalLink> in the collection <InternalLink to={`/collections/${collection.id}`}>
         {collection.attributes.name}
       </InternalLink>.
