@@ -18,7 +18,7 @@ export const DoiEnteredUpdateBody: FC<Props> = (props: Props) => {
   const discussion = lookupResource(props.related, props.update.relationships.entry) as EntryResource
   return (
     <div>
-      Started a discussion about <InternalLink to={`/entries/${props.update.relationships.entry.data.id}`}>
+      Started a discussion about <InternalLink to={`/discussions/${props.update.relationships.entry.data.id}`}>
         <PaperTitle text={discussion.attributes.title} />
       </InternalLink> in the collection <InternalLink to={`/collections/${collection.id}`}>
         {collection.attributes.name}
