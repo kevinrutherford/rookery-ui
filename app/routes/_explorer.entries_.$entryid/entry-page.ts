@@ -8,13 +8,13 @@ import { WorkResource } from '~/api-resources/work'
 import { EntryResponse } from './route'
 
 export class EntryPage {
-  readonly entry: EntryResource
+  readonly discussion: EntryResource
   readonly collection: CollectionResource
   readonly work: WorkResource
   readonly includedComments: ReadonlyArray<CommentResource>
 
   constructor(response: EntryResponse) {
-    this.entry = response.data
+    this.discussion = response.data
     this.collection = pipe(
       response.included,
       RA.filter((inc): inc is CollectionResource => inc.type === 'collection'),
@@ -34,7 +34,7 @@ export class EntryPage {
   }
 
   addedAt(): Date {
-    return this.entry.attributes.addedAt
+    return this.discussion.attributes.addedAt
   }
 
   collectionId() {
@@ -54,7 +54,7 @@ export class EntryPage {
   }
 
   id() {
-    return this.entry.id
+    return this.discussion.id
   }
 
   isPaper() {
@@ -62,13 +62,7 @@ export class EntryPage {
   }
 
   title() {
-    switch (this.work.attributes.crossrefStatus) {
-      case 'not-determined':
-      case 'not-found':
-        return `doi: ${this.work.id}`
-      case 'found':
-        return this.work.attributes.title
-    }
+    return this.discussion.attributes.title
   }
 }
 
