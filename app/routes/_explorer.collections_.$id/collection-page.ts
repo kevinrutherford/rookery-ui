@@ -13,11 +13,11 @@ type EnteredWork = {
 
 export class CollectionPage {
   readonly collection: CollectionResource
-  readonly includedEntries: ReadonlyArray<EnteredWork>
+  readonly includedDiscussions: ReadonlyArray<EnteredWork>
 
   constructor(response: CollectionResponse) {
     this.collection = response.data
-    this.includedEntries = pipe(
+    this.includedDiscussions = pipe(
       response.included,
       RA.filter((inc): inc is EntryResource => inc.type === 'entry'),
       RA.map((entry) => ({
@@ -37,8 +37,8 @@ export class CollectionPage {
     return this.collection.attributes.description
   }
 
-  entries() {
-    return this.includedEntries
+  discussions() {
+    return this.includedDiscussions
   }
 
   id() {

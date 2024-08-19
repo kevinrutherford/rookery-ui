@@ -56,9 +56,9 @@ export default function CollectionDetails() {
       </div>
       <Subsection title='Discussions'>
         <ul className='overflow-y-auto mb-4'>
-          { page.entries().map((ew) => (
-            <li key={ew.entry.id} className='mb-4'>
-              <DiscussionCard collectionid={page.id()} discussion={ew.entry} />
+          { page.discussions().map((discussion) => (
+            <li key={discussion.entry.id} className='mb-4'>
+              <DiscussionCard collectionid={page.id()} discussion={discussion.entry} />
             </li>
           ))
           }
