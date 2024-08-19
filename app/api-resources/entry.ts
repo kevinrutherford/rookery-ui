@@ -14,6 +14,7 @@ export const entryResource = t.intersection([
     id: t.string,
     attributes: t.type({
       addedAt: tt.DateFromISOString,
+      title: t.string,
       commentsCount: t.number,
     }),
     relationships: t.type({

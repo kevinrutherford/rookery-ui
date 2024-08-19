@@ -58,7 +58,7 @@ export default function CollectionDetails() {
         <ul className='overflow-y-auto mb-4'>
           { page.entries().map((ew) => (
             <li key={ew.entry.id} className='mb-4'>
-              <DiscussionCard collectionid={page.id()} entry={ew.entry} work={ew.work} />
+              <DiscussionCard collectionid={page.id()} discussion={ew.entry} />
             </li>
           ))
           }

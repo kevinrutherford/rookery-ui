@@ -18,19 +18,18 @@ export const title = (work: WorkResource) => {
 
 type Props = {
   collectionid: string,
-  entry: EntryResource,
-  work: WorkResource,
+  discussion: EntryResource,
 }
 
 export const DiscussionCard: FC<Props> = (props: Props) => (
   <Card>
-    <InternalLink to={`/entries/${props.entry.id}`}>
-      <p className='mb-4'>{title(props.work)}</p>
+    <InternalLink to={`/entries/${props.discussion.id}`}>
+      <p className='mb-4'>{props.discussion.attributes.title}</p>
     </InternalLink>
     <Metadata>
-      <span>{props.entry.attributes.commentsCount} comments</span>
+      <span>{props.discussion.attributes.commentsCount} comments</span>
       <div>
-        Added <ReactTimeAgo date={props.entry.attributes.addedAt} />
+        Added <ReactTimeAgo date={props.discussion.attributes.addedAt} />
       </div>
     </Metadata>
   </Card>
