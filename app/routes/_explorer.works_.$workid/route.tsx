@@ -67,7 +67,7 @@ export default function WorkDetails() {
           </a>
         </div>
       </div>
-      <p className='font-semibold mb-4'>Conversations</p>
+      <p className='font-semibold mb-4'>Discussions</p>
       <Card>
         <div className='text-red-500 flex justify-between'>
           <span>Local collection CHS</span>
