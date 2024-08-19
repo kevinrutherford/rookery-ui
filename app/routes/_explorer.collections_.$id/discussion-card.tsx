@@ -1,20 +1,9 @@
 import { FC } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 import { EntryResource } from '~/api-resources/entry'
-import { WorkResource } from '~/api-resources/work'
 import { Card } from '~/components/card'
 import { InternalLink } from '~/components/internal-link'
 import { Metadata } from '~/components/metadata'
-
-export const title = (work: WorkResource) => {
-  switch (work.attributes.crossrefStatus) {
-    case 'not-determined':
-    case 'not-found':
-      return `doi: ${work.id}`
-    case 'found':
-      return work.attributes.title
-  }
-}
 
 type Props = {
   collectionid: string,
