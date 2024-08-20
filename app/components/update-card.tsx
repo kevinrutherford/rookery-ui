@@ -42,7 +42,21 @@ type Props = {
 }
 
 export default function UpdateCard(props: Props) {
-  const actor = lookupResource(props.related, props.update.relationships.actor) as MemberResource
+  let actor: MemberResource
+  try {
+    actor = lookupResource(props.related, props.update.relationships.actor) as MemberResource
+  } catch {
+    actor = {
+      id: props.update.relationships.actor.data.id,
+      type: props.update.relationships.actor.data.type,
+      attributes: {
+        username: 'unknown',
+        display_name: 'Unknown User',
+        avatar_url: 'https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Clipart.png',
+        followingCount: 0, // SMELL -- belongs in `meta`, not here
+      },
+    } satisfies MemberResource
+  }
   return (
     <ActionCard actor={actor} timestamp={props.update.attributes.occurred_at}>
       { renderUpdate(props.update, props.related) }
