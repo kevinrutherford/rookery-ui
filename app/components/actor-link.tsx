@@ -9,7 +9,9 @@ type Props = {
 
 export const ActorLink: FC<Props> = (props: Props) => {
   const id = props.actor.id
-  return (
+  return id.includes('/') ? (
+    <a href={id} target='_blank' rel='noreferrer'>{props.children}</a>
+  ) : (
     <InternalLink to={`/members/${id}`}>
       {props.children}
     </InternalLink>
