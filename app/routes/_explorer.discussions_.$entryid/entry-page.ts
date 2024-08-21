@@ -3,12 +3,12 @@ import * as O from 'fp-ts/lib/Option.js'
 import * as RA from 'fp-ts/lib/ReadonlyArray.js'
 import { CollectionResource } from '~/api-resources/collection'
 import { CommentResource } from '~/api-resources/comment'
-import { EntryResource } from '~/api-resources/entry'
+import { DiscussionResource } from '~/api-resources/discussion'
 import { WorkResource } from '~/api-resources/work'
 import { EntryResponse } from './route'
 
 export class EntryPage {
-  readonly discussion: EntryResource
+  readonly discussion: DiscussionResource
   readonly collection: CollectionResource
   readonly work: WorkResource
   readonly includedComments: ReadonlyArray<CommentResource>

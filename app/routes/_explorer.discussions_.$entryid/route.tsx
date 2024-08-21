@@ -5,7 +5,7 @@ import * as t from 'io-ts'
 import ReactTimeAgo from 'react-time-ago'
 import invariant from 'tiny-invariant'
 import * as api from '~/api'
-import { entryResource } from '~/api-resources/entry'
+import { discussionResource } from '~/api-resources/discussion'
 import { parse } from '~/api-resources/parse'
 import { relatedResources } from '~/api-resources/related-resources'
 import { Card } from '~/components/card'
@@ -19,7 +19,7 @@ import { Replies } from './replies'
 
 const entryResponse = t.type({
   entry: t.type({
-    data: entryResource,
+    data: discussionResource,
     included: relatedResources,
   }),
   authenticatedUser: t.boolean,

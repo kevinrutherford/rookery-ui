@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { EntryResource } from '~/api-resources/entry'
+import { DiscussionResource } from '~/api-resources/discussion'
 import { RelatedResources } from '~/api-resources/related-resources'
 import { InboxUpdateCommentCreated, UpdateCommentCreated } from '~/api-resources/update'
 import { InternalLink } from './internal-link'
@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const CommentUpdateBody: FC<Props> = (props: Props) => {
-  const discussion = lookupResource(props.related, props.update.relationships.entry) as EntryResource
+  const discussion = lookupResource(props.related, props.update.relationships.entry) as DiscussionResource
   return (
     <div>
       Commented on <InternalLink to={`/discussions/${discussion.id}`}>

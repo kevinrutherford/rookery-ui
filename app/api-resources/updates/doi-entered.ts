@@ -1,7 +1,7 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
 import { collectionIdentifier } from '../collection'
-import { entryIdentifier } from '../entry'
+import { discussionIdentifier } from '../discussion'
 import { memberIdentifier } from '../member'
 import { workIdentifier } from '../work'
 
@@ -14,7 +14,7 @@ export const updateDoiEntered = t.type({
   relationships: t.type({
     actor: t.type({ data: memberIdentifier }),
     collection: t.type({ data: collectionIdentifier }),
-    entry: t.type({ data: entryIdentifier }),
+    entry: t.type({ data: discussionIdentifier }),
     work: t.type({ data: workIdentifier }),
   }),
 })

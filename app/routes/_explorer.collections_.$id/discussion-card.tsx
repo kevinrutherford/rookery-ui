@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import ReactTimeAgo from 'react-time-ago'
-import { EntryResource } from '~/api-resources/entry'
+import { DiscussionResource } from '~/api-resources/discussion'
 import { Card } from '~/components/card'
 import { InternalLink } from '~/components/internal-link'
 import { Metadata } from '~/components/metadata'
 
 type Props = {
   collectionid: string,
-  discussion: EntryResource,
+  discussion: DiscussionResource,
 }
 
 export const DiscussionCard: FC<Props> = (props: Props) => (

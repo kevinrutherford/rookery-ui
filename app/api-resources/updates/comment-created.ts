@@ -1,6 +1,6 @@
 import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
-import { entryIdentifier } from '../entry'
+import { discussionIdentifier } from '../discussion'
 import { memberIdentifier } from '../member'
 
 export const updateCommentCreated = t.type({
@@ -11,7 +11,7 @@ export const updateCommentCreated = t.type({
   }),
   relationships: t.type({
     actor: t.type({ data: memberIdentifier }),
-    entry: t.type({ data: entryIdentifier }),
+    entry: t.type({ data: discussionIdentifier }),
   }),
 })
 
@@ -23,7 +23,7 @@ export const inboxUpdateCommentCreated = t.type({
   }),
   relationships: t.type({
     actor: t.type({ data: memberIdentifier }),
-    entry: t.type({ data: entryIdentifier }),
+    entry: t.type({ data: discussionIdentifier }),
   }),
 })
 

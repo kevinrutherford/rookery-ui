@@ -2,16 +2,14 @@ import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
 import { workIdentifier } from './work'
 
-export const entryIdentifier = t.type({
-  type: t.literal('entry'),
+export const discussionIdentifier = t.type({
+  type: t.literal('discussion'),
   id: t.string,
 })
 
-export const entryResource = t.intersection([
-  entryIdentifier,
+export const discussionResource = t.intersection([
+  discussionIdentifier,
   t.type({
-    type: t.literal('entry'),
-    id: t.string,
     attributes: t.type({
       addedAt: tt.DateFromISOString,
       title: t.string,
@@ -23,5 +21,5 @@ export const entryResource = t.intersection([
   }),
 ])
 
-export type EntryResource = t.TypeOf<typeof entryResource>
+export type DiscussionResource = t.TypeOf<typeof discussionResource>
 
