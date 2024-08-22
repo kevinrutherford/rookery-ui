@@ -67,9 +67,10 @@ node_modules: package.json .nvmrc
 # Utilities - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 clean:
-	rm -f .mk-*
+	rm -f $(MK_COMPILED) $(MK_LINTED)
 	rm -rf ./$(DEV_SERVER_DIR)
 
 clobber: clean
+	rm -f $(MK_IMAGE)
 	rm -rf node_modules
 
