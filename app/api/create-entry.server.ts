@@ -3,7 +3,7 @@ import { post } from './post.server'
 
 export const createEntry = async (formData: FormData, request: Request) => {
   const updates = Object.fromEntries(formData)
-  await post('/entries', {
+  await post('/discussions', {
     ...updates,
     id: v4(),
   }, request)
