@@ -37,7 +37,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 
 export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: not clear where the form is
   const formData = await request.formData()
-  await api.createEntry(formData, request)
+  await api.createDiscussion(formData, request)
   return redirect(`/collections/${formData.get('collectionId')}`) // SMELL: HATEOAS here?
 }
 

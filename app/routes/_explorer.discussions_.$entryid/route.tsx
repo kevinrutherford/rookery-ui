@@ -18,21 +18,21 @@ import { EntryPage } from './entry-page'
 import { Replies } from './replies'
 
 const entryResponse = t.type({
-  entry: t.type({
+  discussion: t.type({
     data: discussionResource,
     included: relatedResources,
   }),
   authenticatedUser: t.boolean,
 })
 
-export type EntryResponse = t.TypeOf<typeof entryResponse>['entry']
+export type EntryResponse = t.TypeOf<typeof entryResponse>['discussion']
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
-  invariant(params.entryid, 'entryid must be supplied')
-  const entry = await api.fetchEntry(params.entryid, request)
+  invariant(params.discussionid, 'discussionid must be supplied')
+  const discussion = await api.fetchDiscussion(params.discussionid, request)
   const user = await authenticator.isAuthenticated(request)
   return json({
-    entry,
+    discussion,
     authenticatedUser: user !== null,
   })
 }
@@ -48,7 +48,7 @@ export default function CollectionDetails() {
     useLoaderData<unknown>(),
     parse(entryResponse),
   )
-  const entry = new EntryPage(response.entry)
+  const entry = new EntryPage(response.discussion)
 
   return (
     <div className='flex flex-col overflow-hidden'>
@@ -70,7 +70,7 @@ export default function CollectionDetails() {
       <Subsection title='Conversation'>
         <div className='flex flex-col overflow-hidden'>
           <div className='overflow-y-auto'>
-            <Replies comments={entry.comments()} resources={response.entry.included} />
+            <Replies comments={entry.comments()} resources={response.discussion.included} />
           </div>
         </div>
       </Subsection>
