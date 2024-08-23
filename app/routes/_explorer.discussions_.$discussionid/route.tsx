@@ -14,7 +14,7 @@ import { PaperTitle } from '~/components/paper-title'
 import { Subsection } from '~/components/subsection'
 import { authenticator } from '~/services/auth.server'
 import { AddComment } from './add-comment'
-import { DiscussionPage } from './entry-page'
+import { DiscussionPage } from './discussion-page'
 import { Replies } from './replies'
 
 const discussionResponse = t.type({
