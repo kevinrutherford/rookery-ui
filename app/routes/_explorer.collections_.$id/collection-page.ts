@@ -7,7 +7,7 @@ import { WorkResource  } from '~/api-resources/work'
 import { CollectionResponse } from './route'
 
 type EnteredWork = {
-  entry: DiscussionResource,
+  discussion: DiscussionResource,
   work: WorkResource,
 }
 
@@ -20,14 +20,14 @@ export class CollectionPage {
     this.includedDiscussions = pipe(
       response.included,
       RA.filter((inc): inc is DiscussionResource => inc.type === 'discussion'),
-      RA.map((entry) => ({
-        entry,
+      RA.map((discussion) => ({
+        discussion,
         work: pipe(
           response.included,
           RA.filter((inc): inc is WorkResource => inc.type === 'work'),
-          RA.filter((work) => work.id === entry.relationships.work.data.id),
+          RA.filter((work) => work.id === discussion.relationships.work.data.id),
           RA.head,
-          O.getOrElseW(() => { throw new Error('Work for entry not found') }),
+          O.getOrElseW(() => { throw new Error('Work for discussion not found') }),
         ),
       })),
     )

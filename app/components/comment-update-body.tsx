@@ -14,7 +14,7 @@ type Props = {
 }
 
 export const CommentUpdateBody: FC<Props> = (props: Props) => {
-  const discussionLink = props.update.relationships.entry.data
+  const discussionLink = props.update.relationships.discussion.data
   if (discussionLink == null) {
     return (
       <div>

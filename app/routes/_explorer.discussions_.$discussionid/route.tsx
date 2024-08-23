@@ -17,7 +17,7 @@ import { AddComment } from './add-comment'
 import { EntryPage } from './entry-page'
 import { Replies } from './replies'
 
-const entryResponse = t.type({
+const discussionResponse = t.type({
   discussion: t.type({
     data: discussionResource,
     included: relatedResources,
@@ -25,7 +25,7 @@ const entryResponse = t.type({
   authenticatedUser: t.boolean,
 })
 
-export type EntryResponse = t.TypeOf<typeof entryResponse>['discussion']
+export type EntryResponse = t.TypeOf<typeof discussionResponse>['discussion']
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   invariant(params.discussionid, 'discussionid must be supplied')
@@ -46,35 +46,35 @@ export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: mov
 export default function CollectionDetails() {
   const response = pipe(
     useLoaderData<unknown>(),
-    parse(entryResponse),
+    parse(discussionResponse),
   )
-  const entry = new EntryPage(response.discussion)
+  const discussion = new EntryPage(response.discussion)
 
   return (
     <div className='flex flex-col overflow-hidden'>
       <div className='flex flex-col bg-white mb-4 p-4 rounded-md overflow-hidden'>
         <p className='mb-4'>
-          <PaperTitle text={entry.title()} />
+          <PaperTitle text={discussion.title()} />
         </p>
         <div className='text-sm flex justify-between'>
-          <InternalLink to={`/works/${encodeURIComponent(entry.work.id)}`}>
+          <InternalLink to={`/works/${encodeURIComponent(discussion.work.id)}`}>
             Authors, abstract, history, etc
           </InternalLink>
           <div>
-            Added to collection <InternalLink to={`/collections/${entry.collectionId()}`}>
-              {entry.collectionName()}
-            </InternalLink> <ReactTimeAgo date={entry.addedAt()} />
+            Added to collection <InternalLink to={`/collections/${discussion.collectionId()}`}>
+              {discussion.collectionName()}
+            </InternalLink> <ReactTimeAgo date={discussion.addedAt()} />
           </div>
         </div>
       </div>
       <Subsection title='Conversation'>
         <div className='flex flex-col overflow-hidden'>
           <div className='overflow-y-auto'>
-            <Replies comments={entry.comments()} resources={response.discussion.included} />
+            <Replies comments={discussion.comments()} resources={response.discussion.included} />
           </div>
         </div>
       </Subsection>
-      { response.authenticatedUser && <AddComment discussionId={entry.id()} /> }
+      { response.authenticatedUser && <AddComment discussionId={discussion.id()} /> }
     </div>
   )
 

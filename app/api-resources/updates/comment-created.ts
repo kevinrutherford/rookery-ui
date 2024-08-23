@@ -11,7 +11,7 @@ export const updateCommentCreated = t.type({
   }),
   relationships: t.type({
     actor: t.type({ data: memberIdentifier }),
-    entry: t.type({ data: discussionIdentifier }),
+    discussion: t.type({ data: discussionIdentifier }),
   }),
 })
 
@@ -23,7 +23,7 @@ export const inboxUpdateCommentCreated = t.type({
   }),
   relationships: t.type({
     actor: t.type({ data: memberIdentifier }),
-    entry: t.type({
+    discussion: t.type({
       data: t.union([discussionIdentifier, t.null]),
     }),
   }),

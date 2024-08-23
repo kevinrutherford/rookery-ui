@@ -57,8 +57,8 @@ export default function CollectionDetails() {
       <Subsection title='Discussions'>
         <ul className='overflow-y-auto mb-4'>
           { page.discussions().map((discussion) => (
-            <li key={discussion.entry.id} className='mb-4'>
-              <DiscussionCard collectionid={page.id()} discussion={discussion.entry} />
+            <li key={discussion.discussion.id} className='mb-4'>
+              <DiscussionCard collectionid={page.id()} discussion={discussion.discussion} />
             </li>
           ))
           }

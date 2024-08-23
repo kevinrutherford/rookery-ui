@@ -15,10 +15,10 @@ type Props = {
 export const DoiEnteredUpdateBody: FC<Props> = (props: Props) => {
   const collectionRef = props.update.relationships.collection
   const collection = lookupResource(props.related, collectionRef) as CollectionResource
-  const discussion = lookupResource(props.related, props.update.relationships.entry) as DiscussionResource
+  const discussion = lookupResource(props.related, props.update.relationships.discussion) as DiscussionResource
   return (
     <div>
-      Started a discussion about <InternalLink to={`/discussions/${props.update.relationships.entry.data.id}`}>
+      Started a discussion about <InternalLink to={`/discussions/${props.update.relationships.discussion.data.id}`}>
         <PaperTitle text={discussion.attributes.title} />
       </InternalLink> in the collection <InternalLink to={`/collections/${collection.id}`}>
         {collection.attributes.name}
