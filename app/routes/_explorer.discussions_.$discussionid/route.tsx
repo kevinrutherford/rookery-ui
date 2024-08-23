@@ -40,7 +40,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 export const action = async ({ request }: ActionFunctionArgs) => { // SMELL: move to AddComment?
   const formData = await request.formData()
   await api.createComment(formData, request)
-  return redirect(`/discussions/${formData.get('entryId')}`) // SMELL: HATEOAS here?
+  return redirect(`/discussions/${formData.get('discussionId')}`) // SMELL: HATEOAS here?
 }
 
 export default function CollectionDetails() {
@@ -74,7 +74,7 @@ export default function CollectionDetails() {
           </div>
         </div>
       </Subsection>
-      { response.authenticatedUser && <AddComment entryId={entry.id()} /> }
+      { response.authenticatedUser && <AddComment discussionId={entry.id()} /> }
     </div>
   )
 

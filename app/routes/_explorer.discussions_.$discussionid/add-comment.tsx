@@ -4,7 +4,7 @@ import { Card } from '~/components/card'
 import { useExplorer } from '~/components/use-explorer'
 
 type Props = {
-  entryId: string,
+  discussionId: string,
 }
 
 export const AddComment: FC<Props> = (props: Props) => {
@@ -14,9 +14,9 @@ export const AddComment: FC<Props> = (props: Props) => {
     <Card>
       <fetcher.Form method='post' className='w-full'>
         <input type='hidden'
-          id='entryId'
-          name='entryId'
-          value={props.entryId}
+          id='discussionId'
+          name='discussionId'
+          value={props.discussionId}
         />
         <div className='md:flex md:items-center mb-2'>
           <div className='md:w-1/3'>
