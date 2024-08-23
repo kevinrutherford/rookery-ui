@@ -14,7 +14,7 @@ import { PaperTitle } from '~/components/paper-title'
 import { Subsection } from '~/components/subsection'
 import { authenticator } from '~/services/auth.server'
 import { AddComment } from './add-comment'
-import { EntryPage } from './entry-page'
+import { DiscussionPage } from './entry-page'
 import { Replies } from './replies'
 
 const discussionResponse = t.type({
@@ -25,7 +25,7 @@ const discussionResponse = t.type({
   authenticatedUser: t.boolean,
 })
 
-export type EntryResponse = t.TypeOf<typeof discussionResponse>['discussion']
+export type DiscussionResponse = t.TypeOf<typeof discussionResponse>['discussion']
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   invariant(params.discussionid, 'discussionid must be supplied')
@@ -48,7 +48,7 @@ export default function CollectionDetails() {
     useLoaderData<unknown>(),
     parse(discussionResponse),
   )
-  const discussion = new EntryPage(response.discussion)
+  const discussion = new DiscussionPage(response.discussion)
 
   return (
     <div className='flex flex-col overflow-hidden'>

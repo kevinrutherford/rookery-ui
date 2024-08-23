@@ -3,11 +3,11 @@ import { CommentResource } from '~/api-resources/comment'
 import { MemberResource } from '~/api-resources/member'
 import ActionCard from '~/components/action-card'
 import { lookupResource } from '~/components/lookup-resource'
-import { EntryResponse } from './route'
+import { DiscussionResponse } from './route'
 
 type Props = {
   comment: CommentResource,
-  resources: EntryResponse['included'],
+  resources: DiscussionResponse['included'],
 }
 
 export const ReplyCard: FC<Props> = (props: Props) => {

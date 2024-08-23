@@ -7,7 +7,7 @@ type Props = {
   collectionId: string,
 }
 
-export const AddEntry: FC<Props> = (props: Props) => {
+export const AddDiscussion: FC<Props> = (props: Props) => {
   const explorer = useExplorer()
   const fetcher = useFetcher()
   return (

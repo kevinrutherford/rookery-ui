@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { CommentResource } from '~/api-resources/comment'
 import { ReplyCard } from './reply-card'
-import { EntryResponse } from './route'
+import { DiscussionResponse } from './route'
 
 type Props = {
   comments: ReadonlyArray<CommentResource>,
-  resources: EntryResponse['included'],
+  resources: DiscussionResponse['included'],
 }
 
 export const Replies: FC<Props> = (props: Props) => (

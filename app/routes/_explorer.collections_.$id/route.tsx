@@ -11,7 +11,7 @@ import { Card } from '~/components/card'
 import { CollectionTitle } from '~/components/collection-title'
 import { Subsection } from '~/components/subsection'
 import { authenticator } from '~/services/auth.server'
-import { AddEntry } from './add-entry'
+import { AddDiscussion } from './add-discussion'
 import { CollectionPage } from './collection-page'
 import { DiscussionCard } from './discussion-card'
 
@@ -64,7 +64,7 @@ export default function CollectionDetails() {
           }
         </ul>
       </Subsection>
-      { data.authenticatedUser && <AddEntry collectionId={page.id()} /> }
+      { data.authenticatedUser && <AddDiscussion collectionId={page.id()} /> }
     </div>
   )
 }

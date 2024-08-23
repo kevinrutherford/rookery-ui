@@ -5,27 +5,27 @@ import { CollectionResource } from '~/api-resources/collection'
 import { CommentResource } from '~/api-resources/comment'
 import { DiscussionResource } from '~/api-resources/discussion'
 import { WorkResource } from '~/api-resources/work'
-import { EntryResponse } from './route'
+import { DiscussionResponse } from './route'
 
-export class EntryPage {
+export class DiscussionPage {
   readonly discussion: DiscussionResource
   readonly collection: CollectionResource
   readonly work: WorkResource
   readonly includedComments: ReadonlyArray<CommentResource>
 
-  constructor(response: EntryResponse) {
+  constructor(response: DiscussionResponse) {
     this.discussion = response.data
     this.collection = pipe(
       response.included,
       RA.filter((inc): inc is CollectionResource => inc.type === 'collection'),
       RA.head,
-      O.getOrElseW(() => { throw new Error('No collection included with Entry') }),
+      O.getOrElseW(() => { throw new Error('No collection included with Discussion') }),
     )
     this.work = pipe(
       response.included,
       RA.filter((inc): inc is WorkResource => inc.type === 'work'),
       RA.head,
-      O.getOrElseW(() => { throw new Error('No Work included with Entry') }),
+      O.getOrElseW(() => { throw new Error('No Work included with Discussion') }),
     )
     this.includedComments = pipe(
       response.included,
