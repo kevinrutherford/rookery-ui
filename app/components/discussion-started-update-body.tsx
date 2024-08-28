@@ -2,13 +2,13 @@ import { FC } from 'react'
 import { CollectionResource } from '~/api-resources/collection'
 import { DiscussionResource } from '~/api-resources/discussion'
 import { RelatedResources } from '~/api-resources/related-resources'
-import { UpdateDoiEntered } from '~/api-resources/update'
+import { UpdateDiscussionStarted } from '~/api-resources/update'
 import { DiscussionLink } from './discussion-link'
 import { InternalLink } from './internal-link'
 import { lookupResource } from './lookup-resource'
 
 type Props = {
-  update: UpdateDoiEntered,
+  update: UpdateDiscussionStarted,
   related: RelatedResources,
 }
 

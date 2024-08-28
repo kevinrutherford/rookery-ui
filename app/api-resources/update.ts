@@ -2,7 +2,7 @@ import * as t from 'io-ts'
 import { updateCollectionCreated } from './updates/collection-created'
 import { inboxUpdateCommentCreated, updateCommentCreated } from './updates/comment-created'
 import { updateCommunityCreated } from './updates/community-created'
-import { updateDoiEntered } from './updates/doi-entered'
+import { updateDiscussionStarted } from './updates/discussion-started'
 import { updateFrontMatterFetched } from './updates/front-matter-fetched'
 import { updateWorkNotFound } from './updates/work-not-found'
 
@@ -13,7 +13,7 @@ export type InboxUpdateCommentCreated = t.TypeOf<typeof inboxUpdateCommentCreate
 
 export type UpdateCommunityCreated = t.TypeOf<typeof updateCommunityCreated>
 
-export type UpdateDoiEntered = t.TypeOf<typeof updateDoiEntered>
+export type UpdateDiscussionStarted = t.TypeOf<typeof updateDiscussionStarted>
 
 export type UpdateFrontMatterFetched = t.TypeOf<typeof updateFrontMatterFetched>
 
@@ -24,7 +24,7 @@ export const updateResource = t.union([
   updateCommentCreated,
   inboxUpdateCommentCreated,
   updateCommunityCreated,
-  updateDoiEntered,
+  updateDiscussionStarted,
   updateFrontMatterFetched,
   updateWorkNotFound,
 ])
