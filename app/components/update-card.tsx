@@ -55,6 +55,13 @@ export default function UpdateCard(props: Props) {
         avatar_url: 'https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Clipart.png',
         followingCount: 0, // SMELL -- belongs in `meta`, not here
       },
+      relationships: {
+        followers: {
+          meta: {
+            count: 0,
+          },
+        },
+      },
     } satisfies MemberResource
   }
   return (

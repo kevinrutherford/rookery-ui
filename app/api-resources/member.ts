@@ -14,6 +14,13 @@ export const memberResource = t.intersection([
       avatar_url: t.string,
       followingCount: t.number,
     }),
+    relationships: t.type({
+      followers: t.type({
+        meta: t.type({
+          count: t.number,
+        }),
+      }),
+    }),
   }),
 ])
 
