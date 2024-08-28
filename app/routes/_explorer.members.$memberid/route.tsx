@@ -34,6 +34,7 @@ export default function CollectionDetails() {
     parse(memberResponse),
   )
   const profile = response.member.data.attributes
+  const followerCount = response.member.data.relationships.followers.meta.count
 
   return (
     <div className='flex flex-col overflow-hidden'>
@@ -45,6 +46,7 @@ export default function CollectionDetails() {
           <p className='text-4xl font-semibold'>{profile.display_name}</p>
           <p className='text-2xl mb-8 text-slate-400 font-semibold'>@{profile.username}</p>
           <p>Following: {profile.followingCount}</p>
+          <p>Followers: {followerCount}</p>
         </div>
       </div>
     </div>
