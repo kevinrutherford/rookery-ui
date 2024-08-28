@@ -27,7 +27,11 @@ const communityResponse = t.type({
   community: t.type({
     data: communityResource,
   }),
-  username: tt.optionFromNullable(t.string),
+  user: tt.optionFromNullable(t.type({
+    id: t.string,
+    username: t.string,
+    token: t.string,
+  })),
 })
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -35,7 +39,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request)
   return json({
     community,
-    username: user === null ? null : user.username,
+    user,
   })
 }
 
@@ -46,7 +50,7 @@ const ExplorerLayout = () => {
     parse(communityResponse),
   )
   const feedSelection = location.search === '' ? pipe(
-    response.username,
+    response.user,
     O.match(
       () => '?f=lt', // SMELL -- duplicated values
       () => '?f=ff', // SMELL -- duplicated values
@@ -56,13 +60,13 @@ const ExplorerLayout = () => {
 
   return (
     <ExplorerContext.Provider value={{ feedSelection, theme }}>
-      <AuthBar username={response.username} communityName={response.community.data.attributes.name} />
+      <AuthBar user={response.user} communityName={response.community.data.attributes.name} />
       <div className={`h-full pt-16 overflow-hidden bg-${theme}-200`}>
         <Container>
           <div className='grid grid-cols-2 gap-12 h-full overflow-hidden'>
             <Column>
               <ul className={`p-4 bg-${theme}-100 mb-4 rounded-md`}>
-                { O.isSome(response.username) && (
+                { O.isSome(response.user) && (
                   <li className='inline mr-6 mt-6 mb-6'>
                     <Link
                       className={`${feedSelection === '?f=ff' ? 'border-b-4 border-slate-400' : ''}`}

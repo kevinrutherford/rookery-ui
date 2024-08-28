@@ -4,7 +4,7 @@ import * as O from 'fp-ts/lib/Option.js'
 import { FC } from 'react'
 import { Container } from '~/components/container'
 import { useExplorer } from '~/components/use-explorer'
-import { authenticator } from '~/services/auth.server'
+import { authenticator, User } from '~/services/auth.server'
 
 export async function action({ request }: ActionFunctionArgs) {
   const url = new URL(request.url)
@@ -14,7 +14,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 type Props = {
   communityName: string,
-  username: O.Option<string>, // SMELL -- coupling; split into logged-in vs logged-out components
+  user: O.Option<User>, // SMELL -- coupling; split into logged-in vs logged-out components
 }
 
 export const AuthBar: FC<Props> = (props: Props) => {
@@ -26,14 +26,14 @@ export const AuthBar: FC<Props> = (props: Props) => {
         <div className='flex justify-between'>
           <span className='font-bold'>{props.communityName}</span>
           {
-            O.isSome(props.username)
+            O.isSome(props.user)
               ? (
-                <span>Logged in as <span className='font-semibold'>{props.username.value}</span></span>
+                <span>Logged in as <span className='font-semibold'>{props.user.value.username}</span></span>
               )
               : ''
           }
           {
-            O.isSome(props.username)
+            O.isSome(props.user)
               ? (
                 <Form method='post' action={`/authbar?returnTo=${location.pathname}`}>
                   <button type="submit">
