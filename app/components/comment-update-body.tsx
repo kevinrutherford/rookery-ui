@@ -5,7 +5,7 @@ import { FC } from 'react'
 import { DiscussionResource } from '~/api-resources/discussion'
 import { RelatedResources } from '~/api-resources/related-resources'
 import { InboxUpdateCommentCreated, UpdateCommentCreated } from '~/api-resources/update'
-import { InternalLink } from './internal-link'
+import { DiscussionLink } from './discussion-link'
 import { PaperTitle } from './paper-title'
 
 type Props = {
@@ -30,9 +30,9 @@ export const CommentUpdateBody: FC<Props> = (props: Props) => {
   ) as DiscussionResource
   return (
     <div>
-      Commented on <InternalLink to={`/discussions/${discussion.id}`}>
+      Commented on <DiscussionLink discussion={discussion}>
         <PaperTitle text={discussion.attributes.title} />
-      </InternalLink>
+      </DiscussionLink>
     </div>
   )
 }
