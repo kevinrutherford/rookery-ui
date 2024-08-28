@@ -22,7 +22,7 @@ const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
     case 'update:community-created': return (
       <CommunityCreatedUpdateBody update={update} related={related} />
     )
-    case 'update:doi-entered': return (
+    case 'update:discussion-started': return (
       <DiscussionStartedUpdateBody update={update} related={related} />
     )
     case 'update:front-matter-fetched': return (
