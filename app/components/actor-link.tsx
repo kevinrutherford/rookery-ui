@@ -8,9 +8,9 @@ type Props = {
 }
 
 export const ActorLink: FC<Props> = (props: Props) => {
-  const id = props.actor.id.replace('/api', '')
+  const id = props.actor.id
   return id.includes('/') ? (
-    <a href={id} className='inline font-medium hover:underline' target='_blank' rel='noreferrer'>{props.children}</a>
+    <a href={id.replace('/api', '')} className='inline font-medium hover:underline' target='_blank' rel='noreferrer'>{props.children}</a>
   ) : (
     <InternalLink to={`/members/${id}`}>
       {props.children}

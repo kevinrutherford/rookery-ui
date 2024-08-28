@@ -8,10 +8,10 @@ type Props = {
 }
 
 export const DiscussionLink: FC<Props> = (props: Props) => {
-  const id = props.discussion.id.replace('/api', '')
+  const id = props.discussion.id
   const content = <PaperTitle text={props.discussion.attributes.title} />
   return id.includes('/') ? (
-    <a href={id} className='inline font-medium hover:underline' target='_blank' rel='noreferrer'>{content}</a>
+    <a href={id.replace('/api', '')} className='inline font-medium hover:underline' target='_blank' rel='noreferrer'>{content}</a>
   ) : (
     <InternalLink to={`/discussions/${id}`}>{content}</InternalLink>
   )
