@@ -12,7 +12,7 @@ type Props = {
   related: RelatedResources,
 }
 
-export const DoiEnteredUpdateBody: FC<Props> = (props: Props) => {
+export const DiscussionStartedUpdateBody: FC<Props> = (props: Props) => {
   const collectionRef = props.update.relationships.collection
   const collection = lookupResource(props.related, collectionRef) as CollectionResource
   const discussion = lookupResource(props.related, props.update.relationships.discussion) as DiscussionResource

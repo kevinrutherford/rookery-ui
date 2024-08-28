@@ -5,7 +5,7 @@ import ActionCard from './action-card'
 import { CollectionCreatedUpdateBody } from './collection-created-update-body'
 import { CommentUpdateBody } from './comment-update-body'
 import { CommunityCreatedUpdateBody } from './community-created-update-body'
-import { DoiEnteredUpdateBody } from './doi-entered-update-body'
+import { DiscussionStartedUpdateBody } from './discussion-started-update-body'
 import { FrontMatterFetchedUpdateBody } from './front-matter-fetched-update-body'
 import { lookupResource } from './lookup-resource'
 import { WorkNotFoundUpdateBody } from './work-not-found-update-body'
@@ -23,7 +23,7 @@ const renderUpdate = (update: UpdateResource, related: RelatedResources) => {
       <CommunityCreatedUpdateBody update={update} related={related} />
     )
     case 'update:doi-entered': return (
-      <DoiEnteredUpdateBody update={update} related={related} />
+      <DiscussionStartedUpdateBody update={update} related={related} />
     )
     case 'update:front-matter-fetched': return (
       <FrontMatterFetchedUpdateBody update={update} related={related} />
