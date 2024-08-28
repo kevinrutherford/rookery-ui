@@ -3,6 +3,7 @@ import { Form, Link, useLocation } from '@remix-run/react'
 import * as O from 'fp-ts/lib/Option.js'
 import { FC } from 'react'
 import { Container } from '~/components/container'
+import { InternalLink } from '~/components/internal-link'
 import { useExplorer } from '~/components/use-explorer'
 import { authenticator, User } from '~/services/auth.server'
 
@@ -28,7 +29,7 @@ export const AuthBar: FC<Props> = (props: Props) => {
           {
             O.isSome(props.user)
               ? (
-                <span>Logged in as <span className='font-semibold'>{props.user.value.username}</span></span>
+                <span>Logged in as <InternalLink to={`/members/${props.user.value.id}`}>{props.user.value.username}</InternalLink></span>
               )
               : ''
           }
