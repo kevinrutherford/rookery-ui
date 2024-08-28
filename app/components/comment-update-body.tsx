@@ -30,9 +30,7 @@ export const CommentUpdateBody: FC<Props> = (props: Props) => {
   ) as DiscussionResource
   return (
     <div>
-      Commented on <DiscussionLink discussion={discussion}>
-        <PaperTitle text={discussion.attributes.title} />
-      </DiscussionLink>
+      Commented on <DiscussionLink discussion={discussion} />
     </div>
   )
 }
