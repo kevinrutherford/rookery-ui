@@ -23,7 +23,7 @@
     "io-ts-reporters": "2.0.1",
     "io-ts-types": "0.5.19",
     "isbot": "5.1.17",
-    "javascript-time-ago": "2.5.10",
+    "javascript-time-ago": "2.5.11",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-time-ago": "7.3.3",
